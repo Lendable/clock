@@ -11,7 +11,7 @@ use Lendable\Clock\Serialization\FileNameGenerator;
  *
  * The only real use case for such scenario is functional testing.
  */
-final class SerializedFixedClock implements Clock
+final class PersistedFixedClock implements Clock
 {
     private const SERIALIZATION_FORMAT = 'Y-m-d\TH:i:s.u';
 
@@ -42,7 +42,7 @@ final class SerializedFixedClock implements Clock
         $this->fileNameGenerator = $fileNameGenerator;
     }
 
-    public static function fromSerializedData(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator): self
+    public static function fromPersisted(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator): self
     {
         $instance = new self($serializedStorageDirectory, $fileNameGenerator);
         $instance->load();
@@ -55,7 +55,7 @@ final class SerializedFixedClock implements Clock
     {
         $instance = new self($serializedStorageDirectory, $fileNameGenerator);
         $instance->delegate = new FixedClock($now);
-        $instance->save();
+        $instance->persist();
 
         return $instance;
     }
@@ -78,7 +78,7 @@ final class SerializedFixedClock implements Clock
         );
     }
 
-    private function save(): void
+    private function persist(): void
     {
         $now = $this->delegate->now();
 

@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Tests\Lendable\Clock\Unit;
 
 use Lendable\Clock\Serialization\FixedFileNameGenerator;
-use Lendable\Clock\SerializedFixedClock;
+use Lendable\Clock\PersistedFixedClock;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
-final class SerializedFixedClockTest extends TestCase
+final class PersistedFixedClockTest extends TestCase
 {
     /**
      * @test
@@ -22,8 +22,8 @@ final class SerializedFixedClockTest extends TestCase
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
 
-        $this->assertSame($timeString, SerializedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now)->now()->format($timeFormat));
-        $this->assertSame($timeString, SerializedFixedClock::fromSerializedData($vfs->url(), $fileNameGenerator)->now()->format($timeFormat));
-        $this->assertSame($timeString, SerializedFixedClock::fromSerializedData($vfs->url(), $fileNameGenerator)->now()->format($timeFormat));
+        $this->assertSame($timeString, PersistedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now)->now()->format($timeFormat));
+        $this->assertSame($timeString, PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator)->now()->format($timeFormat));
+        $this->assertSame($timeString, PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator)->now()->format($timeFormat));
     }
 }
