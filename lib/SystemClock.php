@@ -16,7 +16,7 @@ final class SystemClock implements Clock
      */
     private $timeZone;
 
-    public function __construct(\DateTimeZone $timeZone = null)
+    public function __construct(?\DateTimeZone $timeZone = null)
     {
         $this->timeZone = $timeZone ?? new \DateTimeZone(self::DEFAULT_TIMEZONE);
     }
