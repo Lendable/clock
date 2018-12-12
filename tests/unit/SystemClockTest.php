@@ -31,6 +31,14 @@ final class SystemClockTest extends TestCase
     /**
      * @test
      */
+    public function it_defaults_timezone_to_utc(): void
+    {
+        $this->assertSame('UTC', (new SystemClock())->now()->getTimezone()->getName());
+    }
+
+    /**
+     * @test
+     */
     public function it_gives_the_current_system_time(): void
     {
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
