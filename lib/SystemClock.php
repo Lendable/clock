@@ -9,14 +9,16 @@ namespace Lendable\Clock;
  */
 final class SystemClock implements Clock
 {
+    private const DEFAULT_TIMEZONE = 'UTC';
+
     /**
      * @var \DateTimeZone
      */
     private $timeZone;
 
-    public function __construct(\DateTimeZone $timeZone)
+    public function __construct(\DateTimeZone $timeZone = null)
     {
-        $this->timeZone = $timeZone;
+        $this->timeZone = $timeZone ?? new \DateTimeZone(self::DEFAULT_TIMEZONE);
     }
 
     public function now(): \DateTimeImmutable
