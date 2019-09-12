@@ -9,7 +9,7 @@ namespace Lendable\Clock;
  */
 final class FixedClock implements Clock
 {
-    private const COMPLETE_DATETIME_FORMAT = 'Y-m-d\TH:i:s.uP';
+    private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
 
     private $now;
 
@@ -25,6 +25,6 @@ final class FixedClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        return \DateTime::createFromFormat(self::COMPLETE_DATETIME_FORMAT, $this->now->format(self::COMPLETE_DATETIME_FORMAT));
+        return \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now->format(self::ISO8601_MICROSECONDS_FORMAT));
     }
 }

@@ -10,7 +10,7 @@ namespace Lendable\Clock;
 final class SystemClock implements Clock
 {
     private const DEFAULT_TIMEZONE = 'UTC';
-    private const COMPLETE_DATETIME_FORMAT = 'Y-m-d\TH:i:s.uP';
+    private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
 
     /**
      * @var \DateTimeZone
@@ -29,6 +29,6 @@ final class SystemClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        return \DateTime::createFromFormat(self::COMPLETE_DATETIME_FORMAT, $this->now()->format(self::COMPLETE_DATETIME_FORMAT));
+        return \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now()->format(self::ISO8601_MICROSECONDS_FORMAT));
     }
 }
