@@ -1,0 +1,9 @@
+version: '2.4'
+
+services:
+  runner:
+    user: 1000:1000
+    build:
+      context: ..
+      dockerfile: Dockerfile.php-cli
+    entrypoint: 'composer ci'

@@ -11,6 +11,9 @@ final class FixedClock implements Clock
 {
     private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
 
+    /**
+     * @var \DateTimeImmutable
+     */
     private $now;
 
     public function __construct(\DateTimeImmutable $now)
