@@ -51,7 +51,7 @@ final class SystemClockTest extends TestCase
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $clock = new SystemClock(new \DateTimeZone('UTC'));
 
-        $difference = $clock->$nowMethod()->getTimestamp() - $now->getTimestamp();
+        $difference = $clock->{$nowMethod}()->getTimestamp() - $now->getTimestamp();
 
         $this->assertGreaterThanOrEqual(0, $difference);
         $this->assertLessThanOrEqual(1, $difference);

@@ -10,6 +10,7 @@ namespace Lendable\Clock;
 final class SystemClock implements Clock
 {
     private const DEFAULT_TIMEZONE = 'UTC';
+
     private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
 
     /**
@@ -30,6 +31,9 @@ final class SystemClock implements Clock
     public function nowMutable(): \DateTime
     {
         // @TODO Use \DateTime::createFromImmutable when PHP version is >=7.3
-        return \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now()->format(self::ISO8601_MICROSECONDS_FORMAT));
+        $instance = \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now()->format(self::ISO8601_MICROSECONDS_FORMAT));
+        \assert($instance instanceof \DateTime);
+
+        return $instance;
     }
 }

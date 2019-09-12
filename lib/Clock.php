@@ -7,5 +7,6 @@ namespace Lendable\Clock;
 interface Clock
 {
     public function now(): \DateTimeImmutable;
+
     public function nowMutable(): \DateTime;
 }
