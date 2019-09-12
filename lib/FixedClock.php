@@ -9,6 +9,8 @@ namespace Lendable\Clock;
  */
 final class FixedClock implements Clock
 {
+    private const COMPLETE_DATETIME_FORMAT = 'Y-m-d\TH:i:s.uP';
+
     private $now;
 
     public function __construct(\DateTimeImmutable $now)
@@ -19,5 +21,10 @@ final class FixedClock implements Clock
     public function now(): \DateTimeImmutable
     {
         return $this->now;
+    }
+
+    public function nowMutable(): \DateTime
+    {
+        return \DateTime::createFromFormat(self::COMPLETE_DATETIME_FORMAT, $this->now->format(self::COMPLETE_DATETIME_FORMAT));
     }
 }

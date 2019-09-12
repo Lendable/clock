@@ -65,6 +65,11 @@ final class PersistedFixedClock implements Clock
         return $this->delegate->now();
     }
 
+    public function nowMutable(): \DateTime
+    {
+        return $this->delegate->nowMutable();
+    }
+
     private function load(): void
     {
         $path = $this->getSerializationFilePath();
