@@ -24,7 +24,7 @@ Target: unit tests
 
 ### `PersistedFixedClock`
 Similar to `FixedClock`, but can persist and load the given timestamp from disk.
-Use `FixedClock::initializeWith(...)` to set up the timestamp and `FixedClock::fromPersisted(...)`
+Use `PersistedFixedClock::initializeWith(...)` to set up the timestamp and `PersistedFixedClock::fromPersisted(...)`
 to load from the persisted value on disk.
 
 Target: functional tests where you reload your context. E.g. Behat vs Symfony Kernel. You
