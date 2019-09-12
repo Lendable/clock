@@ -23,5 +23,9 @@ final class FixedClockTest extends TestCase
         $this->assertSame($timeString, $clock->now()->format($timeFormat));
         $this->assertSame($timeString, $clock->now()->format($timeFormat));
         $this->assertSame($timeString, $clock->now()->format($timeFormat));
+
+        $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
+        $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
+        $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
     }
 }

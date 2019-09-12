@@ -17,6 +17,12 @@ final class SystemClockTest extends TestCase
         yield ['Europe/Paris'];
     }
 
+    public function nowMethodProvider(): iterable
+    {
+        yield ['now'];
+        yield ['nowMutable'];
+    }
+
     /**
      * @test
      * @dataProvider exampleTimeZoneNames
@@ -38,15 +44,36 @@ final class SystemClockTest extends TestCase
 
     /**
      * @test
+     * @dataProvider nowMethodProvider
      */
-    public function it_gives_the_current_system_time(): void
+    public function it_gives_the_current_system_time(string $nowMethod): void
     {
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
         $clock = new SystemClock(new \DateTimeZone('UTC'));
 
-        $difference = $clock->now()->getTimestamp() - $now->getTimestamp();
+        $difference = $clock->{$nowMethod}()->getTimestamp() - $now->getTimestamp();
 
         $this->assertGreaterThanOrEqual(0, $difference);
         $this->assertLessThanOrEqual(1, $difference);
+    }
+
+    /**
+     * @test
+     */
+    public function now_returns_DateTimeImmutable(): void
+    {
+        $clock = new SystemClock(new \DateTimeZone('UTC'));
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $clock->now());
+    }
+
+    /**
+     * @test
+     */
+    public function nowMutable_returns_DateTime(): void
+    {
+        $clock = new SystemClock(new \DateTimeZone('UTC'));
+
+        $this->assertInstanceOf(\DateTime::class, $clock->nowMutable());
     }
 }
