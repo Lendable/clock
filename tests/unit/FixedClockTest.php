@@ -17,6 +17,7 @@ final class FixedClockTest extends TestCase
         $timeString = '2018-04-07T16:51:29.083869';
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
         $clock = new FixedClock($now);
 
         $this->assertSame($timeString, $clock->now()->format($timeFormat));
