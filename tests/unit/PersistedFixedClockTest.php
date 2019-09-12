@@ -21,6 +21,7 @@ final class PersistedFixedClockTest extends TestCase
         $timeString = '2018-04-07T16:51:29.083869';
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
 
         $this->assertSame($timeString, PersistedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now)->now()->format($timeFormat));
         $this->assertSame($timeString, PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator)->now()->format($timeFormat));

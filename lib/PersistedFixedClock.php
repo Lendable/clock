@@ -68,14 +68,17 @@ final class PersistedFixedClock implements Clock
     private function load(): void
     {
         $path = $this->getSerializationFilePath();
-        $data = \json_decode(\file_get_contents($path), true);
-        $this->delegate = new FixedClock(
-            \DateTimeImmutable::createFromFormat(
-                self::SERIALIZATION_FORMAT,
-                $data['timestamp'],
-                new \DateTimeZone($data['timezone'])
-            )
+        $contents = \file_get_contents($path);
+        \assert(\is_string($contents));
+        $data = \json_decode($contents, true);
+        $now = \DateTimeImmutable::createFromFormat(
+            self::SERIALIZATION_FORMAT,
+            $data['timestamp'],
+            new \DateTimeZone($data['timezone'])
         );
+        \assert($now instanceof \DateTimeImmutable);
+
+        $this->delegate = new FixedClock($now);
     }
 
     private function persist(): void

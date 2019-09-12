@@ -9,6 +9,9 @@ namespace Lendable\Clock;
  */
 final class FixedClock implements Clock
 {
+    /**
+     * @var \DateTimeImmutable
+     */
     private $now;
 
     public function __construct(\DateTimeImmutable $now)
