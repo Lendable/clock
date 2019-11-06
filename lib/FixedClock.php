@@ -28,10 +28,14 @@ final class FixedClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        // @TODO Use \DateTime::createFromImmutable when PHP version is >=7.3
-        $instance = \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now->format(self::ISO8601_MICROSECONDS_FORMAT));
-        \assert($instance instanceof \DateTime);
+        $nowImmutable = $this->now();
 
-        return $instance;
+        $nowMutable = \PHP_VERSION_ID >= 70300
+            ? \DateTime::createFromImmutable($nowImmutable)
+            : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $nowImmutable->format(self::ISO8601_MICROSECONDS_FORMAT));
+
+        \assert($nowMutable instanceof \DateTime);
+
+        return $nowMutable;
     }
 }

@@ -30,10 +30,6 @@ final class SystemClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        // @TODO Use \DateTime::createFromImmutable when PHP version is >=7.3
-        $instance = \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $this->now()->format(self::ISO8601_MICROSECONDS_FORMAT));
-        \assert($instance instanceof \DateTime);
-
-        return $instance;
+        return new \DateTime('now', $this->timeZone);
     }
 }
