@@ -30,10 +30,6 @@ final class SystemClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        $now = $this->now();
-
-        return method_exists('\DateTime', 'createFromImmutable')
-            ? \DateTime::createFromImmutable($now)
-            : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $now->format(self::ISO8601_MICROSECONDS_FORMAT));
+        return new \DateTime('now', $this->timeZone);
     }
 }

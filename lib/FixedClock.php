@@ -28,10 +28,14 @@ final class FixedClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        $now = $this->now();
+        $nowImmutable = $this->now();
 
-        return method_exists('\DateTime', 'createFromImmutable')
-            ? \DateTime::createFromImmutable($now)
-            : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $now->format(self::ISO8601_MICROSECONDS_FORMAT));
+        $nowMutable =  method_exists('\DateTime', 'createFromImmutable')
+            ? \DateTime::createFromImmutable($nowImmutable)
+            : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $nowImmutable->format(self::ISO8601_MICROSECONDS_FORMAT));
+
+        \assert($nowMutable instanceof \DateTime);
+
+        return $nowMutable;
     }
 }
