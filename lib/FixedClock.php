@@ -30,7 +30,7 @@ final class FixedClock implements Clock
     {
         $nowImmutable = $this->now();
 
-        $nowMutable =  method_exists('\DateTime', 'createFromImmutable')
+        $nowMutable =  PHP_VERSION_ID >= 70300
             ? \DateTime::createFromImmutable($nowImmutable)
             : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $nowImmutable->format(self::ISO8601_MICROSECONDS_FORMAT));
 
