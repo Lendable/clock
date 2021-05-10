@@ -1,7 +1,6 @@
-FROM lendableuk/php-cli-alpine:7.3.6-alpine3.9
+FROM lendableuk/php-fpm-alpine:7.4.9-alpine3.11
 
-COPY --from=composer:1.8 /usr/bin/composer /usr/bin/composer
-RUN su app -c "composer global require hirak/prestissimo"
+COPY --from=composer:2.0.13 /usr/bin/composer /usr/bin/composer
 
 COPY . /app
 WORKDIR /app
