@@ -5,7 +5,7 @@ declare(strict_types=1);
 $finder = PhpCsFixer\Finder::create()
     ->in(['lib', 'tests']);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         '@PHP56Migration' => true,
