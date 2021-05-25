@@ -6,4 +6,6 @@ COPY . /app
 WORKDIR /app
 
 RUN chown -R 'app:app' /app && \
-    su app -c "composer install"
+    su app -c "composer install --prefer-dist --no-progress -n --ansi" && \
+    su app -c "composer clear-cache --ansi -n"
+
