@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         processIsolation="false"
-         stopOnFailure="false"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         colors="true"
          bootstrap="vendor/autoload.php">
-
+    <coverage>
+        <include>
+            <directory>./lib/</directory>
+        </include>
+    </coverage>
     <php>
-        <ini name="error_reporting" value="E_ALL" />
+        <ini name="error_reporting" value="E_ALL"/>
     </php>
-
     <testsuites>
         <testsuite name="unit">
             <directory>./tests/unit/</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./lib/</directory>
-        </whitelist>
-    </filter>
-
 </phpunit>

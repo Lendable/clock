@@ -11,24 +11,15 @@ use Lendable\Clock\Serialization\FileNameGenerator;
  *
  * The only real use case for such scenario is functional testing.
  */
-final class PersistedFixedClock implements Clock
+final class PersistedFixedClock implements MutableClock
 {
     private const SERIALIZATION_FORMAT = 'Y-m-d\TH:i:s.u';
 
-    /**
-     * @var string
-     */
-    private $serializedStorageDirectory;
+    private string $serializedStorageDirectory;
 
-    /**
-     * @var FileNameGenerator
-     */
-    private $fileNameGenerator;
+    private FileNameGenerator $fileNameGenerator;
 
-    /**
-     * @var Clock
-     */
-    private $delegate;
+    private FixedClock $delegate;
 
     private function __construct(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator)
     {
@@ -46,7 +37,6 @@ final class PersistedFixedClock implements Clock
     {
         $instance = new self($serializedStorageDirectory, $fileNameGenerator);
         $instance->load();
-        \assert($instance->delegate instanceof Clock);
 
         return $instance;
     }
@@ -70,12 +60,18 @@ final class PersistedFixedClock implements Clock
         return $this->delegate->nowMutable();
     }
 
+    public function changeTimeTo(\DateTimeInterface $time): void
+    {
+        $this->delegate->changeTimeTo($time);
+        $this->persist();
+    }
+
     private function load(): void
     {
         $path = $this->getSerializationFilePath();
         $contents = \file_get_contents($path);
         \assert(\is_string($contents));
-        $data = \json_decode($contents, true);
+        $data = \json_decode($contents, true, 512, \JSON_THROW_ON_ERROR);
         $now = \DateTimeImmutable::createFromFormat(
             self::SERIALIZATION_FORMAT,
             $data['timestamp'],
@@ -96,7 +92,8 @@ final class PersistedFixedClock implements Clock
                 [
                     'timestamp' => $now->format(self::SERIALIZATION_FORMAT),
                     'timezone' => $now->getTimezone()->getName(),
-                ]
+                ],
+                \JSON_THROW_ON_ERROR
             )
         );
     }

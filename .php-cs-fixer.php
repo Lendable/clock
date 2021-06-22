@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->in(['lib', 'tests']);
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PSR2' => true,
-        '@PHP56Migration' => true,
+        '@PSR12' => true,
         '@PHP70Migration' => true,
         '@PHP71Migration' => true,
+        '@PHP73Migration' => true,
+        '@PHP74Migration' => true,
         '@DoctrineAnnotation' => true,
         'align_multiline_comment' => true,
         'array_indentation' => true,
@@ -112,7 +113,7 @@ return (new PhpCsFixer\Config())
         'whitespace_after_comma_in_array' => true,
     ])
     ->setRiskyAllowed(true)
-    ->setUsingCache(__DIR__.'/.php_cs.cache')
+    ->setUsingCache(true)
     ->setIndent('    ')
     ->setLineEnding("\n")
     ->setFinder($finder);

@@ -6,19 +6,16 @@ namespace Lendable\Clock;
 
 /**
  * Simple in-memory fixed clock.
+ *
+ * The time will not change from the provided value.
  */
-final class FixedClock implements Clock
+final class FixedClock implements MutableClock
 {
-    private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
+    private \DateTimeImmutable $now;
 
-    /**
-     * @var \DateTimeImmutable
-     */
-    private $now;
-
-    public function __construct(\DateTimeImmutable $now)
+    public function __construct(\DateTimeInterface $now)
     {
-        $this->now = $now;
+        $this->now = DateTimeNormalizer::immutable($now);
     }
 
     public function now(): \DateTimeImmutable
@@ -28,14 +25,11 @@ final class FixedClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        $nowImmutable = $this->now();
+        return \DateTime::createFromImmutable($this->now());
+    }
 
-        $nowMutable = \PHP_VERSION_ID >= 70300
-            ? \DateTime::createFromImmutable($nowImmutable)
-            : \DateTime::createFromFormat(self::ISO8601_MICROSECONDS_FORMAT, $nowImmutable->format(self::ISO8601_MICROSECONDS_FORMAT));
-
-        \assert($nowMutable instanceof \DateTime);
-
-        return $nowMutable;
+    public function changeTimeTo(\DateTimeInterface $time): void
+    {
+        $this->now = DateTimeNormalizer::immutable($time);
     }
 }

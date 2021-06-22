@@ -21,17 +21,21 @@
     }
   },
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.4"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.15",
+    "ext-json": "*",
+    "friendsofphp/php-cs-fixer": "^3.0",
     "jakub-onderka/php-parallel-lint": "^1.0",
+    "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6",
-    "phpstan/phpstan": "^0.11.15",
-    "phpstan/phpstan-phpunit": "^0.11.2",
-    "phpstan/phpstan-strict-rules": "^0.11.1",
-    "phpunit/phpunit": "^7.5",
-    "sensiolabs/security-checker": "^6.0"
+    "php-parallel-lint/php-parallel-lint": "^1.2",
+    "phpstan/phpstan": "^0.12",
+    "phpstan/phpstan-deprecation-rules": "^0.12",
+    "phpstan/phpstan-phpunit": "^0.12",
+    "phpstan/phpstan-strict-rules": "^0.12",
+    "phpunit/phpunit": "^9.5",
+    "rector/rector": "^0.11.20"
   },
   "suggest": {
     "ext-json": "To use the SerializedFixedClock to store values across processes (functional testing)"
@@ -43,7 +47,7 @@
   "prefer-stable": true,
   "scripts": {
     "security:check": [
-      "security-checker security:check --ansi"
+      "local-php-security-checker"
     ],
     "code-style:fix": [
       "PHP_CS_FIXER_FUTURE_MODE=1 php-cs-fixer fix --diff --ansi --using-cache=no"
@@ -61,18 +65,26 @@
     "phpstan": [
       "phpstan analyse -l 7 lib/ tests/ --ansi --no-progress"
     ],
+    "rector:check": [
+      "rector --dry-run --ansi --no-progress-bar"
+    ],
+    "rector:fix": [
+      "rector --ansi --no-progress-bar"
+    ],
     "static-analysis": [
       "@composer validate",
       "@lint",
-      "@phpstan"
+      "@phpstan",
+      "@rector:check"
     ],
     "phpunit:unit": [
-      "phpunit --colors tests/unit"
+      "phpunit --colors tests/unit --do-not-cache-result"
     ],
     "tests:unit": [
       "@phpunit:unit"
     ],
     "ci": [
+      "@security:check",
       "@static-analysis",
       "@code-style:check",
       "@tests:unit"
