@@ -11,12 +11,7 @@ final class SystemClock implements Clock
 {
     private const DEFAULT_TIMEZONE = 'UTC';
 
-    private const ISO8601_MICROSECONDS_FORMAT = 'Y-m-d\TH:i:s.uP';
-
-    /**
-     * @var \DateTimeZone
-     */
-    private $timeZone;
+    private \DateTimeZone $timeZone;
 
     public function __construct(?\DateTimeZone $timeZone = null)
     {
@@ -30,6 +25,6 @@ final class SystemClock implements Clock
 
     public function nowMutable(): \DateTime
     {
-        return new \DateTime('now', $this->timeZone);
+        return \DateTime::createFromImmutable($this->now());
     }
 }

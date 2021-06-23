@@ -28,4 +28,23 @@ final class FixedClockTest extends TestCase
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
     }
+
+    /**
+     * @test
+     */
+    public function it_can_change_the_time_to_a_new_fixed_value(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = new FixedClock($now);
+
+        $updatedTime = $now->modify('+30 minutes');
+
+        $clock->changeTimeTo($updatedTime);
+
+        $this->assertSame('2021-05-05T14:41:49.128311', $clock->now()->format($timeFormat));
+        $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
+    }
 }

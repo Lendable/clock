@@ -1,2 +1,4 @@
+bin
+!/bin/local-php-security-checker
 vendor
 Dockerfile.*
