@@ -2,7 +2,7 @@
   "name": "lendable/clock",
   "description": "Clock Abstraction",
   "type": "library",
-  "license": "proprietary",
+  "license": "MIT",
   "authors": [
     {
       "name": "Lendable Ltd",
