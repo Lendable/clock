@@ -16,6 +16,7 @@ jobs:
         dependencies:
           - "lowest"
           - "highest"
+          - "locked"
         php-version:
           - "7.4"
           - "8.0"
@@ -50,6 +51,10 @@ jobs:
         if: ${{ matrix.dependencies == 'highest' }}
         run: "composer update --no-interaction --no-progress --no-suggest --ansi"
 
+      - name: "Install locked dependencies"
+        if: ${{ matrix.dependencies == 'locked' }}
+        run: "composer install --no-interaction --no-progress --no-suggest --ansi"
+
       - name: "Validate Composer dependencies"
         run: "composer validate"
 
@@ -60,10 +65,11 @@ jobs:
         run: "bin/parallel-lint tests"
 
       - name: "Run PHPStan"
-        if: ${{ matrix.dependencies == 'highest' }}
+        if: ${{ matrix.dependencies == 'locked' }}
         run: "bin/phpstan analyse --memory-limit=-1 lib/ tests/ --ansi --no-progress"
 
       - name: "Run Rector"
+        if: ${{ matrix.dependencies == 'locked' }}
         run: "bin/rector --dry-run --ansi --no-progress-bar"
 
       - name: "PHPUnit unit tests"
