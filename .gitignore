@@ -1,7 +1,6 @@
 /bin
 !/bin/local-php-security-checker
 /vendor
-/composer.lock
 /phpunit.xml
 /.php-cs-fixer.cache
 /.phpunit.result.cache
