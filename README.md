@@ -8,7 +8,9 @@ Provides an object-oriented interface for retrieving the current time.
 
 PHP of course provides `\DateTime`, `\DateTimeImmutable` and `\DateTimeInterface`. Why do we need a clock then? Why not just instantiate where required? 
 
-We can obtain the current time with `$now = new \DateTime()` after all, why do we need a `Clock::now(): \DateTimeImmutable` style API to achieve this?
+We can obtain the current time with `$now = new \DateTime()` after all, why do we need a `Clock::now(): \DateTimeImmutable` style API to obtain the current time?
+
+Depending on a Clock rather than constructing native PHP time objects ad hoc means you can both reason and control time. 
 
 * Underlying implementation can be swapped out to one more suitable for a test environment.
   * Time can now be stubbed with a fixed value, or even start from a point in time and tick from there.
