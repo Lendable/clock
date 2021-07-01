@@ -1,5 +1,9 @@
 Lendable Clock Abstraction
 ====
+
+[![Latest Stable Version](https://poser.pugx.org/lendable/clock/v/stable)](https://packagist.org/packages/lendable/clock)
+[![License](https://poser.pugx.org/lendable/clock/license)](https://packagist.org/packages/lendable/clock)
+
 Provides an object-oriented interface for retrieving the current time.
 
 PHP of course provides `\DateTime`, `\DateTimeImmutable` and `\DateTimeInterface`. Why do we need a clock then? Why not just instantiate where required? 
