@@ -28,6 +28,8 @@ final class DateTimeNormalizer
      */
     public static function immutable(\DateTimeInterface $time): \DateTimeImmutable
     {
+        /** @var \DateTime|\DateTimeImmutable $time */
+
         // TODO Once minimum PHP version is >= 8.0, this can be reduced down to \DateTimeImmutable::createFromInterface().
 
         if ($time instanceof \DateTimeImmutable) {
@@ -38,17 +40,13 @@ final class DateTimeNormalizer
             return \DateTimeImmutable::createFromInterface($time);
         }
 
-        if ($time instanceof \DateTime) {
-            return \DateTimeImmutable::createFromMutable($time);
-        }
-
-        // @codeCoverageIgnoreStart
-        throw self::createExceptionForInvalidImplementation($time);
-        // @codeCoverageIgnoreEnd
+        return \DateTimeImmutable::createFromMutable($time);
     }
 
     public static function mutable(\DateTimeInterface $time): \DateTime
     {
+        /** @var \DateTime|\DateTimeImmutable $time */
+
         // TODO Once minimum PHP version is >= 8.0, this can be reduced down to \DateTime::createFromInterface().
 
         if (\PHP_VERSION_ID >= 80000) {
@@ -59,28 +57,6 @@ final class DateTimeNormalizer
             return clone $time;
         }
 
-        if ($time instanceof \DateTimeImmutable) {
-            return \DateTime::createFromImmutable($time);
-        }
-
-        // @codeCoverageIgnoreStart
-        throw self::createExceptionForInvalidImplementation($time);
-        // @codeCoverageIgnoreEnd
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    private static function createExceptionForInvalidImplementation(\DateTimeInterface $time): \LogicException
-    {
-        return new \LogicException(
-            \sprintf(
-                'This should not happen, expected an instance of %s or %s, got %s as a %s implementation.',
-                \DateTimeImmutable::class,
-                \DateTime::class,
-                \get_class($time),
-                \DateTimeInterface::class
-            )
-        );
+        return \DateTime::createFromImmutable($time);
     }
 }
