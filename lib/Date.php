@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Zendable\Loans\Platform\Domain\Shared\ValueObject;
+namespace Lendable\Clock;
 
-use Assert\Assertion;
+use Lendable\Clock\Date\InvalidDate;
 
 final class Date
 {
@@ -16,10 +16,9 @@ final class Date
 
     private function __construct(int $year, int $month, int $day)
     {
-        Assertion::true(
-            checkdate($month, $day, $year),
-            \Safe\sprintf('Date %d-%d-%d (Y-m-d) is invalid.', $year, $month, $day)
-        );
+        if (!checkdate($month, $day, $year)) {
+            throw InvalidDate::fromDate($year, $month, $day);
+        }
 
         $this->year = $year;
         $this->month = $month;
@@ -42,12 +41,10 @@ final class Date
 
     public static function fromYearMonthDayString(string $value): self
     {
-        $result = \Safe\preg_match('/(\d{4})-(\d{1,2})-(\d{1,2})/', $value, $matches);
+        $result = preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})$/', $value, $matches);
 
         if ($result === 0) {
-            throw new \InvalidArgumentException(
-                \Safe\sprintf('Failed to parse string "%s" as a Y-m-d formatted date.', $value)
-            );
+            throw new InvalidDate('Failed to parse string as a Y-m-d formatted date.');
         }
 
         return self::fromYearMonthDay(
@@ -111,7 +108,7 @@ final class Date
         \assert(date_default_timezone_get() === 'UTC', 'System is running with a non-UTC timezone');
         $dateTime = \DateTimeImmutable::createFromFormat(
             'Y-m-d H:i:s',
-            \Safe\sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
+            sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
         );
         \assert($dateTime instanceof \DateTimeImmutable);
 
@@ -120,7 +117,7 @@ final class Date
 
     public function toYearMonthDayString(): string
     {
-        return \Safe\sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
+        return sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
     }
 
     public function diff(self $other): \DateInterval
