@@ -105,7 +105,6 @@ final class Date
 
     public function toDateTime(): \DateTimeImmutable
     {
-        \assert(date_default_timezone_get() === 'UTC', 'System is running with a non-UTC timezone');
         $dateTime = \DateTimeImmutable::createFromFormat(
             'Y-m-d H:i:s',
             sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),

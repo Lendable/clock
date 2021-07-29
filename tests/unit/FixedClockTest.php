@@ -47,4 +47,22 @@ final class FixedClockTest extends TestCase
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->now()->format($timeFormat));
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
     }
+
+    /**
+     * @test
+     */
+    public function it_can_return_a_date_object(): void
+    {
+        $timeString = '2018-04-07T16:51:29.083869';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = new FixedClock($now);
+
+        $date = $clock->today();
+
+        $this->assertEquals(2018, $date->year());
+        $this->assertEquals(4, $date->month());
+        $this->assertEquals(7, $date->day());
+    }
 }

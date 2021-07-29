@@ -19,4 +19,6 @@ interface Clock
      * prevent unintended side effects.
      */
     public function nowMutable(): \DateTime;
+
+    public function today(): Date;
 }
