@@ -32,4 +32,9 @@ final class FixedClock implements MutableClock
     {
         $this->now = DateTimeNormalizer::immutable($time);
     }
+
+    public function today(): Date
+    {
+        return Date::fromDateTime($this->now());
+    }
 }

@@ -60,6 +60,11 @@ final class PersistedFixedClock implements MutableClock
         return $this->delegate->nowMutable();
     }
 
+    public function today(): Date
+    {
+        return Date::fromDateTime($this->now());
+    }
+
     public function changeTimeTo(\DateTimeInterface $time): void
     {
         $this->delegate->changeTimeTo($time);

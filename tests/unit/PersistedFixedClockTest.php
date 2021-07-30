@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use Lendable\Clock\FixedClock;
 use Lendable\Clock\Serialization\FixedFileNameGenerator;
 use Lendable\Clock\PersistedFixedClock;
 use org\bovigo\vfs\vfsStream;
@@ -49,6 +50,25 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_return_a_date_object(): void
+    {
+        $vfs = vfsStream::setup('serialized_time');
+        $timeString = '2018-04-07T16:51:29.083869';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = PersistedFixedClock::initializeWith($vfs->url(), new FixedFileNameGenerator(), $now);
+
+        $date = $clock->today();
+
+        $this->assertEquals(2018, $date->year());
+        $this->assertEquals(4, $date->month());
+        $this->assertEquals(7, $date->day());
     }
 
     /**

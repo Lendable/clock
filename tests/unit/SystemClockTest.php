@@ -57,4 +57,24 @@ final class SystemClockTest extends TestCase
         $this->assertGreaterThanOrEqual(0, $difference);
         $this->assertLessThanOrEqual(1, $difference);
     }
+
+    /**
+     * @test
+     */
+    public function it_can_return_a_date_object(): void
+    {
+        $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+
+        $currentYear = $now->format('Y');
+        $currentMonth = $now->format('m');
+        $currentDay = $now->format('d');
+
+        $systemClock = new SystemClock(new \DateTimeZone('UTC'));
+
+        $date = $systemClock->today();
+
+        $this->assertEquals($currentYear, $date->year());
+        $this->assertEquals($currentMonth, $date->month());
+        $this->assertEquals($currentDay, $date->day());
+    }
 }

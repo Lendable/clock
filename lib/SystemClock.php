@@ -27,4 +27,9 @@ final class SystemClock implements Clock
     {
         return \DateTime::createFromImmutable($this->now());
     }
+
+    public function today(): Date
+    {
+        return Date::fromDateTime($this->now());
+    }
 }
