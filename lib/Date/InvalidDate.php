@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lendable\Clock\Date;
 
-class InvalidDate extends \InvalidArgumentException
+final class InvalidDate extends \InvalidArgumentException
 {
     public static function fromDate(int $year, int $month, int $day): self
     {
