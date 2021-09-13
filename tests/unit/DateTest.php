@@ -194,7 +194,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{0: string, 1: string}>
      */
     public function provideDatesForDayAfterIncrementData(): iterable
     {
@@ -217,7 +217,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{string, string}>
      */
     public function provideDatesForDayBeforeIncrementData(): iterable
     {
@@ -241,7 +241,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{0: string, 1: string, 2: bool}>
      */
     public function provideValuesForBeforeComparisonData(): iterable
     {
@@ -269,7 +269,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{0: string, 1: string, 2: bool}>
      */
     public function provideValuesForBeforeOrEqualToComparisonData(): iterable
     {

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
-use Lendable\Clock\FixedClock;
-use Lendable\Clock\Serialization\FixedFileNameGenerator;
 use Lendable\Clock\PersistedFixedClock;
+use Lendable\Clock\Serialization\FixedFileNameGenerator;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
@@ -89,5 +88,55 @@ final class PersistedFixedClockTest extends TestCase
 
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->now()->format($timeFormat));
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public function provideInvalidData(): iterable
+    {
+        yield 'int' => ['1', 'Expected data to decode to an array, but got int.'];
+        yield 'bool' => ['true', 'Expected data to decode to an array, but got bool.'];
+        yield 'string' => ['"foo"', 'Expected data to decode to an array, but got string.'];
+        yield 'float' => ['10.0', 'Expected data to decode to an array, but got float.'];
+        yield 'empty array' => [
+            '[]',
+            'Expected to decode to an associative array containing keys timestamp and timezone. Got keys [].',
+        ];
+        yield 'empty object' => [
+            '{}',
+            'Expected to decode to an associative array containing keys timestamp and timezone. Got keys [].',
+        ];
+        yield 'missing both keys' => [
+            '{"foo": "bar"}',
+            'Expected to decode to an associative array containing keys timestamp and timezone. Got keys ["foo"].',
+        ];
+        yield 'missing timestamp' => [
+            '{"bar": "baz", "timezone": "UTC"}',
+            'Expected to decode to an associative array containing keys timestamp and timezone. Got keys ["bar", "timezone"].',
+        ];
+        yield 'missing timezone' => [
+            '{"bar": "baz", "timestamp": "2021-05-05T14:11:49.128311"}',
+            'Expected to decode to an associative array containing keys timestamp and timezone. Got keys ["bar", "timestamp"].',
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider provideInvalidData
+     */
+    public function it_throws_when_loaded_data_is_not_an_array_or_is_invalid(string $serializedData, string $expectedExceptionMessage): void
+    {
+        $vfs = vfsStream::setup('serialized_time');
+        $fileNameGenerator = new FixedFileNameGenerator();
+        \file_put_contents($vfs->url().'/'.$fileNameGenerator->generate(), $serializedData);
+
+        try {
+            PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator);
+
+            $this->fail('Expected an exception to be thrown, but one was not.');
+        } catch (\RuntimeException $exception) {
+            $this->assertSame($expectedExceptionMessage, $exception->getMessage());
+        }
     }
 }

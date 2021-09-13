@@ -6,7 +6,8 @@ includes:
 parameters:
     level: max
     reportUnmatchedIgnoredErrors: false
-    
+    checkExplicitMixed: true
+ 
     ignoreErrors:
         - '#Dynamic call to static method PHPUnit\\Framework\\.*#'
         - '#^Call to an undefined static method DateTime(?:Immutable)?::createFromInterface\(\)\.$#'
