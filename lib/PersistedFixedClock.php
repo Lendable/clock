@@ -77,6 +77,25 @@ final class PersistedFixedClock implements MutableClock
         $contents = \file_get_contents($path);
         \assert(\is_string($contents));
         $data = \json_decode($contents, true, 512, \JSON_THROW_ON_ERROR);
+
+        if (!is_array($data)) {
+            throw new \RuntimeException(
+                \sprintf(
+                    'Expected data to decode to an array, but got %s.',
+                    get_debug_type($data)
+                )
+            );
+        }
+
+        if (!isset($data['timestamp'], $data['timezone'])) {
+            throw new \RuntimeException(
+                \sprintf(
+                    'Expected to decode to an associative array containing keys timestamp and timezone. Got keys [%s].',
+                    implode(', ', \array_map(static fn ($k): string => '"'.$k.'"', \array_keys($data)))
+                )
+            );
+        }
+
         $now = \DateTimeImmutable::createFromFormat(
             self::SERIALIZATION_FORMAT,
             $data['timestamp'],
