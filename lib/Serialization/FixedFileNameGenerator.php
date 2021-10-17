@@ -9,11 +9,8 @@ namespace Lendable\Clock\Serialization;
  */
 final class FixedFileNameGenerator implements FileNameGenerator
 {
-    private string $fileName;
-
-    public function __construct(string $fileName = 'now.json')
+    public function __construct(private string $fileName = 'now.json')
     {
-        $this->fileName = $fileName;
     }
 
     public function generate(): string
