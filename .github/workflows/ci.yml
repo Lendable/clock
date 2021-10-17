@@ -64,6 +64,9 @@ jobs:
       - name: "Run linting (tests)"
         run: "bin/parallel-lint tests"
 
+      - name: "Run php-cs-fixer"
+        run: "PHP_CS_FIXER_FUTURE_MODE=1 bin/php-cs-fixer fix --dry-run --ansi --diff --using-cache=no"
+
       - name: "Run PHPStan"
         if: ${{ matrix.dependencies == 'locked' }}
         run: "bin/phpstan analyse --memory-limit=-1 lib/ tests/ --ansi --no-progress"
