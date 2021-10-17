@@ -45,7 +45,7 @@ final class DateTimeNormalizer
 
     public static function mutable(\DateTimeInterface $time): \DateTime
     {
-        /** @var \DateTime|\DateTimeImmutable $time */
+        /* @var \DateTime|\DateTimeImmutable $time */
 
         // TODO Once minimum PHP version is >= 8.0, this can be reduced down to \DateTime::createFromInterface().
 

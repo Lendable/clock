@@ -16,7 +16,7 @@ final class Date
 
     private function __construct(int $year, int $month, int $day)
     {
-        if (!checkdate($month, $day, $year)) {
+        if (!\checkdate($month, $day, $year)) {
             throw InvalidDate::fromDate($year, $month, $day);
         }
 
@@ -41,7 +41,7 @@ final class Date
 
     public static function fromYearMonthDayString(string $value): self
     {
-        $result = preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})$/', $value, $matches);
+        $result = \preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})$/', $value, $matches);
 
         if ($result === 0) {
             throw new InvalidDate('Failed to parse string as a Y-m-d formatted date.');
@@ -56,7 +56,7 @@ final class Date
 
     public static function fromYearsAgo(int $yearsAgo): self
     {
-        $dob = new \DateTimeImmutable("today - $yearsAgo years");
+        $dob = new \DateTimeImmutable("today - ${yearsAgo} years");
 
         return self::fromDateTime($dob);
     }
@@ -107,7 +107,7 @@ final class Date
     {
         $dateTime = \DateTimeImmutable::createFromFormat(
             'Y-m-d H:i:s',
-            sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
+            \sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
         );
         \assert($dateTime instanceof \DateTimeImmutable);
 
@@ -116,7 +116,7 @@ final class Date
 
     public function toYearMonthDayString(): string
     {
-        return sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
+        return \sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
     }
 
     public function diff(self $other): \DateInterval
