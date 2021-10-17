@@ -63,7 +63,7 @@
       "@lint:php"
     ],
     "phpstan": [
-      "phpstan analyse -l 7 lib/ tests/ --ansi --no-progress"
+      "phpstan analyse lib/ tests/ --ansi --no-progress"
     ],
     "rector:check": [
       "rector --dry-run --ansi --no-progress-bar"
