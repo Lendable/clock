@@ -63,7 +63,7 @@
       "@lint:php"
     ],
     "phpstan": [
-      "phpstan analyse -l 7 lib/ tests/ --ansi --no-progress"
+      "phpstan analyse  --memory-limit=-1 lib/ tests/ --ansi --no-progress"
     ],
     "rector:check": [
       "rector --dry-run --ansi --no-progress-bar"
@@ -78,10 +78,16 @@
       "@rector:check"
     ],
     "phpunit:unit": [
-      "phpunit --colors tests/unit --do-not-cache-result"
+      "phpunit --colors --testsuite=unit --do-not-cache-result"
+    ],
+    "phpunit:integration": [
+      "phpunit --colors --testsuite=integration --do-not-cache-result"
     ],
     "tests:unit": [
       "@phpunit:unit"
+    ],
+    "tests:integration": [
+      "@phpunit:integration"
     ],
     "ci": [
       "@security:check",
