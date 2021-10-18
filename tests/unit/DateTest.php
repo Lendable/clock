@@ -222,7 +222,7 @@ final class DateTest extends TestCase
     public function provideDatesForDayBeforeIncrementData(): iterable
     {
         foreach ($this->provideDatesForDayAfterIncrementData() as $args) {
-            yield array_reverse($args);
+            yield \array_reverse($args);
         }
     }
 

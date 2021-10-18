@@ -64,6 +64,9 @@ jobs:
       - name: "Run linting (tests)"
         run: "bin/parallel-lint tests"
 
+      - name: "Run coding style"
+        run: "composer code-style:check"
+
       - name: "Run PHPStan"
         if: ${{ matrix.dependencies == 'locked' }}
         run: "bin/phpstan analyse --memory-limit=-1 lib/ tests/ --ansi --no-progress"
