@@ -58,25 +58,22 @@ jobs:
       - name: "Validate Composer dependencies"
         run: "composer validate"
 
-      - name: "Run linting (lib)"
-        run: "bin/parallel-lint lib"
-
-      - name: "Run linting (tests)"
-        run: "bin/parallel-lint tests"
+      - name: "Run linting"
+        run: "composer lint"
 
       - name: "Run coding style"
         run: "composer code-style:check"
 
       - name: "Run PHPStan"
         if: ${{ matrix.dependencies == 'locked' }}
-        run: "bin/phpstan analyse --memory-limit=-1 lib/ tests/ --ansi --no-progress"
+        run: "composer phpstan"
 
       - name: "Run Rector"
         if: ${{ matrix.dependencies == 'locked' }}
-        run: "bin/rector --dry-run --ansi --no-progress-bar"
+        run: "composer rector:check"
 
-      - name: "PHPUnit unit tests"
-        run: "bin/phpunit --colors --testsuite=unit --do-not-cache-result"
+      - name: "Unit tests"
+        run: "composer tests:unit"
 
-      - name: "Run PHPUnit integration tests"
-        run: "bin/phpunit --colors --testsuite=integration --do-not-cache-result"
+      - name: "Integration tests"
+        run: "composer tests:integration"
