@@ -19,11 +19,6 @@ final class PersistedFixedClock implements MutableClock
 
     private function __construct(private string $serializedStorageDirectory, private FileNameGenerator $fileNameGenerator)
     {
-        if (!\extension_loaded('json')) {
-            // @codeCoverageIgnoreStart
-            throw new \RuntimeException('ext-json is required to use this class.');
-            // @codeCoverageIgnoreEnd
-        }
     }
 
     public static function fromPersisted(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator): self
