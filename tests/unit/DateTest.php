@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Lendable\Clock\Unit;
 
 use Lendable\Clock\Date\InvalidDate;
-use PHPStan\Testing\TestCase;
 use Lendable\Clock\Date;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
