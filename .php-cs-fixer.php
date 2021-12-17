@@ -47,8 +47,7 @@ return (new PhpCsFixer\Config())
         'mb_str_functions' => false,
         'method_chaining_indentation' => true,
         'multiline_comment_opening_closing' => true,
-        'multiline_whitespace_before_semicolons' => ['strategy' =>
-            'no_multi_line'],
+        'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
         'modernize_types_casting' => true,
         'native_constant_invocation' => ['scope' => 'all'],
         'native_function_casing' => true,
