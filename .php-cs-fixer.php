@@ -12,6 +12,7 @@ return (new PhpCsFixer\Config())
         '@PHP71Migration' => true,
         '@PHP73Migration' => true,
         '@PHP74Migration' => true,
+        '@PHP80Migration' => true,
         '@DoctrineAnnotation' => true,
         'align_multiline_comment' => true,
         'array_indentation' => true,
@@ -46,7 +47,8 @@ return (new PhpCsFixer\Config())
         'mb_str_functions' => false,
         'method_chaining_indentation' => true,
         'multiline_comment_opening_closing' => true,
-        'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
+        'multiline_whitespace_before_semicolons' => ['strategy' =>
+            'no_multi_line'],
         'modernize_types_casting' => true,
         'native_constant_invocation' => ['scope' => 'all'],
         'native_function_casing' => true,
