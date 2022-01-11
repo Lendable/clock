@@ -46,15 +46,15 @@ jobs:
 
       - name: "Install lowest dependencies"
         if: ${{ matrix.dependencies == 'lowest' }}
-        run: "composer update --prefer-lowest --no-interaction --no-progress --no-suggest --ansi"
+        run: "composer update --prefer-lowest --no-interaction --no-progress --ansi"
 
       - name: "Install highest dependencies"
         if: ${{ matrix.dependencies == 'highest' }}
-        run: "composer update --no-interaction --no-progress --no-suggest --ansi"
+        run: "composer update --no-interaction --no-progress --ansi"
 
       - name: "Install locked dependencies"
         if: ${{ matrix.dependencies == 'locked' }}
-        run: "composer install --no-interaction --no-progress --no-suggest --ansi"
+        run: "composer install --no-interaction --no-progress --ansi"
 
       - name: "Validate Composer dependencies"
         run: "composer validate"
