@@ -1,6 +1,6 @@
 .gitattributes      export-ignore
 .gitignore          export-ignore
-.php_cs             export-ignore
+.php-cs-fixer.php   export-ignore
 Dockerfile.php-cli  export-ignore
 Jenkinsfile         export-ignore
 phpstan.neon        export-ignore
