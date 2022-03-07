@@ -21,10 +21,9 @@
     }
   },
   "require": {
-    "php": ">=7.4"
+    "php": ">=8.0"
   },
   "require-dev": {
-    "ext-json": "*",
     "friendsofphp/php-cs-fixer": "^3.4",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.10",
@@ -35,9 +34,6 @@
     "phpstan/phpstan-strict-rules": "^1.0",
     "phpunit/phpunit": "^9.5",
     "rector/rector": "^0.12"
-  },
-  "suggest": {
-    "ext-json": "To use the SerializedFixedClock to store values across processes (functional testing)"
   },
   "config": {
     "bin-dir": "bin",

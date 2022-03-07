@@ -12,6 +12,7 @@ return (new PhpCsFixer\Config())
         '@PHP71Migration' => true,
         '@PHP73Migration' => true,
         '@PHP74Migration' => true,
+        '@PHP80Migration' => true,
         '@DoctrineAnnotation' => true,
         'align_multiline_comment' => true,
         'array_indentation' => true,

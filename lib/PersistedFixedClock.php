@@ -15,22 +15,10 @@ final class PersistedFixedClock implements MutableClock
 {
     private const SERIALIZATION_FORMAT = 'Y-m-d\TH:i:s.u';
 
-    private string $serializedStorageDirectory;
-
-    private FileNameGenerator $fileNameGenerator;
-
     private FixedClock $delegate;
 
-    private function __construct(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator)
+    private function __construct(private string $serializedStorageDirectory, private FileNameGenerator $fileNameGenerator)
     {
-        if (!\extension_loaded('json')) {
-            // @codeCoverageIgnoreStart
-            throw new \RuntimeException('ext-json is required to use this class.');
-            // @codeCoverageIgnoreEnd
-        }
-
-        $this->serializedStorageDirectory = $serializedStorageDirectory;
-        $this->fileNameGenerator = $fileNameGenerator;
     }
 
     public static function fromPersisted(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator): self

@@ -47,5 +47,3 @@ to load from the persisted value on disk.
 
 Target: functional tests where you reload your context. E.g. Behat vs Symfony Kernel. You
 would initialize in a `BeforeScenario` hook and then load the data from within the Kernel. 
-
- 
