@@ -15,7 +15,7 @@ final class FixedClock implements MutableClock
 
     public function __construct(\DateTimeInterface $now)
     {
-        $this->now = DateTimeNormalizer::immutable($now);
+        $this->now = \DateTimeImmutable::createFromInterface($now);
     }
 
     public function now(): \DateTimeImmutable
@@ -30,7 +30,7 @@ final class FixedClock implements MutableClock
 
     public function changeTimeTo(\DateTimeInterface $time): void
     {
-        $this->now = DateTimeNormalizer::immutable($time);
+        $this->now = \DateTimeImmutable::createFromInterface($time);
     }
 
     public function today(): Date
