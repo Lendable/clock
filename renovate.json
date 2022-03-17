@@ -1,5 +1,67 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Default configuration for Lendable's repositories",
   "extends": [
-    "config:base"
+    ":enableRenovate",
+    ":dependencyDashboard",
+    ":ignoreModulesAndTests",
+    ":automergeMinor",
+    ":automergeBranch",
+    ":prNotPending",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimit10",
+    ":rebaseStalePrs",
+    ":separatePatchReleases",
+    ":separateMultipleMajorReleases",
+    ":enableVulnerabilityAlerts",
+    "group:symfony",
+    ":timezone(UTC)",
+    ":label(dependencies)"
+  ],
+  "enabledManagers": [
+    "composer",
+    "dockerfile",
+    "docker-compose",
+    "github-actions"
+  ],
+  "prHourlyLimit": 0,
+  "rangeStrategy": "update-lockfile",
+  "composerIgnorePlatformReqs": ["ext-*", "lib-*", "php"],
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "platformAutomerge": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "before 11am every day"
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["composer"],
+      "addLabels": ["composer", "php"]
+    },
+    {
+      "matchManagers": ["dockerfile", "docker-compose"],
+      "addLabels": ["docker"]
+    },
+    {
+      "matchManagers": ["composer"],
+      "matchDepTypes": ["require-dev"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Composer development dependencies",
+      "groupSlug": "composer-dev"
+    },
+    {
+      "matchManagers": ["composer"],
+      "matchDepTypes": ["require-dev"],
+      "matchPackagePatterns": ["^phpstan\/"],
+      "matchPackageNames": ["thecodingmachine/phpstan-safe-rule"],
+      "groupName": "PHPStan"
+    },
+    {
+      "matchManagers": ["composer"],
+      "matchPackageNames": ["datadog/dd-trace"],
+      "enabled": false
+    }
   ]
 }
