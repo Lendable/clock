@@ -60,6 +60,9 @@ jobs:
 
       - name: "Run linting"
         run: "composer lint"
+        
+      - name: "Run security check"
+        run: "composer security:check"
 
       - name: "Run coding style"
         run: "composer code-style:check"
