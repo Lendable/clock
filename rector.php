@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::PARALLEL, true);
     $parameters->set(Option::PATHS, [__DIR__.'/lib', __DIR__.'/tests']);
     $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_80);
-    $parameters->set(Option::PHPSTAN_FOR_RECTOR_PATH, __DIR__.'/phpstan.neon');
+    $parameters->set(Option::PHPSTAN_FOR_RECTOR_PATH, __DIR__.'/phpstan-rector.neon');
     $parameters->set(Option::PARALLEL, true);
     $parameters->set(Option::SKIP, [
         DateTimeToDateTimeInterfaceRector::class,
