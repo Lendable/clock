@@ -6,18 +6,13 @@ namespace Tests\Lendable\Clock\Unit;
 
 use Lendable\Clock\Date\InvalidDate;
 use Lendable\Clock\Date;
+use Lendable\Clock\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @internal
- * @coversNothing
- *
- * @small
- */
 final class DateTest extends TestCase
 {
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{int, int, int, string}>
      */
     public function provideValidIntegerComponentsAndExpectedStringRepresentationsData(): iterable
     {
@@ -42,9 +37,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideValidIntegerComponentsAndExpectedStringRepresentationsData
      */
-    public function test_it_can_be_constructed_from_integer_components(
+    public function it_can_be_constructed_from_integer_components(
         int $year,
         int $month,
         int $day,
@@ -55,7 +51,10 @@ final class DateTest extends TestCase
         $this->assertSame($expectedStringRepresentation, $result->toYearMonthDayString());
     }
 
-    public function test_it_throws_when_constructing_from_integer_components_if_invalid_date(): void
+    /**
+     * @test
+     */
+    public function it_throws_when_constructing_from_integer_components_if_invalid_date(): void
     {
         $this->expectException(InvalidDate::class);
         $this->expectExceptionMessage('Date 2018-13-10 (Y-m-d) is invalid.');
@@ -64,7 +63,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{\DateTimeImmutable, string}>
      */
     public function provideDateTimesAndExpectedStringRepresentationsData(): iterable
     {
@@ -76,20 +75,21 @@ final class DateTest extends TestCase
 
         foreach ($dateTimeStrings as $dateTimeString => $expectedStringRepresentation) {
             yield [
-                \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dateTimeString),
+                DateTimeFactory::immutableFromFormat('Y-m-d H:i:s', $dateTimeString),
                 $expectedStringRepresentation,
             ];
             yield [
-                \DateTimeImmutable::createFromFormat('Y-m-d H:i:s', $dateTimeString),
+                DateTimeFactory::immutableFromFormat('Y-m-d H:i:s', $dateTimeString),
                 $expectedStringRepresentation,
             ];
         }
     }
 
     /**
+     * @test
      * @dataProvider provideDateTimesAndExpectedStringRepresentationsData
      */
-    public function test_it_can_be_constructed_from_a_date_time_instance(
+    public function it_can_be_constructed_from_a_date_time_instance(
         \DateTimeImmutable $dateTime,
         string $expectedStringRepresentation
     ): void {
@@ -99,7 +99,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{string, string}>
      */
     public function provideDateTimeStringsAndExpectedStringRepresentationsData(): iterable
     {
@@ -118,9 +118,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideDateTimeStringsAndExpectedStringRepresentationsData
      */
-    public function test_it_can_be_constructed_from_a_formatted_string(
+    public function it_can_be_constructed_from_a_formatted_string(
         string $dateTimeString,
         string $expectedStringRepresentation
     ): void {
@@ -129,7 +130,10 @@ final class DateTest extends TestCase
         $this->assertSame($expectedStringRepresentation, $result->toYearMonthDayString());
     }
 
-    public function test_it_throws_when_constructing_from_a_formatted_string_if_invalid_format(): void
+    /**
+     * @test
+     */
+    public function it_throws_when_constructing_from_a_formatted_string_if_invalid_format(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Failed to parse string as a Y-m-d formatted date.');
@@ -137,7 +141,10 @@ final class DateTest extends TestCase
         Date::fromYearMonthDayString('foobar');
     }
 
-    public function test_it_throws_when_constructing_from_a_formatted_string_if_invalid_date(): void
+    /**
+     * @test
+     */
+    public function it_throws_when_constructing_from_a_formatted_string_if_invalid_date(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Date 2019-13-1 (Y-m-d) is invalid.');
@@ -145,7 +152,10 @@ final class DateTest extends TestCase
         Date::fromYearMonthDayString('2019-13-01');
     }
 
-    public function test_it_exposes_the_year_month_and_day(): void
+    /**
+     * @test
+     */
+    public function it_exposes_the_year_month_and_day(): void
     {
         $date = Date::fromYearMonthDay(2019, 1, 10);
 
@@ -154,7 +164,10 @@ final class DateTest extends TestCase
         $this->assertSame(10, $date->day());
     }
 
-    public function test_it_can_be_converted_to_a_utc_datetime_immutable_instance(): void
+    /**
+     * @test
+     */
+    public function it_can_be_converted_to_a_utc_datetime_immutable_instance(): void
     {
         $date = Date::fromYearMonthDay(2019, 02, 15);
         $dateTimeImmutable = $date->toDateTime();
@@ -164,7 +177,10 @@ final class DateTest extends TestCase
         $this->assertSame('UTC', $dateTimeImmutable->getTimezone()->getName());
     }
 
-    public function test_it_equals_other_dates_with_the_same_value(): void
+    /**
+     * @test
+     */
+    public function it_equals_other_dates_with_the_same_value(): void
     {
         $date = Date::fromYearMonthDay(2019, 01, 02);
         $dateSameValue = Date::fromYearMonthDay(2019, 01, 02);
@@ -183,9 +199,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideDatesForDayAfterIncrementData
      */
-    public function test_it_will_correctly_increment_for_following_day(string $currentDate, string $expectedDate): void
+    public function it_will_correctly_increment_for_following_day(string $currentDate, string $expectedDate): void
     {
         $this->assertSame(
             $expectedDate,
@@ -194,7 +211,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<array{0: string, 1: string}>
+     * @return iterable<array{string, string}>
      */
     public function provideDatesForDayAfterIncrementData(): iterable
     {
@@ -206,9 +223,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideDatesForDayBeforeIncrementData
      */
-    public function test_it_will_correctly_increment_for_previous_day(string $currentDate, string $expectedDate): void
+    public function it_will_correctly_increment_for_previous_day(string $currentDate, string $expectedDate): void
     {
         $this->assertSame(
             $expectedDate,
@@ -227,9 +245,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideValuesForBeforeComparisonData
      */
-    public function test_it_will_return_correct_values_for_before_comparison(
+    public function it_will_return_correct_values_for_before_comparison(
         string $before,
         string $after,
         bool $expectation
@@ -241,7 +260,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<array{0: string, 1: string, 2: bool}>
+     * @return iterable<array{string, string, bool}>
      */
     public function provideValuesForBeforeComparisonData(): iterable
     {
@@ -255,9 +274,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideValuesForBeforeOrEqualToComparisonData
      */
-    public function test_it_will_return_correct_values_for_before_or_equal_to_comparison(
+    public function it_will_return_correct_values_for_before_or_equal_to_comparison(
         string $before,
         string $after,
         bool $expectation
@@ -269,7 +289,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<array{0: string, 1: string, 2: bool}>
+     * @return iterable<array{string, string, bool}>
      */
     public function provideValuesForBeforeOrEqualToComparisonData(): iterable
     {
@@ -283,9 +303,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideValuesForAfterComparisonData
      */
-    public function test_it_will_return_correct_values_for_after_comparison(
+    public function it_will_return_correct_values_for_after_comparison(
         string $before,
         string $after,
         bool $expectation
@@ -297,7 +318,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{string, string, bool}>
      */
     public function provideValuesForAfterComparisonData(): iterable
     {
@@ -310,7 +331,10 @@ final class DateTest extends TestCase
         yield ['2019-01-02', '2019-01-01', true];
     }
 
-    public function test_it_will_return_correct_values_for_between_comparison(): void
+    /**
+     * @test
+     */
+    public function it_will_return_correct_values_for_between_comparison(): void
     {
         $startDate = Date::fromYearMonthDay(2019, 6, 28);
         $endDate = Date::fromYearMonthDay(2019, 7, 28);
@@ -323,9 +347,10 @@ final class DateTest extends TestCase
     }
 
     /**
+     * @test
      * @dataProvider provideDatesAndDayCountsForDiffComparisonData
      */
-    public function test_it_will_calculate_difference_between_two_days(
+    public function it_will_calculate_difference_between_two_days(
         string $start,
         string $end,
         int $numberOfDays
@@ -337,7 +362,7 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @return iterable<mixed>
+     * @return iterable<array{string, string, int}>
      */
     public function provideDatesAndDayCountsForDiffComparisonData(): iterable
     {
@@ -346,7 +371,10 @@ final class DateTest extends TestCase
         yield ['2018-01-31', '2018-02-28', 28];
     }
 
-    public function test_it_calculates_diff_correctly(): void
+    /**
+     * @test
+     */
+    public function it_calculates_diff_correctly(): void
     {
         $dateTime1 = new \DateTimeImmutable('2020-08-15 00:00:00');
         $dateTime2 = new \DateTimeImmutable('2020-03-15 00:00:00');

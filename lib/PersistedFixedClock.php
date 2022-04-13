@@ -84,12 +84,11 @@ final class PersistedFixedClock implements MutableClock
             );
         }
 
-        $now = \DateTimeImmutable::createFromFormat(
+        $now = DateTimeFactory::immutableFromFormat(
             self::SERIALIZATION_FORMAT,
             $data['timestamp'],
-            new \DateTimeZone($data['timezone'])
+            new \DateTimeZone($data['timezone']),
         );
-        \assert($now instanceof \DateTimeImmutable);
 
         $this->delegate = new FixedClock($now);
     }
