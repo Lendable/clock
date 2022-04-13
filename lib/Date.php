@@ -105,13 +105,10 @@ final class Date
 
     public function toDateTime(): \DateTimeImmutable
     {
-        $dateTime = \DateTimeImmutable::createFromFormat(
+        return DateTimeFactory::immutableFromFormat(
             'Y-m-d H:i:s',
             \sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
         );
-        \assert($dateTime instanceof \DateTimeImmutable);
-
-        return $dateTime;
     }
 
     public function toYearMonthDayString(): string
