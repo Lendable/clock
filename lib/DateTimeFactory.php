@@ -22,11 +22,7 @@ final class DateTimeFactory
      */
     public static function immutableFromFormat(string $format, string $value, ?\DateTimeZone $timezone = null): \DateTimeImmutable
     {
-        if ($timezone === null) {
-            $timezone = new \DateTimeZone(\date_default_timezone_get());
-        }
-
-        $instance = \DateTimeImmutable::createFromFormat($format, $value, $timezone);
+        $instance = \DateTimeImmutable::createFromFormat($format, $value, $timezone ?? new \DateTimeZone(\date_default_timezone_get()));
 
         if ($instance === false) {
             throw new \InvalidArgumentException(
@@ -49,11 +45,7 @@ final class DateTimeFactory
      */
     public static function mutableFromFormat(string $format, string $value, ?\DateTimeZone $timezone = null): \DateTime
     {
-        if ($timezone === null) {
-            $timezone = new \DateTimeZone(\date_default_timezone_get());
-        }
-
-        $instance = \DateTime::createFromFormat($format, $value, $timezone);
+        $instance = \DateTime::createFromFormat($format, $value, $timezone ?? new \DateTimeZone(\date_default_timezone_get()));
 
         if ($instance === false) {
             throw new \InvalidArgumentException(
