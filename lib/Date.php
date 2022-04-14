@@ -56,7 +56,7 @@ final class Date
 
     public static function fromYearsAgo(int $yearsAgo): self
     {
-        $dob = new \DateTimeImmutable("today - ${yearsAgo} years");
+        $dob = new \DateTimeImmutable(\sprintf('today - %d years', $yearsAgo));
 
         return self::fromDateTime($dob);
     }
