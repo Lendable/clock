@@ -31,7 +31,6 @@ return (new PhpCsFixer\Config())
         'dir_constant' => true,
         'ereg_to_preg' => true,
         'explicit_indirect_variable' => true,
-        'explicit_string_variable' => true,
         'final_internal_class' => true,
         'fully_qualified_strict_types' => true,
         'function_to_constant' => true,
