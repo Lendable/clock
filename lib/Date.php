@@ -103,6 +103,15 @@ final class Date
         return !$this->isBefore($start) && !$this->isAfter($end);
     }
 
+    public function offsetByDays(int $days): self
+    {
+        if ($days === 0) {
+            return $this;
+        }
+
+        return $this->modify(\sprintf('%d days', $days));
+    }
+
     public function toDateTime(): \DateTimeImmutable
     {
         return DateTimeFactory::immutableFromFormat(
@@ -138,8 +147,6 @@ final class Date
 
     private function modify(string $modification): self
     {
-        $modified = $this->toDateTime()->modify($modification);
-
-        return self::fromDateTime($modified);
+        return self::fromDateTime($this->toDateTime()->modify($modification));
     }
 }

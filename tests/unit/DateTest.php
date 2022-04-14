@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
-use Lendable\Clock\Date\InvalidDate;
 use Lendable\Clock\Date;
+use Lendable\Clock\Date\InvalidDate;
 use Lendable\Clock\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -385,5 +385,38 @@ final class DateTest extends TestCase
         $diff = $date1->diff($date2);
 
         $this->assertSame($expectedDiff->days, $diff->days);
+    }
+
+    /**
+     * @return iterable<array{int}>
+     */
+    public function provideNumberOfDayOffsets(): iterable
+    {
+        yield [-10];
+        yield [-5];
+        yield [-1];
+        yield [0];
+        yield [1];
+        yield [5];
+        yield [10];
+    }
+
+    /**
+     * @test
+     * @dataProvider provideNumberOfDayOffsets
+     */
+    public function it_can_be_offset_by_days(int $days): void
+    {
+        $date = Date::fromYearMonthDay(2022, 5, 1);
+
+        $offsetDate = $date->offsetByDays($days);
+
+        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d days', $days)));
+
+        if ($days !== 0) {
+            $this->assertNotSame($date, $offsetDate);
+        }
+
+        $this->assertTrue($expectedDate->equals($offsetDate));
     }
 }
