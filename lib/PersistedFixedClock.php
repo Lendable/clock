@@ -84,6 +84,18 @@ final class PersistedFixedClock implements MutableClock
             );
         }
 
+        if (!\is_string($data['timestamp'])) {
+            throw new \RuntimeException(
+                \sprintf('Expected key "timestamp" to be a string, but it was a %s.', \get_debug_type($data['timestamp']))
+            );
+        }
+
+        if (!\is_string($data['timezone'])) {
+            throw new \RuntimeException(
+                \sprintf('Expected key "timezone" to be a string, but it was a %s.', \get_debug_type($data['timezone']))
+            );
+        }
+
         $now = DateTimeFactory::immutableFromFormat(
             self::SERIALIZATION_FORMAT,
             $data['timestamp'],

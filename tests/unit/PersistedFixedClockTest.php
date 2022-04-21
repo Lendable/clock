@@ -119,6 +119,14 @@ final class PersistedFixedClockTest extends TestCase
             '{"bar": "baz", "timestamp": "2021-05-05T14:11:49.128311"}',
             'Expected to decode to an associative array containing keys timestamp and timezone. Got keys ["bar", "timestamp"].',
         ];
+        yield 'non-string timestamp' => [
+            '{"timezone": "UTC", "timestamp": 12345678}',
+            'Expected key "timestamp" to be a string, but it was a int.',
+        ];
+        yield 'non-string timezone' => [
+            '{"timezone": -3, "timestamp": "2021-05-05T14:11:49.128311"}',
+            'Expected key "timezone" to be a string, but it was a int.',
+        ];
     }
 
     /**
