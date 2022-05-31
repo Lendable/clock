@@ -26,7 +26,7 @@
   ],
   "prHourlyLimit": 0,
   "rangeStrategy": "update-lockfile",
-  "composerIgnorePlatformReqs": ["ext-*", "lib-*", "php"],
+  "composerIgnorePlatformReqs": ["ext-*", "lib-*"],
   "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "squash",
