@@ -32,7 +32,7 @@
   "automergeStrategy": "squash",
   "platformAutomerge": true,
   "lockFileMaintenance": {
-    "enabled": true,
+    "enabled": false,
     "schedule": "before 11am every day"
   },
   "packageRules": [
