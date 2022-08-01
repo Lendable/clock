@@ -80,14 +80,22 @@ final class PersistedFixedClockTest extends TestCase
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
         \assert($now instanceof \DateTimeImmutable);
-        $clock = PersistedFixedClock::initializeWith($vfs->url(), new FixedFileNameGenerator(), $now);
+        $fileNameGenerator = new FixedFileNameGenerator();
+        $clock = PersistedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now);
 
         $updatedTime = $now->modify('+30 minutes');
 
         $clock->changeTimeTo($updatedTime);
+        $expectedTimestamp = '2021-05-05T14:41:49.128311';
 
-        $this->assertSame('2021-05-05T14:41:49.128311', $clock->now()->format($timeFormat));
-        $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
+
+        // Verify that this value was persisted.
+        $clock = PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator);
+
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
     }
 
     /**

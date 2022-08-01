@@ -60,7 +60,7 @@ jobs:
 
       - name: "Run linting"
         run: "composer lint"
-        
+
       - name: "Run security check"
         run: "composer security:check"
 
@@ -75,8 +75,5 @@ jobs:
         if: ${{ matrix.dependencies == 'locked' }}
         run: "composer rector:check"
 
-      - name: "Unit tests"
-        run: "composer tests:unit"
-
-      - name: "Integration tests"
-        run: "composer tests:integration"
+      - name: "Tests"
+        run: "composer tests"

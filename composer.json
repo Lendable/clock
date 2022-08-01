@@ -16,8 +16,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Lendable\\Clock\\Unit\\": "tests/unit/",
-      "Tests\\Lendable\\Clock\\Functional\\": "tests/functional/"
+      "Tests\\Lendable\\Clock\\Unit\\": "tests/unit/"
     }
   },
   "require": {
@@ -25,6 +24,7 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.4",
+    "infection/infection": "^0.26.13",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.10",
     "php-parallel-lint/php-parallel-lint": "^1.3",
@@ -40,6 +40,9 @@
     "sort-packages": true,
     "platform": {
       "php": "8.0.13"
+    },
+    "allow-plugins": {
+      "infection/extension-installer": true
     }
   },
   "prefer-stable": true,
@@ -78,14 +81,15 @@
     "phpunit:unit": [
       "phpunit --colors --testsuite=unit --do-not-cache-result"
     ],
-    "phpunit:integration": [
-      "phpunit --colors --testsuite=integration --do-not-cache-result"
+    "infection": [
+      "./bin/infection --threads=8 --only-covering-test-cases --min-msi=99 --show-mutations"
+    ],
+    "tests": [
+      "@tests:unit"
     ],
     "tests:unit": [
-      "@phpunit:unit"
-    ],
-    "tests:integration": [
-      "@phpunit:integration"
+      "@phpunit:unit",
+      "@infection"
     ],
     "ci": [
       "@security:check",

@@ -17,6 +17,7 @@ final class FastestTestChannelFileNameGenerator implements FileNameGenerator
 
     public function __construct()
     {
+        // @infection-ignore-all Cannot simulate class not existing trivially
         if (!\class_exists(EnvCommandCreator::class)) {
             throw new \RuntimeException('You must have liuggio/fastest installed to use this class.');
         }

@@ -1,0 +1,21 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "lib"
+        ]
+    },
+    "mutators": {
+        "@default": true,
+        "IncrementInteger": {
+            "ignoreSourceCodeByRegex": [
+                ".*json_decode.*"
+            ]
+        },
+        "DecrementInteger": {
+            "ignoreSourceCodeByRegex": [
+                ".*json_decode.*"
+            ]
+        }
+    }
+}
