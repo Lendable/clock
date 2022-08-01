@@ -47,10 +47,12 @@ final class Date
             throw new InvalidDate('Failed to parse string as a Y-m-d formatted date.');
         }
 
+        [, $year, $month, $day] = $matches;
+
         return self::fromYearMonthDay(
-            (int) $matches[1],
-            (int) $matches[2],
-            (int) $matches[3]
+            (int) $year,
+            (int) $month,
+            (int) $day,
         );
     }
 

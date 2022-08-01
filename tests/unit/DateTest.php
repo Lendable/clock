@@ -7,6 +7,7 @@ namespace Tests\Lendable\Clock\Unit;
 use Lendable\Clock\Date;
 use Lendable\Clock\Date\InvalidDate;
 use Lendable\Clock\DateTimeFactory;
+use Lendable\Clock\SystemClock;
 use PHPUnit\Framework\TestCase;
 
 final class DateTest extends TestCase
@@ -131,14 +132,29 @@ final class DateTest extends TestCase
     }
 
     /**
-     * @test
+     * @return iterable<array{string}>
      */
-    public function it_throws_when_constructing_from_a_formatted_string_if_invalid_format(): void
+    public function provideInvalidYearMonthDayStrings(): iterable
+    {
+        yield ['2008-01-04-'];
+        yield ['-2008-01-04'];
+        yield ['foobar'];
+        yield ['2024-10-10-10'];
+        yield ['2024-10-'];
+        yield ['2024-'];
+        yield ['2024'];
+    }
+
+    /**
+     * @test
+     * @dataProvider provideInvalidYearMonthDayStrings
+     */
+    public function it_throws_when_constructing_from_a_formatted_string_if_invalid_format(string $value): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Failed to parse string as a Y-m-d formatted date.');
 
-        Date::fromYearMonthDayString('foobar');
+        Date::fromYearMonthDayString($value);
     }
 
     /**
@@ -418,5 +434,16 @@ final class DateTest extends TestCase
         }
 
         $this->assertTrue($expectedDate->equals($offsetDate));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_be_constructed_from_a_number_of_years_ago(): void
+    {
+        $clock = new SystemClock();
+        $date = Date::fromYearsAgo(10);
+
+        $this->assertSame($clock->today()->toDateTime()->modify('-10 years')->format('Y-m-d'), $date->toYearMonthDayString());
     }
 }
