@@ -1,5 +1,4 @@
 /bin
-!/bin/local-php-security-checker
 /vendor
 /phpunit.xml
 /.php-cs-fixer.cache
