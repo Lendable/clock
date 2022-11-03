@@ -99,6 +99,60 @@ final class PersistedFixedClockTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function it_can_rewind_time(): void
+    {
+        $vfs = vfsStream::setup('serialized_time');
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $fileNameGenerator = new FixedFileNameGenerator();
+        $clock = PersistedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now);
+
+        $clock->rewindTimeBy(new \DateInterval('PT30M'));
+
+        $expectedTimestamp = '2021-05-05T13:41:49.128311';
+
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
+
+        // Verify that this value was persisted.
+        $clock = PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator);
+
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_advance_time(): void
+    {
+        $vfs = vfsStream::setup('serialized_time');
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $fileNameGenerator = new FixedFileNameGenerator();
+        $clock = PersistedFixedClock::initializeWith($vfs->url(), $fileNameGenerator, $now);
+
+        $clock->advanceTimeBy(new \DateInterval('PT30M'));
+
+        $expectedTimestamp = '2021-05-05T14:41:49.128311';
+
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
+
+        // Verify that this value was persisted.
+        $clock = PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator);
+
+        $this->assertSame($expectedTimestamp, $clock->now()->format($timeFormat));
+        $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
      * @return iterable<string, array{string, string}>
      */
     public function provideInvalidData(): iterable

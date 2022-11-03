@@ -51,6 +51,40 @@ final class FixedClockTest extends TestCase
     /**
      * @test
      */
+    public function it_can_rewind_time(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = new FixedClock($now);
+
+        $clock->rewindTimeBy(new \DateInterval('PT30M'));
+
+        $this->assertSame('2021-05-05T13:41:49.128311', $clock->now()->format($timeFormat));
+        $this->assertSame('2021-05-05T13:41:49.128311', $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_advance_time(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = new FixedClock($now);
+
+        $clock->advanceTimeBy(new \DateInterval('PT30M'));
+
+        $this->assertSame('2021-05-05T14:41:49.128311', $clock->now()->format($timeFormat));
+        $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
+    }
+
+    /**
+     * @test
+     */
     public function it_can_return_a_date_object(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';

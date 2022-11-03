@@ -59,6 +59,18 @@ final class PersistedFixedClock implements MutableClock
         $this->persist();
     }
 
+    public function rewindTimeBy(\DateInterval $interval): void
+    {
+        $this->delegate->rewindTimeBy($interval);
+        $this->persist();
+    }
+
+    public function advanceTimeBy(\DateInterval $interval): void
+    {
+        $this->delegate->advanceTimeBy($interval);
+        $this->persist();
+    }
+
     private function load(): void
     {
         $path = $this->getSerializationFilePath();
