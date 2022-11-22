@@ -49,11 +49,7 @@ final class Date
 
         [, $year, $month, $day] = $matches;
 
-        return self::fromYearMonthDay(
-            (int) $year,
-            (int) $month,
-            (int) $day,
-        );
+        return self::fromYearMonthDay((int) $year, (int) $month, (int) $day);
     }
 
     public static function fromYearsAgo(int $yearsAgo): self
