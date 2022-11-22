@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Lendable\Clock;
 
 /**
- * Simple in-memory ticking fixed clock.
+ * Simple in-memory ticking mock clock.
  *
- * The original fixed value will advance forward as normal to simulate time passing from
- * the fixed time point.
+ * The original time value will advance forward as normal to simulate time passing from
+ * that time point.
  */
-final class TickingFixedClock implements MutableClock
+final class TickingMockClock implements MutableClock
 {
     private \DateTimeImmutable $now;
 

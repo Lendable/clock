@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
-use Lendable\Clock\TickingFixedClock;
+use Lendable\Clock\TickingMockClock;
 use PHPUnit\Framework\TestCase;
 use Tests\Lendable\Clock\Support\TickingTimeAssertions;
 
-final class TickingFixedClockTest extends TestCase
+final class TickingMockClockTest extends TestCase
 {
     /**
      * @test
@@ -19,7 +19,7 @@ final class TickingFixedClockTest extends TestCase
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
         \assert($now instanceof \DateTimeImmutable);
-        $clock = TickingFixedClock::tickingFromCurrentTime($now);
+        $clock = TickingMockClock::tickingFromCurrentTime($now);
 
         TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter(
             $clock->tickingFrom(),
@@ -72,7 +72,7 @@ final class TickingFixedClockTest extends TestCase
          $timeFormat = 'Y-m-d\TH:i:s.u';
          $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
          \assert($now instanceof \DateTimeImmutable);
-         $clock = TickingFixedClock::tickingFromCurrentTime($now);
+         $clock = TickingMockClock::tickingFromCurrentTime($now);
 
          $updatedTime = $now->modify('+30 minutes');
 
@@ -91,7 +91,7 @@ final class TickingFixedClockTest extends TestCase
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
         \assert($now instanceof \DateTimeImmutable);
-        $clock = TickingFixedClock::tickingFromCurrentTime($now);
+        $clock = TickingMockClock::tickingFromCurrentTime($now);
 
         $date = $clock->today();
 
@@ -103,13 +103,13 @@ final class TickingFixedClockTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_date_object_of_the_following_day_if_fixed_far_enough_back_in_the_past(): void
+    public function it_returns_a_date_object_of_the_following_day_if_ticking_from_far_enough_back_in_the_past(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
         \assert($now instanceof \DateTimeImmutable);
-        $clock = TickingFixedClock::tickingFromTime($now, (new \DateTimeImmutable('now'))->sub(new \DateInterval('PT24H')));
+        $clock = TickingMockClock::tickingFromTime($now, (new \DateTimeImmutable('now'))->sub(new \DateInterval('PT24H')));
 
         $date = $clock->today();
 

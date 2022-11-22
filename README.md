@@ -40,9 +40,9 @@ Always provides a specific timestamp that is provided at construction.
 
 Target: unit/functional tests 
 
-### `TickingFixedClock`
-Similar to `FixedClock`, but simulates time progressing from the point at which it is fixed. I.e a call to 
-`Clock::now()` 200ms after it is created will give a time value 200ms after the fixed time point.
+### `TickingMockClock`
+Mocks time starting from a given timestamp and simulates time progressing from that point. I.e a call to 
+`TickingMockClock::now()` 200ms after it is created will give a time value 200ms after the given timestamp.
 
 Target: unit/functional tests
 
