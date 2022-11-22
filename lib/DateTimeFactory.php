@@ -10,6 +10,9 @@ namespace Lendable\Clock;
  */
 final class DateTimeFactory
 {
+    /**
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }
