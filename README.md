@@ -38,7 +38,13 @@ Target: runtime
 ### `FixedClock`
 Always provides a specific timestamp that is provided at construction.
 
-Target: unit tests 
+Target: unit/functional tests 
+
+### `TickingFixedClock`
+Similar to `FixedClock`, but simulates time progressing from the point at which it is fixed. I.e a call to 
+`Clock::now()` 200ms after it is created will give a time value 200ms after the fixed time point.
+
+Target: unit/functional tests
 
 ### `PersistedFixedClock`
 Similar to `FixedClock`, but can persist and load the given timestamp from disk.
