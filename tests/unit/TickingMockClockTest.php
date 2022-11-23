@@ -103,7 +103,7 @@ final class TickingMockClockTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_date_object_of_the_following_day_if_ticking_from_far_enough_back_in_the_past(): void
+    public function it_advances_the_date_once_it_has_been_ticking_for_24_hours(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
         $timeFormat = 'Y-m-d\TH:i:s.u';
