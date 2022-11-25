@@ -85,7 +85,7 @@ final class TickingMockClockTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_date_object(): void
+    public function it_provides_the_date_from_its_current_time(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
         $timeFormat = 'Y-m-d\TH:i:s.u';
