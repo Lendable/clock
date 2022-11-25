@@ -16,7 +16,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Lendable\\Clock\\Unit\\": "tests/unit/"
+      "Tests\\Lendable\\Clock\\Unit\\": "tests/unit/",
+      "Tests\\Lendable\\Clock\\Support\\": "tests/support/"
     }
   },
   "require": {
