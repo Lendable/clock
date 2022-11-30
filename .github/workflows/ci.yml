@@ -49,6 +49,7 @@ jobs:
         run: "composer audit"
 
       - name: "Run coding style"
+        if: ${{ matrix.dependencies == 'locked' }}
         run: "composer code-style:check"
 
       - name: "Run PHPStan"
