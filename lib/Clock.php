@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Lendable\Clock;
 
-interface Clock
+use Psr\Clock\ClockInterface;
+
+interface Clock extends ClockInterface
 {
     /**
      * Provides the current system time.
