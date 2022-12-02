@@ -37,7 +37,7 @@
     "phpunit/phpunit": "^9.5",
     "rector/rector": "^0.14"
   },
-  "provides": {
+  "provide": {
     "psr/clock-implementation": "1.0"
   },
   "config": {
