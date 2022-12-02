@@ -18,7 +18,7 @@ Depending on a Clock rather than constructing native PHP time objects ad hoc mea
   * Time passing can be simulated with changes to the output from the Clock.
   * Tests that make poor assumptions can be avoided, i.e., capturing the current time to the second, then asserting that an expected output matches it. However, time passed during the setup to the assertion, and this time it crossed the second boundary.
 * Clear dependencies on classes that require to obtain the current system time.
-* The [PSR proposal for a Clock](https://github.com/php-fig/fig-standards/blob/master/proposed/clock-meta.md) contains further information and examples of current libraries and their solutions and workarounds to provide mocking support.
+* The [PSR-20 proposal for a Clock](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-20-clock-meta.md) contains further information and examples of current libraries and their solutions and workarounds to provide mocking support.
 
 This library makes **no attempt** to mock global state, such as `\time()` or calls to `new \DateTimeImmutable()`. You will have conflicts if you cannot assert enough control over your dependencies to ensure all current system time retrieval goes through the Clock.
 
