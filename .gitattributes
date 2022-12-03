@@ -1,10 +1,16 @@
+/.github            export-ignore
+/ci                 export-ignore
+/tests              export-ignore
+.dockerignore       export-ignore
 .gitattributes      export-ignore
 .gitignore          export-ignore
 .php-cs-fixer.php   export-ignore
+composer.lock       export-ignore -merge
 Dockerfile.php-cli  export-ignore
-Jenkinsfile         export-ignore
+infection.json.dist export-ignore
+Makefile            export-ignore
+phpstan-rector.neon export-ignore
 phpstan.neon        export-ignore
 phpunit.xml.dist    export-ignore
-/ci                 export-ignore
-/tests              export-ignore
-/composer.lock      -merge
+rector.php          export-ignore
+renovate.json       export-ignore
