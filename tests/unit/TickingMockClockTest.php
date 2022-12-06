@@ -117,4 +117,38 @@ final class TickingMockClockTest extends TestCase
         $this->assertSame(4, $date->month());
         $this->assertSame(8, $date->day());
     }
+
+    /**
+     * @test
+     */
+    public function it_can_rewind_time(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = TickingMockClock::tickingFromCurrentTime($now);
+
+        $clock->rewindTimeBy(new \DateInterval('PT30M'));
+
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now->sub(new \DateInterval('PT30M')), $clock->now());
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now->sub(new \DateInterval('PT30M')), $clock->nowMutable());
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_advance_time(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = TickingMockClock::tickingFromCurrentTime($now);
+
+        $clock->advanceTimeBy(new \DateInterval('PT30M'));
+
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now->add(new \DateInterval('PT30M')), $clock->now());
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now->add(new \DateInterval('PT30M')), $clock->nowMutable());
+    }
 }
