@@ -25,10 +25,10 @@
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.13.0",
     "infection/infection": "^0.26.16",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
+    "php-cs-fixer/shim": "^3.13",
     "php-parallel-lint/php-parallel-lint": "^1.3.2",
     "phpstan/phpstan": "^1.9.2",
     "phpstan/phpstan-deprecation-rules": "^1.0",
