@@ -20,6 +20,7 @@ jobs:
         php-version:
           - "8.0"
           - "8.1"
+          - "8.2"
         operating-system:
           - "ubuntu-latest"
 
@@ -49,7 +50,7 @@ jobs:
         run: "composer audit"
 
       - name: "Run coding style"
-        if: ${{ matrix.dependencies == 'locked' }}
+        if: ${{ matrix.dependencies == 'locked' && matrix.php-version == '8.1' }}
         run: "composer code-style:check"
 
       - name: "Run PHPStan"
