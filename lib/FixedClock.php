@@ -33,6 +33,16 @@ final class FixedClock implements MutableClock
         $this->now = \DateTimeImmutable::createFromInterface($time);
     }
 
+    public function rewindTimeBy(\DateInterval $interval): void
+    {
+        $this->now = $this->now->sub($interval);
+    }
+
+    public function advanceTimeBy(\DateInterval $interval): void
+    {
+        $this->now = $this->now->add($interval);
+    }
+
     public function today(): Date
     {
         return Date::fromDateTime($this->now());

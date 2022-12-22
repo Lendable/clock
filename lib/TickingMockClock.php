@@ -56,6 +56,16 @@ final class TickingMockClock implements MutableClock
         return Date::fromDateTime($this->now());
     }
 
+    public function rewindTimeBy(\DateInterval $interval): void
+    {
+        $this->now = $this->now->sub($interval);
+    }
+
+    public function advanceTimeBy(\DateInterval $interval): void
+    {
+        $this->now = $this->now->add($interval);
+    }
+
     public function tickingFrom(): \DateTimeImmutable
     {
         return $this->tickingFrom;
