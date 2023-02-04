@@ -8,21 +8,14 @@ use Lendable\Clock\Date\InvalidDate;
 
 final class Date
 {
-    private int $year;
-
-    private int $month;
-
-    private int $day;
-
-    private function __construct(int $year, int $month, int $day)
-    {
+    private function __construct(
+        private readonly int $year,
+        private readonly int $month,
+        private readonly int $day,
+    ) {
         if (!\checkdate($month, $day, $year)) {
             throw InvalidDate::fromDate($year, $month, $day);
         }
-
-        $this->year = $year;
-        $this->month = $month;
-        $this->day = $day;
     }
 
     public static function fromYearMonthDay(int $year, int $month, int $day): self
