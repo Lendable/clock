@@ -13,7 +13,7 @@ use Liuggio\Fastest\Process\EnvCommandCreator;
  */
 final class FastestTestChannelFileNameGenerator implements FileNameGenerator
 {
-    private string $fileName;
+    private readonly string $fileName;
 
     public function __construct()
     {

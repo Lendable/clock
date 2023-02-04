@@ -11,11 +11,8 @@ final class SystemClock implements Clock
 {
     private const DEFAULT_TIMEZONE = 'UTC';
 
-    private \DateTimeZone $timeZone;
-
-    public function __construct(?\DateTimeZone $timeZone = null)
+    public function __construct(private readonly \DateTimeZone $timeZone = new \DateTimeZone(self::DEFAULT_TIMEZONE))
     {
-        $this->timeZone = $timeZone ?? new \DateTimeZone(self::DEFAULT_TIMEZONE);
     }
 
     public function now(): \DateTimeImmutable

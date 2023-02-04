@@ -17,7 +17,7 @@ final class PersistedFixedClock implements MutableClock
 
     private FixedClock $delegate;
 
-    private function __construct(private string $serializedStorageDirectory, private FileNameGenerator $fileNameGenerator)
+    private function __construct(private readonly string $serializedStorageDirectory, private readonly FileNameGenerator $fileNameGenerator)
     {
     }
 

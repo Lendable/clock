@@ -8,11 +8,11 @@ use Lendable\Clock\Date\InvalidDate;
 
 final class Date
 {
-    private int $year;
+    private readonly int $year;
 
-    private int $month;
+    private readonly int $month;
 
-    private int $day;
+    private readonly int $day;
 
     private function __construct(int $year, int $month, int $day)
     {

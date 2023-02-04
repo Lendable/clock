@@ -21,7 +21,7 @@
     }
   },
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.1",
     "psr/clock": "^1.0"
   },
   "require-dev": {
@@ -44,7 +44,7 @@
     "bin-dir": "bin",
     "sort-packages": true,
     "platform": {
-      "php": "8.0.13"
+      "php": "8.1.15"
     },
     "allow-plugins": {
       "infection/extension-installer": true

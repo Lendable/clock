@@ -1,4 +1,4 @@
-FROM lendableuk/php-fpm-alpine:8.0.11-alpine3.13
+FROM lendableuk/php-fpm-alpine:8.1.11-alpine3.15
 
 COPY --from=composer:2.4.4 /usr/bin/composer /usr/bin/composer
 
