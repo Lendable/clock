@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit\Serialization;
 
+use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\Serialization\FastestTestChannelFileNameGenerator;
 use Liuggio\Fastest\Process\EnvCommandCreator;
 use PHPUnit\Framework\TestCase;
 
 final class FastestTestChannelFileNameGeneratorTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_bases_the_file_name_off_the_env_var_exposed_by_fastest(): void
     {
         $this->exerciseAndResetEnv(function (): void {
@@ -21,9 +20,7 @@ final class FastestTestChannelFileNameGeneratorTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_defaults_to_1_when_the_env_var_is_not_provided(): void
     {
         $this->exerciseAndResetEnv(function (): void {

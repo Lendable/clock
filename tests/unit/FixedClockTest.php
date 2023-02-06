@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\FixedClock;
 use PHPUnit\Framework\TestCase;
 
 final class FixedClockTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_always_returns_the_given_time(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
@@ -29,9 +28,7 @@ final class FixedClockTest extends TestCase
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_change_the_time_to_a_new_fixed_value(): void
     {
         $timeString = '2021-05-05T14:11:49.128311';
@@ -48,9 +45,7 @@ final class FixedClockTest extends TestCase
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_rewind_time(): void
     {
         $timeString = '2021-05-05T14:11:49.128311';
@@ -65,9 +60,7 @@ final class FixedClockTest extends TestCase
         $this->assertSame('2021-05-05T13:41:49.128311', $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_advance_time(): void
     {
         $timeString = '2021-05-05T14:11:49.128311';
@@ -82,9 +75,7 @@ final class FixedClockTest extends TestCase
         $this->assertSame('2021-05-05T14:41:49.128311', $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_return_a_date_object(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';

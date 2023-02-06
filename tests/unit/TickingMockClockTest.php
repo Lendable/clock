@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\TickingMockClock;
 use PHPUnit\Framework\TestCase;
 use Tests\Lendable\Clock\Support\TickingTimeAssertions;
 
 final class TickingMockClockTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_returns_time_that_has_ticked(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
@@ -63,9 +62,7 @@ final class TickingMockClockTest extends TestCase
         TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now, $sample3);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
      public function it_changes_the_time(): void
      {
          $timeString = '2021-05-05T14:11:49.128311';
@@ -82,9 +79,7 @@ final class TickingMockClockTest extends TestCase
          TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($updatedTime, $clock->nowMutable());
      }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_provides_the_date_from_its_current_time(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
@@ -100,9 +95,7 @@ final class TickingMockClockTest extends TestCase
         $this->assertSame(7, $date->day());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_advances_the_date_once_it_has_been_ticking_for_24_hours(): void
     {
         $timeString = '2018-04-07T16:51:29.083869';
@@ -118,9 +111,7 @@ final class TickingMockClockTest extends TestCase
         $this->assertSame(8, $date->day());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_rewind_time(): void
     {
         $timeString = '2021-05-05T14:11:49.128311';
@@ -135,9 +126,7 @@ final class TickingMockClockTest extends TestCase
         TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($now->sub(new \DateInterval('PT30M')), $clock->nowMutable());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_advance_time(): void
     {
         $timeString = '2021-05-05T14:11:49.128311';
