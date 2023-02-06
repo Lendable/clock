@@ -25,7 +25,7 @@
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "infection/infection": "^0.26.18",
+    "infection/infection": "^0.26.19",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
     "php-cs-fixer/shim": "^3.14.3",
