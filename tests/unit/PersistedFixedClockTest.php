@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Lendable\Clock\PersistedFixedClock;
 use Lendable\Clock\Serialization\FixedFileNameGenerator;
 use org\bovigo\vfs\vfsStream;
@@ -11,9 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PersistedFixedClockTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_reuses_the_serialized_value_when_reconstructed_from(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -30,9 +30,7 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertSame($timeString, PersistedFixedClock::fromPersisted($vfs->url(), $fileNameGenerator)->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_always_returns_the_given_time(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -51,9 +49,7 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertSame($timeString, $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_return_a_date_object(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -70,9 +66,7 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertEquals(7, $date->day());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_change_the_time_to_a_new_fixed_value(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -98,9 +92,7 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_rewind_time(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -125,9 +117,7 @@ final class PersistedFixedClockTest extends TestCase
         $this->assertSame($expectedTimestamp, $clock->nowMutable()->format($timeFormat));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_advance_time(): void
     {
         $vfs = vfsStream::setup('serialized_time');
@@ -155,7 +145,7 @@ final class PersistedFixedClockTest extends TestCase
     /**
      * @return iterable<string, array{string, string}>
      */
-    public function provideInvalidData(): iterable
+    public static function provideInvalidData(): iterable
     {
         yield 'int' => ['1', 'Expected data to decode to an array, but got int.'];
         yield 'bool' => ['true', 'Expected data to decode to an array, but got bool.'];
@@ -191,10 +181,8 @@ final class PersistedFixedClockTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider provideInvalidData
-     */
+    #[DataProvider('provideInvalidData')]
+    #[Test]
     public function it_throws_when_loaded_data_is_not_an_array_or_is_invalid(string $serializedData, string $expectedExceptionMessage): void
     {
         $vfs = vfsStream::setup('serialized_time');

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\SystemClock;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +14,7 @@ final class SystemClockTest extends TestCase
     /**
      * @phpstan-return iterable<array{0: string}>
      */
-    public function exampleTimeZoneNames(): iterable
+    public static function exampleTimeZoneNames(): iterable
     {
         yield ['UTC'];
         yield ['America/New_York'];
@@ -20,10 +22,8 @@ final class SystemClockTest extends TestCase
         yield ['Europe/Paris'];
     }
 
-    /**
-     * @test
-     * @dataProvider exampleTimeZoneNames
-     */
+    #[DataProvider('exampleTimeZoneNames')]
+    #[Test]
     public function it_gives_a_time_in_the_configured_timezone(string $timeZoneName): void
     {
         $clock = new SystemClock(new \DateTimeZone($timeZoneName));
@@ -31,17 +31,13 @@ final class SystemClockTest extends TestCase
         $this->assertSame($timeZoneName, $clock->now()->getTimezone()->getName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_defaults_timezone_to_utc(): void
     {
         $this->assertSame('UTC', (new SystemClock())->now()->getTimezone()->getName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_gives_the_current_system_time(): void
     {
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
@@ -58,9 +54,7 @@ final class SystemClockTest extends TestCase
         $this->assertLessThanOrEqual(1, $difference);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_return_a_date_object(): void
     {
         $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));

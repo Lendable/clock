@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -12,17 +14,15 @@ final class DateTimeFactoryTest extends TestCase
     /**
      * @return iterable<array{string}>
      */
-    public function provideTimezones(): iterable
+    public static function provideTimezones(): iterable
     {
         yield ['Europe/Paris'];
         yield ['Europe/Berlin'];
         yield ['Europe/London'];
     }
 
-    /**
-     * @test
-     * @dataProvider provideTimezones
-     */
+    #[DataProvider('provideTimezones')]
+    #[Test]
     public function it_creates_immutable_instances_with_the_system_default_timezone_if_one_is_not_provided(string $timezone): void
     {
         $this->runWithDefaultTimezone($timezone, function () use ($timezone): void {
@@ -35,9 +35,7 @@ final class DateTimeFactoryTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_immutable_instances_with_the_given_timezone(): void
     {
         $timestamp = '2022-04-03 10:20:30';
@@ -48,9 +46,7 @@ final class DateTimeFactoryTest extends TestCase
         $this->assertTimestampAndTimezoneEquals($timestamp, $format, $timezone, $instance);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_throws_an_exception_if_an_immutable_instance_fails_to_construct(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -59,10 +55,8 @@ final class DateTimeFactoryTest extends TestCase
         DateTimeFactory::immutableFromFormat('ABC123', '1234567');
     }
 
-    /**
-     * @test
-     * @dataProvider provideTimezones
-     */
+    #[DataProvider('provideTimezones')]
+    #[Test]
     public function it_creates_mutable_instances_with_the_system_default_timezone_if_one_is_not_provided(string $timezone): void
     {
         $this->runWithDefaultTimezone($timezone, function () use ($timezone): void {
@@ -75,9 +69,7 @@ final class DateTimeFactoryTest extends TestCase
         });
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_creates_mutable_instances_with_the_given_timezone(): void
     {
         $timestamp = '2022-04-03 10:20:30';
@@ -88,9 +80,7 @@ final class DateTimeFactoryTest extends TestCase
         $this->assertTimestampAndTimezoneEquals($timestamp, $format, $timezone, $instance);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_throws_an_exception_if_a_mutable_instance_fails_to_construct(): void
     {
         $this->expectException(\InvalidArgumentException::class);

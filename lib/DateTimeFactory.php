@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Lendable\Clock;
 
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
+
 /**
  * Provides the ability to construct {@see \DateTime} and {@see \DateTimeImmutable} instances with an API that does
  * not return false on failure.
  */
 final class DateTimeFactory
 {
-    /**
-     * @codeCoverageIgnore
-     */
+    #[CodeCoverageIgnore]
     private function __construct()
     {
     }
