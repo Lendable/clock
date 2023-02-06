@@ -90,8 +90,7 @@
       "@tests:unit"
     ],
     "tests:unit": [
-      "@phpunit:unit",
-      "@infection"
+      "@phpunit:unit"
     ],
     "ci": [
       "@composer audit",
