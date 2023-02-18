@@ -84,13 +84,14 @@
       "phpunit --colors --testsuite=unit --do-not-cache-result"
     ],
     "infection": [
-      "./bin/infection --threads=8 --only-covering-test-cases --min-msi=99 --show-mutations"
+      "./bin/infection --threads=8 --min-msi=99 --show-mutations"
     ],
     "tests": [
       "@tests:unit"
     ],
     "tests:unit": [
-      "@phpunit:unit"
+      "@phpunit:unit",
+      "@infection"
     ],
     "ci": [
       "@composer audit",
