@@ -42,6 +42,9 @@ jobs:
       - name: "Validate Composer dependencies"
         run: "composer validate"
 
+      - name: "Check Composer dependency licenses"
+        run: "composer licenses:check"
+
       - name: "Run linting"
         run: "composer lint"
 
