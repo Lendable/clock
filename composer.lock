@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0554c6842edeb6388f9dbef62d99dbb8",
+    "content-hash": "17d6853878d27bdcd9563db11802adca",
     "packages": [
         {
             "name": "psr/clock",
@@ -848,6 +848,63 @@
                 "source": "https://github.com/justinrainbow/json-schema/tree/5.2.12"
             },
             "time": "2022-04-13T08:02:27+00:00"
+        },
+        {
+            "name": "lendable/composer-license-checker",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lendable/composer-license-checker.git",
+                "reference": "a064b18f3b3ff498ac49042480246f881ac75ad3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lendable/composer-license-checker/zipball/a064b18f3b3ff498ac49042480246f881ac75ad3",
+                "reference": "a064b18f3b3ff498ac49042480246f881ac75ad3",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2.2",
+                "php": "8.1.* || 8.2.*",
+                "symfony/console": "^5.4 || ^6.0",
+                "symfony/process": "^5.4 || ^6.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.29",
+                "php-cs-fixer/shim": "^3.14.4",
+                "phpstan/phpstan": "^1.9.18",
+                "phpstan/phpstan-deprecation-rules": "^1.1.1",
+                "phpstan/phpstan-phpunit": "^1.3.4",
+                "phpstan/phpstan-strict-rules": "^1.4.5",
+                "phpunit/phpunit": "^10.0.11",
+                "rector/rector": "^0.15.17",
+                "symfony/filesystem": "^6.2"
+            },
+            "bin": [
+                "bin/composer-license-checker"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Lendable\\ComposerLicenseChecker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lendable Ltd",
+                    "email": "contact@lendable.co.uk"
+                }
+            ],
+            "description": "Composer license checker",
+            "support": {
+                "issues": "https://github.com/Lendable/composer-license-checker/issues",
+                "source": "https://github.com/Lendable/composer-license-checker/tree/1.0.2"
+            },
+            "time": "2023-02-21T09:20:54+00:00"
         },
         {
             "name": "liuggio/fastest",
