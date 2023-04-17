@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Support;
 
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use PHPUnit\Framework\Assert;
 
 final class TickingTimeAssertions
 {
-    #[CodeCoverageIgnore]
     private function __construct()
     {
     }
