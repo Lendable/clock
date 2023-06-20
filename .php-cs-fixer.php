@@ -8,11 +8,6 @@ $finder = (new PhpCsFixer\Finder())
 return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR12' => true,
-        '@PHP70Migration' => true,
-        '@PHP71Migration' => true,
-        '@PHP73Migration' => true,
-        '@PHP74Migration' => true,
-        '@PHP80Migration' => true,
         '@PHP81Migration' => true,
         '@DoctrineAnnotation' => true,
         'align_multiline_comment' => true,
@@ -20,6 +15,7 @@ return (new PhpCsFixer\Config())
         'array_syntax' => ['syntax' => 'short'],
         'binary_operator_spaces' => true,
         'blank_line_after_opening_tag' => true,
+        'blank_lines_before_namespace' => true,
         'blank_line_before_statement' => true,
         'cast_spaces' => ['space' => 'single'],
         'class_attributes_separation' => true,
@@ -98,7 +94,6 @@ return (new PhpCsFixer\Config())
         'return_type_declaration' => true,
         'semicolon_after_instruction' => true,
         'short_scalar_cast' => true,
-        'single_blank_line_before_namespace' => true,
         'single_line_comment_style' => false,
         'single_quote' => true,
         'space_after_semicolon' => true,
