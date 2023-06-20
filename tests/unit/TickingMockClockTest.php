@@ -63,21 +63,21 @@ final class TickingMockClockTest extends TestCase
     }
 
     #[Test]
-     public function it_changes_the_time(): void
-     {
-         $timeString = '2021-05-05T14:11:49.128311';
-         $timeFormat = 'Y-m-d\TH:i:s.u';
-         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
-         \assert($now instanceof \DateTimeImmutable);
-         $clock = TickingMockClock::tickingFromCurrentTime($now);
+    public function it_changes_the_time(): void
+    {
+        $timeString = '2021-05-05T14:11:49.128311';
+        $timeFormat = 'Y-m-d\TH:i:s.u';
+        $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
+        \assert($now instanceof \DateTimeImmutable);
+        $clock = TickingMockClock::tickingFromCurrentTime($now);
 
-         $updatedTime = $now->modify('+30 minutes');
+        $updatedTime = $now->modify('+30 minutes');
 
-         $clock->changeTimeTo($updatedTime);
+        $clock->changeTimeTo($updatedTime);
 
-         TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($updatedTime, $clock->now());
-         TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($updatedTime, $clock->nowMutable());
-     }
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($updatedTime, $clock->now());
+        TickingTimeAssertions::assertDateTimeLessThanOneSecondAfter($updatedTime, $clock->nowMutable());
+    }
 
     #[Test]
     public function it_provides_the_date_from_its_current_time(): void
