@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bec33f70503f81b41e4b1532ed10725",
+    "content-hash": "1d6357ea7b32372f42aeb2f4eddfdd96",
     "packages": [
         {
             "name": "psr/clock",
@@ -653,16 +653,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.27.2",
+            "version": "0.27.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "5019cdc8d707ddacffbe991a1c12c8e8e348845f"
+                "reference": "3fe68ec001d6abd7f9494f4dfadeb61848d2c9d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/5019cdc8d707ddacffbe991a1c12c8e8e348845f",
-                "reference": "5019cdc8d707ddacffbe991a1c12c8e8e348845f",
+                "url": "https://api.github.com/repos/infection/infection/zipball/3fe68ec001d6abd7f9494f4dfadeb61848d2c9d0",
+                "reference": "3fe68ec001d6abd7f9494f4dfadeb61848d2c9d0",
                 "shasum": ""
             },
             "require": {
@@ -769,7 +769,7 @@
             ],
             "support": {
                 "issues": "https://github.com/infection/infection/issues",
-                "source": "https://github.com/infection/infection/tree/0.27.2"
+                "source": "https://github.com/infection/infection/tree/0.27.3"
             },
             "funding": [
                 {
@@ -781,20 +781,20 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-09-16T16:39:29+00:00"
+            "time": "2023-09-28T07:13:56+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.12",
+            "version": "v5.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60"
+                "reference": "fbbe7e5d79f618997bc3332a6f49246036c45793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/fbbe7e5d79f618997bc3332a6f49246036c45793",
+                "reference": "fbbe7e5d79f618997bc3332a6f49246036c45793",
                 "shasum": ""
             },
             "require": {
@@ -849,9 +849,9 @@
             ],
             "support": {
                 "issues": "https://github.com/justinrainbow/json-schema/issues",
-                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.12"
+                "source": "https://github.com/justinrainbow/json-schema/tree/v5.2.13"
             },
-            "time": "2022-04-13T08:02:27+00:00"
+            "time": "2023-09-26T02:20:38+00:00"
         },
         {
             "name": "lendable/composer-license-checker",
@@ -1331,16 +1331,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.28.0",
+            "version": "v3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "84584aec6278f7641d7b0b257a8103955b704657"
+                "reference": "8f142389865fea574ddf7dc18f69f399c052502c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/84584aec6278f7641d7b0b257a8103955b704657",
-                "reference": "84584aec6278f7641d7b0b257a8103955b704657",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/8f142389865fea574ddf7dc18f69f399c052502c",
+                "reference": "8f142389865fea574ddf7dc18f69f399c052502c",
                 "shasum": ""
             },
             "require": {
@@ -1377,9 +1377,9 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.28.0"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.30.0"
             },
-            "time": "2023-09-22T20:44:22+00:00"
+            "time": "2023-09-26T22:11:30+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
