@@ -1,6 +1,6 @@
 FROM lendableuk/php-fpm-alpine:8.1.11-alpine3.15
 
-COPY --from=composer:2.6.3 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.6.4 /usr/bin/composer /usr/bin/composer
 
 COPY . /app
 WORKDIR /app
