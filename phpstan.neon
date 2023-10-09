@@ -8,7 +8,8 @@ parameters:
     level: max
     reportUnmatchedIgnoredErrors: false
     checkExplicitMixed: true
- 
+
     ignoreErrors:
         - '#Dynamic call to static method PHPUnit\\Framework\\.*#'
         - '#^Call to an undefined static method DateTime(?:Immutable)?::createFromInterface\(\)\.$#'
+        - '#^Attribute class PHPUnit\\Framework\\Attributes\\IgnoreMethodForCodeCoverage is deprecated: https://github.com/sebastianbergmann/phpunit/issues/5513$#'
