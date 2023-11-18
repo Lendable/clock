@@ -28,7 +28,9 @@ final class TickingMockClockTest extends TestCase
         // Immutable variant.
 
         $sample1 = $clock->now();
+        \usleep(0);
         $sample2 = $clock->now();
+        \usleep(0);
         $sample3 = $clock->now();
 
         $this->assertNotSame($sample1->format($timeFormat), $sample2->format($timeFormat));
@@ -46,7 +48,9 @@ final class TickingMockClockTest extends TestCase
         // Mutable variant.
 
         $sample1 = $clock->nowMutable();
+        \usleep(0);
         $sample2 = $clock->nowMutable();
+        \usleep(0);
         $sample3 = $clock->nowMutable();
 
         $this->assertNotSame($sample1->format($timeFormat), $sample2->format($timeFormat));
