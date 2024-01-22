@@ -6,6 +6,10 @@ includes:
 
 parameters:
     level: max
+    paths:
+      - lib
+      - tests
+      - rector.php
     reportUnmatchedIgnoredErrors: false
     checkExplicitMixed: true
 

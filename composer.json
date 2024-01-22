@@ -70,7 +70,7 @@
       "@lint:php"
     ],
     "phpstan": [
-      "phpstan analyse  --memory-limit=-1 lib/ tests/ --ansi --no-progress"
+      "phpstan analyse --ansi --memory-limit=-1 --no-progress"
     ],
     "rector:check": [
       "rector --dry-run --ansi --no-progress-bar"
