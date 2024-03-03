@@ -1,9 +1,17 @@
-FROM lendableuk/php-fpm-alpine:8.1.11-alpine3.15
+FROM lendableuk/php-fpm-alpine:8.2.5-alpine3.16
+
+ARG XDEBUG_VERSION="3.3.1"
+
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 COPY --from=composer:2.7.1 /usr/bin/composer /usr/bin/composer
 
 COPY . /app
 WORKDIR /app
+
+RUN apk add --no-cache $PHPIZE_DEPS linux-headers \
+    && pecl install xdebug-$XDEBUG_VERSION \
+    && docker-php-ext-enable xdebug
 
 RUN chown -R 'app:app' /app && \
     su app -c "composer install --prefer-dist --no-progress -n --ansi" && \
