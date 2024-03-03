@@ -6,12 +6,12 @@ namespace Lendable\Clock;
 
 use Lendable\Clock\Date\InvalidDate;
 
-final class Date
+final readonly class Date
 {
     private function __construct(
-        private readonly int $year,
-        private readonly int $month,
-        private readonly int $day,
+        private int $year,
+        private int $month,
+        private int $day,
     ) {
         if (!\checkdate($month, $day, $year)) {
             throw InvalidDate::fromDate($year, $month, $day);

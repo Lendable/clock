@@ -7,9 +7,9 @@ namespace Lendable\Clock\Serialization;
 /**
  * Always generates the same configurable file name.
  */
-final class FixedFileNameGenerator implements FileNameGenerator
+final readonly class FixedFileNameGenerator implements FileNameGenerator
 {
-    public function __construct(private readonly string $fileName = 'now.json')
+    public function __construct(private string $fileName = 'now.json')
     {
     }
 

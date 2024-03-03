@@ -11,9 +11,9 @@ use Liuggio\Fastest\Process\EnvCommandCreator;
  * prevent conflicts when running a test suite that divides and conquers test cases
  * into parallel execution streams via liuggio/fastest.
  */
-final class FastestTestChannelFileNameGenerator implements FileNameGenerator
+final readonly class FastestTestChannelFileNameGenerator implements FileNameGenerator
 {
-    private readonly string $fileName;
+    private string $fileName;
 
     public function __construct()
     {
