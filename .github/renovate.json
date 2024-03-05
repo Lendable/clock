@@ -2,5 +2,10 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>Lendable/renovate-config"
-  ]
+  ],
+  "force": {
+    "constraints": {
+      "php": "~8.1"
+    }
+  }
 }
