@@ -7,11 +7,11 @@ namespace Lendable\Clock;
 /**
  * Delegates through to PHP to obtain the current system time in a fixed timezone.
  */
-final class SystemClock implements Clock
+final readonly class SystemClock implements Clock
 {
     private const DEFAULT_TIMEZONE = 'UTC';
 
-    public function __construct(private readonly \DateTimeZone $timeZone = new \DateTimeZone(self::DEFAULT_TIMEZONE))
+    public function __construct(private \DateTimeZone $timeZone = new \DateTimeZone(self::DEFAULT_TIMEZONE))
     {
     }
 

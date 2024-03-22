@@ -21,11 +21,11 @@
     }
   },
   "require": {
-    "php": ">=8.1",
+    "php": ">=8.2",
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "infection/infection": "^0.27.10",
+    "infection/infection": "^0.27.11",
     "lendable/composer-license-checker": "^1.1.1",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
@@ -44,9 +44,6 @@
   "config": {
     "bin-dir": "bin",
     "sort-packages": true,
-    "platform": {
-      "php": "8.1.15"
-    },
     "allow-plugins": {
       "infection/extension-installer": true
     }
