@@ -1,4 +1,6 @@
-FROM lendableuk/php-fpm-alpine:8.1.11-alpine3.15
+ARG PHP_BASE_IMAGE_VERSION="8.2.5-alpine3.17"
+
+FROM lendableuk/php-fpm-alpine:${PHP_BASE_IMAGE_VERSION}
 
 COPY --from=composer:2.7.2 /usr/bin/composer /usr/bin/composer
 
