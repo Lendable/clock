@@ -46,6 +46,9 @@
     "sort-packages": true,
     "allow-plugins": {
       "infection/extension-installer": true
+    },
+    "platform": {
+      "php": "8.2.5"
     }
   },
   "prefer-stable": true,
