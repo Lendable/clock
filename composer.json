@@ -25,7 +25,7 @@
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "infection/infection": "^0.28.0",
+    "infection/infection": "^0.28.1",
     "lendable/composer-license-checker": "^1.2.0",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
