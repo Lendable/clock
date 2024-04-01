@@ -1,55 +1,102 @@
-Lendable Clock Abstraction
-====
+# Lendable Clock
 
 [![Latest Stable Version](https://poser.pugx.org/lendable/clock/v/stable)](https://packagist.org/packages/lendable/clock)
 [![License](https://poser.pugx.org/lendable/clock/license)](https://packagist.org/packages/lendable/clock)
 
-Provides an object-oriented interface for retrieving the current time.
+The Lendable Clock library provides an object-oriented interface for accessing the system time in PHP. While PHP offers direct instantiation of `\DateTime`, and `\DateTimeImmutable` to obtain the current system time, this library introduces the concept of a Clock to offer greater control and flexibility over time-related operations.
 
-PHP of course provides `\DateTime`, `\DateTimeImmutable` and `\DateTimeInterface`. Why do we need a clock then? Why not just instantiate where required? 
+## Why Use a Clock?
 
-We can obtain the current time with `$now = new \DateTime()` after all, why do we need a `Clock::now(): \DateTimeImmutable` style API to obtain the current time?
+You might wonder why you need a clock when you can simply instantiate `\DateTime` objects whenever you need them. Here's why a Clock abstraction is beneficial:
 
-Depending on a Clock rather than constructing native PHP time objects ad hoc means you can both reason and control time. 
+- **Control Over Time**: By depending on a Clock rather than instantiating time objects directly, you gain the ability to reason about and control time within your application.
 
-* Underlying implementation can be swapped out to one more suitable for a test environment.
-  * Time can now be stubbed with a fixed value, or even start from a point in time and tick from there.
-  * Interactions with the Clock can be observed and asserted on.
-  * Time passing can be simulated with changes to the output from the Clock.
-  * Tests that make poor assumptions can be avoided, i.e., capturing the current time to the second, then asserting that an expected output matches it. However, time passed during the setup to the assertion, and this time it crossed the second boundary.
-* Clear dependencies on classes that require to obtain the current system time.
-* The [PSR-20 proposal for a Clock](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-20-clock-meta.md) contains further information and examples of current libraries and their solutions and workarounds to provide mocking support.
+- **Testing Flexibility**: Using a Clock allows you to swap underlying implementations, making it easier to test time-dependent code. You can stub time with fixed values, simulate time passing, and observe interactions with the Clock for more robust testing.
 
-This library makes **no attempt** to mock global state, such as `\time()` or calls to `new \DateTimeImmutable()`. You will have conflicts if you cannot assert enough control over your dependencies to ensure all current system time retrieval goes through the Clock.
+- **Dependency Management**: Clear dependencies on the Clock class help in managing components that rely on accessing the current system time.
+
+- **PSR-20 Compatibility**: The library aligns with [PSR-20](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-20-clock-meta.md), offering interoperability with other libraries and frameworks.
 
 ## Installation
-You can install the library via [Composer](https://getcomposer.org/).
+
+You can install the Lendable Clock library via [Composer](https://getcomposer.org/).
 
 ```bash
 composer require lendable/clock
 ```
 
-## Clock types
-### `SystemClock`
-Delegates to PHP for the current system time, uses a fixed timezone at construction.
+## Clock Types
 
-Target: runtime
+The library provides several types of Clocks to suit different use cases:
+
+### `SystemClock`
+
+- **Target**: Runtime
+- **Description**: Delegates to PHP for the current system time, using a fixed timezone at construction.
 
 ### `FixedClock`
-Always provides a specific timestamp that is provided at construction.
 
-Target: unit/functional tests 
+- **Target**: Unit/Functional Tests
+- **Description**: Always provides a specific timestamp provided at construction, facilitating deterministic testing.
+
+```php
+$clock = new FixedClock(new \DateTimeImmutable('2024-03-01 14:19:41'));
+
+echo $clock->now()->format('Y-m-d H:i:s'), "\n";
+sleep(5);
+echo $clock->now()->format('Y-m-d H:i:s'), "\n";
+```
+
+```
+2024-03-01 14:19:41
+2024-03-01 14:19:41
+```
 
 ### `TickingMockClock`
-Mocks time starting from a given timestamp and simulates time progressing from that point. I.e a call to 
-`TickingMockClock::now()` 200ms after it is created will give a time value 200ms after the given timestamp.
 
-Target: unit/functional tests
+- **Target**: Unit/Functional Tests
+- **Description**: Mocks time starting from a given timestamp and simulates time progressing from that point. Useful for testing time-dependent functionality.
+
+```php
+$clock = TickingMockClock::tickingFromCurrentTime(new \DateTimeImmutable('2024-03-01 14:19:41'));
+
+echo $clock->now()->format('Y-m-d H:i:s.u'), "\n";
+sleep(5);
+echo $clock->now()->format('Y-m-d H:i:s.u'), "\n";
+
+```
+
+```
+2024-03-01 14:19:41.000006
+2024-03-01 14:19:46.005175
+```
 
 ### `PersistedFixedClock`
-Similar to `FixedClock`, but can persist and load the given timestamp from disk.
-Use `PersistedFixedClock::initializeWith(...)` to set up the timestamp and `PersistedFixedClock::fromPersisted(...)`
-to load from the persisted value on disk.
 
-Target: functional tests where you reload your context. E.g. Behat vs Symfony Kernel. You
-would initialize in a `BeforeScenario` hook and then load the data from within the Kernel. 
+- **Target**: Functional Tests (e.g., Behat vs. Symfony Kernel)
+- **Description**: Similar to `FixedClock`, but can persist and load the given timestamp from disk. Ideal for scenarios where you need to reload your context during testing.
+
+Use `PersistedFixedClock::initializeWith(...)` to set up the timestamp and `PersistedFixedClock::fromPersisted(...)` to load from the persisted value on disk.
+
+By leveraging these Clock types, you can enhance the reliability, testability, and maintainability of your time-dependent PHP applications.
+
+```php
+$clock = PersistedFixedClock::initializeWith(
+    __DIR__,
+    new FixedFileNameGenerator('time.json'),
+    new \DateTimeImmutable('2024-03-01 14:19:41'),
+);
+
+echo $clock->now()->format('Y-m-d H:i:s.u'), "\n";
+
+sleep(5);
+
+$clock = PersistedFixedClock::fromPersisted(__DIR__, new FixedFileNameGenerator('time.json'));
+
+echo $clock->now()->format('Y-m-d H:i:s.u'), "\n";
+```
+
+```
+2024-03-01 14:19:41.000000
+2024-03-01 14:19:41.000000
+```
