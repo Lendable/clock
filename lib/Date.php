@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lendable\Clock;
 
 use Lendable\Clock\Date\InvalidDate;
+use Psr\Clock\ClockInterface;
 
 final readonly class Date
 {
@@ -46,11 +47,12 @@ final readonly class Date
         return self::fromYearMonthDay((int) $year, (int) $month, (int) $day);
     }
 
-    public static function fromYearsAgo(int $yearsAgo): self
+    /**
+     * @param positive-int $yearsAgo
+     */
+    public static function fromYearsAgo(ClockInterface $clock, int $yearsAgo): self
     {
-        $dob = new \DateTimeImmutable(\sprintf('today - %d years', $yearsAgo));
-
-        return self::fromDateTime($dob);
+        return self::fromDateTime($clock->now()->modify(\sprintf('-%d years', $yearsAgo)));
     }
 
     public function year(): int

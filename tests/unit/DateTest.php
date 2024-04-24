@@ -490,7 +490,7 @@ final class DateTest extends TestCase
     public function it_can_be_constructed_from_a_number_of_years_ago(): void
     {
         $clock = new SystemClock();
-        $date = Date::fromYearsAgo(10);
+        $date = Date::fromYearsAgo($clock, 10);
 
         $this->assertSame($clock->today()->toDateTime()->modify('-10 years')->format('Y-m-d'), $date->toYearMonthDayString());
     }
