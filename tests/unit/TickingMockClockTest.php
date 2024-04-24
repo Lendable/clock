@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\TickingMockClock;
 use PHPUnit\Framework\TestCase;
 use Tests\Lendable\Clock\Support\TickingTimeAssertions;
 
+#[DisableReturnValueGenerationForTestDoubles]
+#[CoversClass(TickingMockClock::class)]
 final class TickingMockClockTest extends TestCase
 {
     #[Test]

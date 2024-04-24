@@ -27,6 +27,7 @@
   "require-dev": {
     "infection/infection": "^0.28.1",
     "lendable/composer-license-checker": "^1.2.0",
+    "lendable/phpunit-extensions": "^0.3",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
     "php-cs-fixer/shim": "^3.54.0",

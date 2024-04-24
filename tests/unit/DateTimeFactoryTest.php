@@ -6,10 +6,12 @@ namespace Tests\Lendable\Clock\Unit;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
+#[DisableReturnValueGenerationForTestDoubles]
 #[CoversClass(DateTimeFactory::class)]
 final class DateTimeFactoryTest extends TestCase
 {

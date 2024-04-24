@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\FixedClock;
 use PHPUnit\Framework\TestCase;
 
+#[DisableReturnValueGenerationForTestDoubles]
+#[CoversClass(FixedClock::class)]
 final class FixedClockTest extends TestCase
 {
     #[Test]

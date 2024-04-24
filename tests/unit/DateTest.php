@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\Date;
 use Lendable\Clock\Date\InvalidDate;
@@ -12,6 +14,8 @@ use Lendable\Clock\DateTimeFactory;
 use Lendable\Clock\SystemClock;
 use PHPUnit\Framework\TestCase;
 
+#[DisableReturnValueGenerationForTestDoubles]
+#[CoversClass(Date::class)]
 final class DateTest extends TestCase
 {
     /**

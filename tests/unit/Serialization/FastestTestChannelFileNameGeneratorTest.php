@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit\Serialization;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use Lendable\Clock\Serialization\FastestTestChannelFileNameGenerator;
 use Liuggio\Fastest\Process\EnvCommandCreator;
 use PHPUnit\Framework\TestCase;
 
+#[DisableReturnValueGenerationForTestDoubles]
+#[CoversClass(FastestTestChannelFileNameGenerator::class)]
 final class FastestTestChannelFileNameGeneratorTest extends TestCase
 {
     #[Test]
