@@ -172,15 +172,33 @@ final class DateTest extends TestCase
         $this->assertSame(10, $date->day());
     }
 
-    #[Test]
-    public function it_can_be_converted_to_a_utc_datetime_immutable_instance(): void
+    /**
+     * @return iterable<list{\DateTimeZone}>
+     */
+    public static function provideTimeZonesThatAreNotUtc(): iterable
     {
-        $date = Date::fromYearMonthDay(2019, 2, 15);
-        $dateTimeImmutable = $date->toDateTime();
+        yield [new \DateTimeZone('Europe/London')];
+        yield [new \DateTimeZone('America/New_York')];
+    }
 
-        $this->assertSame('2019-02-15', $dateTimeImmutable->format('Y-m-d'));
-        $this->assertSame('00:00:00', $dateTimeImmutable->format('H:i:s'));
-        $this->assertSame('UTC', $dateTimeImmutable->getTimezone()->getName());
+    #[Test]
+    #[DataProvider('provideTimeZonesThatAreNotUtc')]
+    public function it_can_be_converted_to_a_utc_datetime_immutable_instance(\DateTimeZone $nonUtcTimeZone): void
+    {
+        $currentDefaultTimezone = \date_default_timezone_get();
+
+        try {
+            \date_default_timezone_set($nonUtcTimeZone->getName());
+
+            $date = Date::fromYearMonthDay(2019, 2, 15);
+            $dateTimeImmutable = $date->toDateTime();
+
+            $this->assertSame('2019-02-15', $dateTimeImmutable->format('Y-m-d'));
+            $this->assertSame('00:00:00', $dateTimeImmutable->format('H:i:s'));
+            $this->assertSame('UTC', $dateTimeImmutable->getTimezone()->getName());
+        } finally {
+            \date_default_timezone_set($currentDefaultTimezone);
+        }
     }
 
     #[Test]

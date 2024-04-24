@@ -108,6 +108,7 @@ final readonly class Date
         return DateTimeFactory::immutableFromFormat(
             'Y-m-d H:i:s',
             \sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
+            new \DateTimeZone('UTC'),
         );
     }
 
