@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Lendable\Clock\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DisableReturnValueGenerationForTestDoubles;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Lendable\Clock\PersistedFixedClock;
@@ -11,6 +13,8 @@ use Lendable\Clock\Serialization\FixedFileNameGenerator;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 
+#[DisableReturnValueGenerationForTestDoubles]
+#[CoversClass(PersistedFixedClock::class)]
 final class PersistedFixedClockTest extends TestCase
 {
     #[Test]
