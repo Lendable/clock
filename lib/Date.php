@@ -103,11 +103,15 @@ final readonly class Date
         return $this->modify(\sprintf('%d days', $days));
     }
 
+    /**
+     * Provides a date time representation of this date in UTC.
+     */
     public function toDateTime(): \DateTimeImmutable
     {
         return DateTimeFactory::immutableFromFormat(
             'Y-m-d H:i:s',
             \sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
+            new \DateTimeZone('UTC'),
         );
     }
 
