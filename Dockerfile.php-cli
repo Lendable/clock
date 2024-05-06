@@ -2,7 +2,7 @@ ARG PHP_BASE_IMAGE_VERSION="8.2.5-alpine3.17"
 
 FROM lendableuk/php-fpm-alpine:${PHP_BASE_IMAGE_VERSION}
 
-COPY --from=composer:2.7.4 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.7.6 /usr/bin/composer /usr/bin/composer
 
 COPY . /app
 WORKDIR /app
