@@ -30,7 +30,7 @@
     "lendable/phpunit-extensions": "^0.3",
     "liuggio/fastest": "^1.8",
     "mikey179/vfsstream": "^1.6.11",
-    "php-cs-fixer/shim": "^3.57.0",
+    "php-cs-fixer/shim": "^3.57.1",
     "php-parallel-lint/php-parallel-lint": "^1.4.0",
     "phpstan/phpstan": "^1.11.1",
     "phpstan/phpstan-deprecation-rules": "^1.2.0",
