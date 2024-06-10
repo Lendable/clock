@@ -103,6 +103,24 @@ final readonly class Date
         return $this->modify(\sprintf('%d days', $days));
     }
 
+    public function offsetByMonths(int $months): self
+    {
+        if ($months === 0) {
+            return $this;
+        }
+
+        return $this->modify(\sprintf('%d months', $months));
+    }
+
+    public function offsetByYears(int $years): self
+    {
+        if ($years === 0) {
+            return $this;
+        }
+
+        return $this->modify(\sprintf('%d years', $years));
+    }
+
     /**
      * Provides a date time representation of this date in UTC.
      */
