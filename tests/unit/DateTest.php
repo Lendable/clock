@@ -396,7 +396,7 @@ final class DateTest extends TestCase
     /**
      * @return iterable<array{int}>
      */
-    public static function provideNumberOfDayOffsets(): iterable
+    public static function provideNumberOfDaysOffsets(): iterable
     {
         yield [-10];
         yield [-5];
@@ -407,7 +407,7 @@ final class DateTest extends TestCase
         yield [10];
     }
 
-    #[DataProvider('provideNumberOfDayOffsets')]
+    #[DataProvider('provideNumberOfDaysOffsets')]
     #[Test]
     public function it_can_be_offset_by_days(int $days): void
     {
@@ -416,6 +416,68 @@ final class DateTest extends TestCase
         $offsetDate = $date->offsetByDays($days);
 
         $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d days', $days)));
+
+        if ($days !== 0) {
+            $this->assertNotSame($date, $offsetDate);
+        }
+
+        $this->assertTrue($expectedDate->equals($offsetDate));
+    }
+
+    /**
+     * @return iterable<array{int}>
+     */
+    public static function provideNumberOfMonthsOffsets(): iterable
+    {
+        yield [-10];
+        yield [-5];
+        yield [-1];
+        yield [0];
+        yield [1];
+        yield [5];
+        yield [10];
+    }
+
+    #[DataProvider('provideNumberOfMonthsOffsets')]
+    #[Test]
+    public function it_can_be_offset_by_months(int $days): void
+    {
+        $date = Date::fromYearMonthDay(2022, 5, 1);
+
+        $offsetDate = $date->offsetByMonths($days);
+
+        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d months', $days)));
+
+        if ($days !== 0) {
+            $this->assertNotSame($date, $offsetDate);
+        }
+
+        $this->assertTrue($expectedDate->equals($offsetDate));
+    }
+
+    /**
+     * @return iterable<array{int}>
+     */
+    public static function provideNumberOfYearsOffsets(): iterable
+    {
+        yield [-10];
+        yield [-5];
+        yield [-1];
+        yield [0];
+        yield [1];
+        yield [5];
+        yield [10];
+    }
+
+    #[DataProvider('provideNumberOfYearsOffsets')]
+    #[Test]
+    public function it_can_be_offset_by_years(int $days): void
+    {
+        $date = Date::fromYearMonthDay(2022, 5, 1);
+
+        $offsetDate = $date->offsetByYears($days);
+
+        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d years', $days)));
 
         if ($days !== 0) {
             $this->assertNotSame($date, $offsetDate);
