@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "729ca54d55cbcfd2dd29bd74af9dcee8",
+    "content-hash": "cf69c39b20a8afec357dcd11e1c72ce4",
     "packages": [
         {
             "name": "psr/clock",
@@ -654,16 +654,16 @@
         },
         {
             "name": "infection/infection",
-            "version": "0.29.5",
+            "version": "0.29.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infection/infection.git",
-                "reference": "a663d6cecee222e9b33f11608073c134eb5e6916"
+                "reference": "a8510c1d472892dda2ae32e2c4b2e795533db810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infection/infection/zipball/a663d6cecee222e9b33f11608073c134eb5e6916",
-                "reference": "a663d6cecee222e9b33f11608073c134eb5e6916",
+                "url": "https://api.github.com/repos/infection/infection/zipball/a8510c1d472892dda2ae32e2c4b2e795533db810",
+                "reference": "a8510c1d472892dda2ae32e2c4b2e795533db810",
                 "shasum": ""
             },
             "require": {
@@ -769,7 +769,7 @@
             ],
             "support": {
                 "issues": "https://github.com/infection/infection/issues",
-                "source": "https://github.com/infection/infection/tree/0.29.5"
+                "source": "https://github.com/infection/infection/tree/0.29.6"
             },
             "funding": [
                 {
@@ -781,7 +781,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-06-12T07:22:52+00:00"
+            "time": "2024-06-21T10:21:05+00:00"
         },
         {
             "name": "infection/mutator",
@@ -2290,16 +2290,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "556509e2dcf527369892b7d411379c4a02f31859"
+                "reference": "c930cdb21294f10955ddfc31b720971e8333943d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/556509e2dcf527369892b7d411379c4a02f31859",
-                "reference": "556509e2dcf527369892b7d411379c4a02f31859",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/c930cdb21294f10955ddfc31b720971e8333943d",
+                "reference": "c930cdb21294f10955ddfc31b720971e8333943d",
                 "shasum": ""
             },
             "require": {
@@ -2337,7 +2337,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/1.1.0"
+                "source": "https://github.com/rectorphp/rector/tree/1.1.1"
             },
             "funding": [
                 {
@@ -2345,7 +2345,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-18T09:40:27+00:00"
+            "time": "2024-06-21T07:51:17+00:00"
         },
         {
             "name": "sanmai/later",
