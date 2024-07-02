@@ -8,6 +8,9 @@ use Lendable\Clock\Date\InvalidDate;
 
 final readonly class Date
 {
+    /**
+     * @throws InvalidDate
+     */
     private function __construct(
         private int $year,
         private int $month,
@@ -18,6 +21,9 @@ final readonly class Date
         }
     }
 
+    /**
+     * @throws InvalidDate
+     */
     public static function fromYearMonthDay(int $year, int $month, int $day): self
     {
         return new self($year, $month, $day);
@@ -32,6 +38,9 @@ final readonly class Date
         );
     }
 
+    /**
+     * @throws InvalidDate
+     */
     public static function fromYearMonthDayString(string $value): self
     {
         $result = \preg_match('/^(\d{4})-(\d{1,2})-(\d{1,2})$/', $value, $matches);
