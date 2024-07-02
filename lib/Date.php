@@ -46,13 +46,6 @@ final readonly class Date
         return self::fromYearMonthDay((int) $year, (int) $month, (int) $day);
     }
 
-    public static function fromYearsAgo(int $yearsAgo): self
-    {
-        $dob = new \DateTimeImmutable(\sprintf('today - %d years', $yearsAgo));
-
-        return self::fromDateTime($dob);
-    }
-
     public function year(): int
     {
         return $this->year;
