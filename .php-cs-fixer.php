@@ -85,7 +85,7 @@ return (new PhpCsFixer\Config())
         'phpdoc_return_self_reference' => true,
         'phpdoc_scalar' => true,
         'phpdoc_single_line_var_spacing' => true,
-        'phpdoc_to_comment' => true,
+        'phpdoc_to_comment' => false,
         'phpdoc_types' => true,
         'phpdoc_var_without_name' => true,
         'increment_style' => ['style' => 'post'],
