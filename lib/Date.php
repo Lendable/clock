@@ -151,6 +151,7 @@ final readonly class Date
      *
      * @deprecated Converting a date with no time to a datetime with time of 00:00:00 in a certain timezone assumes
      * too much and should be handled downstream where the default/assumed time and the timezone is well known.
+     * Use {@see Date::startOfDay} instead.
      */
     public function toDateTime(): \DateTimeImmutable
     {
