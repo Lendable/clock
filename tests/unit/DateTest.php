@@ -42,8 +42,8 @@ final class DateTest extends TestCase
         ];
     }
 
-    #[DataProvider('provideValidIntegerComponentsAndExpectedStringRepresentationsData')]
     #[Test]
+    #[DataProvider('provideValidIntegerComponentsAndExpectedStringRepresentationsData')]
     public function it_can_be_constructed_from_integer_components(
         int $year,
         int $month,
@@ -87,8 +87,8 @@ final class DateTest extends TestCase
         }
     }
 
-    #[DataProvider('provideDateTimesAndExpectedStringRepresentationsData')]
     #[Test]
+    #[DataProvider('provideDateTimesAndExpectedStringRepresentationsData')]
     public function it_can_be_constructed_from_a_date_time_instance(
         \DateTimeImmutable $dateTime,
         string $expectedStringRepresentation
@@ -117,8 +117,8 @@ final class DateTest extends TestCase
         ];
     }
 
-    #[DataProvider('provideDateTimeStringsAndExpectedStringRepresentationsData')]
     #[Test]
+    #[DataProvider('provideDateTimeStringsAndExpectedStringRepresentationsData')]
     public function it_can_be_constructed_from_a_formatted_string(
         string $dateTimeString,
         string $expectedStringRepresentation
@@ -142,8 +142,8 @@ final class DateTest extends TestCase
         yield ['2024'];
     }
 
-    #[DataProvider('provideInvalidYearMonthDayStrings')]
     #[Test]
+    #[DataProvider('provideInvalidYearMonthDayStrings')]
     public function it_throws_when_constructing_from_a_formatted_string_if_invalid_format(string $value): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -219,8 +219,8 @@ final class DateTest extends TestCase
         $this->assertFalse($dateDifferentValue3->equals($date));
     }
 
-    #[DataProvider('provideDatesForDayAfterIncrementData')]
     #[Test]
+    #[DataProvider('provideDatesForDayAfterIncrementData')]
     public function it_will_correctly_increment_for_following_day(string $currentDate, string $expectedDate): void
     {
         $this->assertSame(
@@ -241,8 +241,8 @@ final class DateTest extends TestCase
         yield ['2020-04-30', '2020-05-01'];
     }
 
-    #[DataProvider('provideDatesForDayBeforeIncrementData')]
     #[Test]
+    #[DataProvider('provideDatesForDayBeforeIncrementData')]
     public function it_will_correctly_increment_for_previous_day(string $currentDate, string $expectedDate): void
     {
         $this->assertSame(
@@ -261,8 +261,8 @@ final class DateTest extends TestCase
         }
     }
 
-    #[DataProvider('provideValuesForBeforeComparisonData')]
     #[Test]
+    #[DataProvider('provideValuesForBeforeComparisonData')]
     public function it_will_return_correct_values_for_before_comparison(
         string $before,
         string $after,
@@ -288,8 +288,8 @@ final class DateTest extends TestCase
         yield ['2019-01-02', '2019-01-01', false];
     }
 
-    #[DataProvider('provideValuesForBeforeOrEqualToComparisonData')]
     #[Test]
+    #[DataProvider('provideValuesForBeforeOrEqualToComparisonData')]
     public function it_will_return_correct_values_for_before_or_equal_to_comparison(
         string $before,
         string $after,
@@ -315,8 +315,8 @@ final class DateTest extends TestCase
         yield ['2019-01-02', '2019-01-01', false];
     }
 
-    #[DataProvider('provideValuesForAfterComparisonData')]
     #[Test]
+    #[DataProvider('provideValuesForAfterComparisonData')]
     public function it_will_return_correct_values_for_after_comparison(
         string $before,
         string $after,
@@ -343,6 +343,33 @@ final class DateTest extends TestCase
     }
 
     #[Test]
+    #[DataProvider('provideValuesForAfterOrEqualToComparisonData')]
+    public function it_will_return_correct_values_for_after_or_equal_to_comparison(
+        string $before,
+        string $after,
+        bool $expectation
+    ): void {
+        $this->assertSame(
+            $expectation,
+            Date::fromYearMonthDayString($before)->isAfterOrEqualTo(Date::fromYearMonthDayString($after))
+        );
+    }
+
+    /**
+     * @return iterable<array{string, string, bool}>
+     */
+    public static function provideValuesForAfterOrEqualToComparisonData(): iterable
+    {
+        yield ['2019-01-01', '2019-02-01', false];
+        yield ['2020-01-01', '2021-01-01', false];
+        yield ['2019-01-01', '2019-01-02', false];
+        yield ['2018-01-01', '2018-01-01', true];
+        yield ['2019-02-01', '2019-01-01', true];
+        yield ['2021-01-01', '2020-01-01', true];
+        yield ['2019-01-02', '2019-01-01', true];
+    }
+
+    #[Test]
     public function it_will_return_correct_values_for_between_comparison(): void
     {
         $startDate = Date::fromYearMonthDay(2019, 6, 28);
@@ -355,8 +382,8 @@ final class DateTest extends TestCase
         $this->assertFalse(Date::fromYearMonthDay(2019, 7, 29)->isBetween($startDate, $endDate));
     }
 
-    #[DataProvider('provideDatesAndDayCountsForDiffComparisonData')]
     #[Test]
+    #[DataProvider('provideDatesAndDayCountsForDiffComparisonData')]
     public function it_will_calculate_difference_between_two_days(
         string $start,
         string $end,
@@ -406,8 +433,8 @@ final class DateTest extends TestCase
         yield [10];
     }
 
-    #[DataProvider('provideNumberOfDaysOffsets')]
     #[Test]
+    #[DataProvider('provideNumberOfDaysOffsets')]
     public function it_can_be_offset_by_days(int $days): void
     {
         $date = Date::fromYearMonthDay(2022, 5, 1);
@@ -437,8 +464,8 @@ final class DateTest extends TestCase
         yield [10];
     }
 
-    #[DataProvider('provideNumberOfMonthsOffsets')]
     #[Test]
+    #[DataProvider('provideNumberOfMonthsOffsets')]
     public function it_can_be_offset_by_months(int $days): void
     {
         $date = Date::fromYearMonthDay(2022, 5, 1);
@@ -468,8 +495,8 @@ final class DateTest extends TestCase
         yield [10];
     }
 
-    #[DataProvider('provideNumberOfYearsOffsets')]
     #[Test]
+    #[DataProvider('provideNumberOfYearsOffsets')]
     public function it_can_be_offset_by_years(int $days): void
     {
         $date = Date::fromYearMonthDay(2022, 5, 1);

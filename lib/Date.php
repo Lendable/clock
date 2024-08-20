@@ -92,6 +92,11 @@ final readonly class Date
         return $this->toDateTime() > $other->toDateTime();
     }
 
+    public function isAfterOrEqualTo(self $other): bool
+    {
+        return $this->isAfter($other) || $this->equals($other);
+    }
+
     public function isBetween(self $start, self $end): bool
     {
         return !$this->isBefore($start) && !$this->isAfter($end);
