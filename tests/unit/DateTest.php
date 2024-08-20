@@ -511,4 +511,40 @@ final class DateTest extends TestCase
 
         $this->assertTrue($expectedDate->equals($offsetDate));
     }
+
+    #[Test]
+    public function it_returns_start_of_day_in_default_timezone(): void
+    {
+        $startOfDay = Date::fromYearMonthDay(2022, 5, 1)->startOfDay();
+
+        $this->assertSame('2022-05-01 00:00:00.000000', $startOfDay->format('Y-m-d H:i:s.u'));
+        $this->assertSame(\date_default_timezone_get(), $startOfDay->getTimezone()->getName());
+    }
+
+    #[Test]
+    public function it_returns_start_of_day_in_provided_timezone(): void
+    {
+        $startOfDay = Date::fromYearMonthDay(2022, 5, 1)->startOfDay(new \DateTimeZone('Pacific/Wake'));
+
+        $this->assertSame('2022-05-01 00:00:00.000000', $startOfDay->format('Y-m-d H:i:s.u'));
+        $this->assertSame('Pacific/Wake', $startOfDay->getTimezone()->getName());
+    }
+
+    #[Test]
+    public function it_returns_end_of_day_in_default_timezone(): void
+    {
+        $endOfDay = Date::fromYearMonthDay(2022, 5, 1)->endOfDay();
+
+        $this->assertSame('2022-05-01 23:59:59.999999', $endOfDay->format('Y-m-d H:i:s.u'));
+        $this->assertSame(\date_default_timezone_get(), $endOfDay->getTimezone()->getName());
+    }
+
+    #[Test]
+    public function it_returns_end_of_day_in_provided_timezone(): void
+    {
+        $endOfDay = Date::fromYearMonthDay(2022, 5, 1)->endOfDay(new \DateTimeZone('Indian/Mauritius'));
+
+        $this->assertSame('2022-05-01 23:59:59.999999', $endOfDay->format('Y-m-d H:i:s.u'));
+        $this->assertSame('Indian/Mauritius', $endOfDay->getTimezone()->getName());
+    }
 }
