@@ -79,7 +79,7 @@ final readonly class Date
 
     public function isBefore(self $other): bool
     {
-        return $this->toDateTime() < $other->toDateTime();
+        return $this->startOfDay() < $other->startOfDay();
     }
 
     public function isBeforeOrEqualTo(self $other): bool
@@ -89,7 +89,7 @@ final readonly class Date
 
     public function isAfter(self $other): bool
     {
-        return $this->toDateTime() > $other->toDateTime();
+        return $this->startOfDay() > $other->startOfDay();
     }
 
     public function isAfterOrEqualTo(self $other): bool
@@ -146,22 +146,6 @@ final readonly class Date
             ->setTime(23, 59, 59, 999999);
     }
 
-    /**
-     * Provides a date time representation of this date in UTC.
-     *
-     * @deprecated Converting a date with no time to a datetime with time of 00:00:00 in a certain timezone assumes
-     * too much and should be handled downstream where the default/assumed time and the timezone is well known.
-     * Use {@see Date::startOfDay} instead.
-     */
-    public function toDateTime(): \DateTimeImmutable
-    {
-        return DateTimeFactory::immutableFromFormat(
-            'Y-m-d H:i:s',
-            \sprintf('%d-%d-%d 00:00:00', $this->year, $this->month, $this->day),
-            new \DateTimeZone('UTC'),
-        );
-    }
-
     public function toYearMonthDayString(): string
     {
         return \sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
@@ -169,7 +153,7 @@ final readonly class Date
 
     public function diff(self $other): \DateInterval
     {
-        return $this->toDateTime()->diff($other->toDateTime());
+        return $this->startOfDay()->diff($other->startOfDay());
     }
 
     public function differenceInDays(self $other): int
@@ -189,6 +173,6 @@ final readonly class Date
 
     private function modify(string $modification): self
     {
-        return self::fromDateTime($this->toDateTime()->modify($modification));
+        return self::fromDateTime($this->startOfDay()->modify($modification));
     }
 }
