@@ -121,17 +121,13 @@ final readonly class Date
             $year++;
         }
 
-        return new self(
-            $year,
-            $month,
-            \min(
-                $this->day,
-                (int) DateTimeFactory::immutableFromFormat(
-                    'Y-m-d',
-                    \sprintf('%02d-%02d-%02d', $year, $month, 1),
-                )->format('t'),
-            ),
-        );
+        // @infection-ignore-all (IncrementInteger)
+        $daysInNewMonth = (int) DateTimeFactory::immutableFromFormat(
+            'Y-m-d',
+            \sprintf('%02d-%02d-%02d', $year, $month, 1),
+        )->format('t');
+
+        return new self($year, $month, \min($this->day, $daysInNewMonth));
     }
 
     public function offsetByDays(int $days): self
