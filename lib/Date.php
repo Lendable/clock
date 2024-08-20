@@ -130,6 +130,23 @@ final readonly class Date
     }
 
     /**
+     * Returns an instance of \DateTimeImmutable shifted to start of day in a given timezone (falls back to system default)
+     */
+    public function startOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
+    {
+        return DateTimeFactory::immutableFromFormat('Y-m-d', $this->toYearMonthDayString(), $timezone)->setTime(0, 0);
+    }
+
+    /**
+     * Returns an instance of \DateTimeImmutable shifted to end of day in a given timezone (falls back to system default)
+     */
+    public function endOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
+    {
+        return DateTimeFactory::immutableFromFormat('Y-m-d', $this->toYearMonthDayString(), $timezone)
+            ->setTime(23, 59, 59, 999999);
+    }
+
+    /**
      * Provides a date time representation of this date in UTC.
      *
      * @deprecated Converting a date with no time to a datetime with time of 00:00:00 in a certain timezone assumes
