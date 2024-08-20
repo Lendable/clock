@@ -521,23 +521,61 @@ final class DateTest extends TestCase
 
     #[Test]
     #[DataProvider('provideDatesForMonthIncrement')]
-    public function it_will_correctly_increment_for_following_month(string $currentDate, string $expectedDate): void
-    {
+    public function it_will_correctly_add_months(
+        string $currentDate,
+        int $increment,
+        string $expectedDate,
+    ): void {
         $this->assertSame(
             $expectedDate,
-            Date::fromYearMonthDayString($currentDate)->addMonth()->toYearMonthDayString(),
+            Date::fromYearMonthDayString($currentDate)->addMonths($increment)->toYearMonthDayString(),
         );
     }
 
     /**
-     * @return iterable<array<string>>
+     * @return iterable<array{string, positive-int, string}>
      */
     public static function provideDatesForMonthIncrement(): iterable
     {
-        yield ['2019-01-05', '2019-02-05'];
-        yield ['2019-12-31', '2020-01-31'];
-        yield ['2019-01-31', '2019-02-28'];
-        yield ['2020-01-31', '2020-02-29'];
-        yield ['2020-03-31', '2020-04-30'];
+        yield ['2019-01-05', 1, '2019-02-05'];
+        yield ['2019-12-31', 1, '2020-01-31'];
+        yield ['2019-01-31', 1, '2019-02-28'];
+        yield ['2020-01-31', 1, '2020-02-29'];
+        yield ['2020-03-31', 1, '2020-04-30'];
+        yield ['2020-11-30', 1, '2020-12-30'];
+
+        yield ['2019-01-05', 6, '2019-07-05'];
+        yield ['2019-10-31', 5, '2020-03-31'];
+        yield ['2019-08-31', 6, '2020-02-29'];
+        yield ['2019-10-31', 6, '2020-04-30'];
+
+        yield ['2019-01-05', 12, '2020-01-05'];
+        yield ['2019-10-31', 12, '2020-10-31'];
+        yield ['2019-08-31', 12, '2020-08-31'];
+        yield ['2019-10-31', 12, '2020-10-31'];
+
+        yield ['2019-01-05', 30, '2021-07-05'];
+        yield ['2019-10-31', 29, '2022-03-31'];
+        yield ['2019-08-31', 30, '2022-02-28'];
+        yield ['2019-10-31', 30, '2022-04-30'];
+    }
+
+    #[Test]
+    #[DataProvider('provideInvalidDateMonthIncrements')]
+    public function it_throws_when_incrementing_month_by_less_than_1(int $increment): void
+    {
+        $this->expectExceptionObject(new \InvalidArgumentException('Months increment must be greater than 0.'));
+
+        Date::fromYearMonthDay(2018, 10, 10)->addMonths($increment);
+    }
+
+    /**
+     * @return iterable<array{int}>
+     */
+    public static function provideInvalidDateMonthIncrements(): iterable
+    {
+        yield [0];
+        yield [-1];
+        yield [-10];
     }
 }

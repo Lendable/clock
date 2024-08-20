@@ -103,16 +103,21 @@ final readonly class Date
     }
 
     /**
-     * Returns a new instance of Date with 1 month added to current.
-     * If next month has fewer days than current day, the day will be capped at that value.
+     * Returns an instance of {@see Date} incremented by specified number of months.
+     * If resulting month has fewer days than current day, the day will be capped at that value.
+     *
+     * @throws \InvalidArgumentException if $increment is less than 1
      */
-    public function addMonth(): self
+    public function addMonths(int $increment): self
     {
-        $day = 1;
-        $month = $this->month + 1;
+        if ($increment < 1) {
+            throw new \InvalidArgumentException('Months increment must be greater than 0.');
+        }
+
+        $month = $this->month + $increment;
         $year = $this->year;
-        if ($month > 12) {
-            $month = 1;
+        while ($month > 12) {
+            $month -= 12;
             $year++;
         }
 
@@ -123,7 +128,7 @@ final readonly class Date
                 $this->day,
                 (int) DateTimeFactory::immutableFromFormat(
                     'Y-m-d',
-                    \sprintf('%02d-%02d-%02d', $year, $month, $day),
+                    \sprintf('%02d-%02d-%02d', $year, $month, 1),
                 )->format('t'),
             ),
         );
