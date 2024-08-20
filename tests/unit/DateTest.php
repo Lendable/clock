@@ -171,35 +171,6 @@ final class DateTest extends TestCase
         $this->assertSame(10, $date->day());
     }
 
-    /**
-     * @return iterable<list{\DateTimeZone}>
-     */
-    public static function provideTimeZonesThatAreNotUtc(): iterable
-    {
-        yield [new \DateTimeZone('Europe/London')];
-        yield [new \DateTimeZone('America/New_York')];
-    }
-
-    #[Test]
-    #[DataProvider('provideTimeZonesThatAreNotUtc')]
-    public function it_can_be_converted_to_a_utc_datetime_immutable_instance(\DateTimeZone $nonUtcTimeZone): void
-    {
-        $currentDefaultTimezone = \date_default_timezone_get();
-
-        try {
-            \date_default_timezone_set($nonUtcTimeZone->getName());
-
-            $date = Date::fromYearMonthDay(2019, 2, 15);
-            $dateTimeImmutable = $date->toDateTime();
-
-            $this->assertSame('2019-02-15', $dateTimeImmutable->format('Y-m-d'));
-            $this->assertSame('00:00:00', $dateTimeImmutable->format('H:i:s'));
-            $this->assertSame('UTC', $dateTimeImmutable->getTimezone()->getName());
-        } finally {
-            \date_default_timezone_set($currentDefaultTimezone);
-        }
-    }
-
     #[Test]
     public function it_equals_other_dates_with_the_same_value(): void
     {
@@ -441,7 +412,7 @@ final class DateTest extends TestCase
 
         $offsetDate = $date->offsetByDays($days);
 
-        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d days', $days)));
+        $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d days', $days)));
 
         if ($days !== 0) {
             $this->assertNotSame($date, $offsetDate);
@@ -472,7 +443,7 @@ final class DateTest extends TestCase
 
         $offsetDate = $date->offsetByMonths($days);
 
-        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d months', $days)));
+        $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d months', $days)));
 
         if ($days !== 0) {
             $this->assertNotSame($date, $offsetDate);
@@ -503,7 +474,7 @@ final class DateTest extends TestCase
 
         $offsetDate = $date->offsetByYears($days);
 
-        $expectedDate = Date::fromDateTime($date->toDateTime()->modify(\sprintf('%d years', $days)));
+        $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d years', $days)));
 
         if ($days !== 0) {
             $this->assertNotSame($date, $offsetDate);
