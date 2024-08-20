@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/Lendable/clock/compare/3.1.0...3.2.0) (2024-08-20)
+
+
+### Features
+
+* Add `Date::startOfDay()` and `Date::endOfDay()` methods ([#754](https://github.com/Lendable/clock/issues/754)) ([767d284](https://github.com/Lendable/clock/commit/767d2845de34bc4d5d3183d9e50bf94eb221b53f))
+
 ## [3.1.0](https://github.com/Lendable/clock/compare/3.0.0...3.1.0) (2024-08-20)
 
 
