@@ -131,6 +131,9 @@ final readonly class Date
 
     /**
      * Provides a date time representation of this date in UTC.
+     *
+     * @deprecated Converting a date with no time to a datetime with time of 00:00:00 in a certain timezone assumes
+     * too much and should be handled downstream where the default/assumed time and the timezone is well known.
      */
     public function toDateTime(): \DateTimeImmutable
     {
