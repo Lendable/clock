@@ -518,4 +518,26 @@ final class DateTest extends TestCase
         $this->assertSame('2022-05-01 23:59:59.999999', $endOfDay->format('Y-m-d H:i:s.u'));
         $this->assertSame('Indian/Mauritius', $endOfDay->getTimezone()->getName());
     }
+
+    #[Test]
+    #[DataProvider('provideDatesForMonthIncrement')]
+    public function it_will_correctly_increment_for_following_month(string $currentDate, string $expectedDate): void
+    {
+        $this->assertSame(
+            $expectedDate,
+            Date::fromYearMonthDayString($currentDate)->addMonth()->toYearMonthDayString(),
+        );
+    }
+
+    /**
+     * @return iterable<array<string>>
+     */
+    public static function provideDatesForMonthIncrement(): iterable
+    {
+        yield ['2019-01-05', '2019-02-05'];
+        yield ['2019-12-31', '2020-01-31'];
+        yield ['2019-01-31', '2019-02-28'];
+        yield ['2020-01-31', '2020-02-29'];
+        yield ['2020-03-31', '2020-04-30'];
+    }
 }

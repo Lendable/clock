@@ -102,6 +102,33 @@ final readonly class Date
         return !$this->isBefore($start) && !$this->isAfter($end);
     }
 
+    /**
+     * Returns a new instance of Date with 1 month added to current.
+     * If next month has fewer days than current day, the day will be capped at that value.
+     */
+    public function addMonth(): self
+    {
+        $day = 1;
+        $month = $this->month + 1;
+        $year = $this->year;
+        if ($month > 12) {
+            $month = 1;
+            $year++;
+        }
+
+        return new self(
+            $year,
+            $month,
+            \min(
+                $this->day,
+                (int) DateTimeFactory::immutableFromFormat(
+                    'Y-m-d',
+                    \sprintf('%02d-%02d-%02d', $year, $month, $day),
+                )->format('t'),
+            ),
+        );
+    }
+
     public function offsetByDays(int $days): self
     {
         if ($days === 0) {
