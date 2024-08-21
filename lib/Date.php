@@ -146,6 +146,10 @@ final readonly class Date
         return new self($year, $month, \min($this->day, $this->numberOfDaysInMonth($year, $month)));
     }
 
+    /**
+     * @return self Instance with day part offset by a number of days, or $this if number is 0.
+     *              The resulting Date can overflow to another month.
+     */
     public function offsetByDays(int $days): self
     {
         if ($days === 0) {
@@ -155,6 +159,10 @@ final readonly class Date
         return $this->modify(\sprintf('%d days', $days));
     }
 
+    /**
+     * @return self Instance with month part offset by a number of months, or $this if number is 0.
+     *              The resulting Date can overflow to another month, modifying day part.
+     */
     public function offsetByMonths(int $months): self
     {
         if ($months === 0) {
@@ -164,6 +172,9 @@ final readonly class Date
         return $this->modify(\sprintf('%d months', $months));
     }
 
+    /**
+     * @return self Instance with year part offset by a number of years, or $this if number is 0.
+     */
     public function offsetByYears(int $years): self
     {
         if ($years === 0) {
