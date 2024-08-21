@@ -199,6 +199,20 @@ final readonly class Date
         return $this->modify('-1 days');
     }
 
+    /**
+     * @return self Instance with modified day part, or $this if day remains unchanged
+     *
+     * @throws InvalidDate
+     */
+    public function withDay(int $day): self
+    {
+        if ($this->day === $day) {
+            return $this;
+        }
+
+        return new self($this->year, $this->month, $day);
+    }
+
     private function modify(string $modification): self
     {
         return self::fromDateTime($this->startOfDay()->modify($modification));
