@@ -578,4 +578,34 @@ final class DateTest extends TestCase
         yield [-1];
         yield [-10];
     }
+
+    #[Test]
+    #[DataProvider('provideValidDateDayChanges')]
+    public function it_can_change_day(int $day): void
+    {
+        $date = Date::fromYearMonthDay(2018, 10, 10);
+        $newDate = $date->withDay($day);
+
+        $this->assertNotSame($date, $newDate);
+        $this->assertSame($day, $newDate->day());
+    }
+
+    /**
+     * @return iterable<array{int}>
+     */
+    public static function provideValidDateDayChanges(): iterable
+    {
+        yield [1];
+        yield [2];
+        yield [15];
+        yield [30];
+    }
+
+    #[Test]
+    public function it_returns_same_instance_when_changing_day_to_the_same_one(): void
+    {
+        $date = Date::fromYearMonthDay(2018, 10, 10);
+
+        $this->assertSame($date, $date->withDay($date->day()));
+    }
 }
