@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.1.0](https://github.com/Lendable/clock/compare/4.0.0...4.1.0) (2024-08-21)
+
+
+### Features
+
+* Add `Date.addMonths` method ([#758](https://github.com/Lendable/clock/issues/758)) ([4d5062d](https://github.com/Lendable/clock/commit/4d5062d858102f30411133c889323223b79418a4))
+* Add `Date.subMonths` method ([#764](https://github.com/Lendable/clock/issues/764)) ([55f2859](https://github.com/Lendable/clock/commit/55f2859ebe6a267170d998f48e16b676e09486eb))
+* Add `Date.withDay` method ([#762](https://github.com/Lendable/clock/issues/762)) ([be796e5](https://github.com/Lendable/clock/commit/be796e58603856aeceb08fbd4108b27e91752b9d))
+
 ## [4.0.0](https://github.com/Lendable/clock/compare/3.2.0...4.0.0) (2024-08-20)
 
 
