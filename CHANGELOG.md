@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/Lendable/clock/compare/3.2.0...4.0.0) (2024-08-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop deprecated `Date::toDateTime` method ([#756](https://github.com/Lendable/clock/issues/756))
+
+### Features
+
+* Drop deprecated `Date::toDateTime` method ([#756](https://github.com/Lendable/clock/issues/756)) ([b9acea5](https://github.com/Lendable/clock/commit/b9acea5296276dd2d3fd9e0f5c5027bf790d7187))
+
 ## [3.2.0](https://github.com/Lendable/clock/compare/3.1.0...3.2.0) (2024-08-20)
 
 
