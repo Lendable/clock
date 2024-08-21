@@ -103,8 +103,8 @@ final readonly class Date
     }
 
     /**
-     * Returns an instance of {@see Date} incremented by the specified number of months.
-     * If the resulting month has fewer days than the current day, the day will be the last day of that month.
+     * @return self Instance incremented by the specified number of months.
+     *              If the resulting month has fewer days than the current day, the day will be the last day of that month.
      *
      * @throws \InvalidArgumentException if $increment is less than 1
      */
@@ -158,7 +158,7 @@ final readonly class Date
     }
 
     /**
-     * Returns an instance of \DateTimeImmutable shifted to start of day in a given timezone (falls back to system default)
+     * @return \DateTimeImmutable Instance shifted to start of day in a given timezone (falls back to system default)
      */
     public function startOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
     {
@@ -166,7 +166,7 @@ final readonly class Date
     }
 
     /**
-     * Returns an instance of \DateTimeImmutable shifted to end of day in a given timezone (falls back to system default)
+     * @return \DateTimeImmutable Instance shifted to end of day in a given timezone (falls back to system default)
      */
     public function endOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
     {
