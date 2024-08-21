@@ -569,6 +569,15 @@ final class DateTest extends TestCase
         Date::fromYearMonthDay(2018, 10, 10)->addMonths($increment);
     }
 
+    #[Test]
+    #[DataProvider('provideInvalidDateMonthIncrements')]
+    public function it_throws_when_decrementing_month_by_less_than_1(int $decrement): void
+    {
+        $this->expectExceptionObject(new \InvalidArgumentException('Months decrement must be greater than 0.'));
+
+        Date::fromYearMonthDay(2018, 10, 10)->subMonths($decrement);
+    }
+
     /**
      * @return iterable<array{int}>
      */
@@ -577,6 +586,44 @@ final class DateTest extends TestCase
         yield [0];
         yield [-1];
         yield [-10];
+    }
+
+    #[Test]
+    #[DataProvider('provideDatesForMonthDecrement')]
+    public function it_will_correctly_sub_months(
+        string $currentDate,
+        int $decrement,
+        string $expectedDate,
+    ): void {
+        $this->assertSame(
+            $expectedDate,
+            Date::fromYearMonthDayString($currentDate)->subMonths($decrement)->toYearMonthDayString(),
+        );
+    }
+
+    /**
+     * @return iterable<array{string, positive-int, string}>
+     */
+    public static function provideDatesForMonthDecrement(): iterable
+    {
+        yield ['2019-02-05', 1, '2019-01-05'];
+        yield ['2020-01-31', 1, '2019-12-31'];
+        yield ['2019-03-31', 1, '2019-02-28'];
+
+        yield ['2019-07-05', 6, '2019-01-05'];
+        yield ['2020-03-31', 5, '2019-10-31'];
+        yield ['2020-02-29', 6, '2019-08-29'];
+        yield ['2020-03-31', 6, '2019-09-30'];
+
+        yield ['2020-01-05', 12, '2019-01-05'];
+        yield ['2020-10-31', 12, '2019-10-31'];
+        yield ['2020-08-31', 12, '2019-08-31'];
+        yield ['2020-10-31', 12, '2019-10-31'];
+
+        yield ['2021-07-05', 30, '2019-01-05'];
+        yield ['2022-03-31', 30, '2019-09-30'];
+        yield ['2022-02-28', 30, '2019-08-28'];
+        yield ['2022-04-30', 30, '2019-10-30'];
     }
 
     #[Test]

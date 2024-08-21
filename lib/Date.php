@@ -121,13 +121,29 @@ final readonly class Date
             $year++;
         }
 
-        // @infection-ignore-all (IncrementInteger)
-        $daysInNewMonth = (int) DateTimeFactory::immutableFromFormat(
-            'Y-m-d',
-            \sprintf('%d-%02d-%02d', $year, $month, 1),
-        )->format('t');
+        return new self($year, $month, \min($this->day, $this->numberOfDaysInMonth($year, $month)));
+    }
 
-        return new self($year, $month, \min($this->day, $daysInNewMonth));
+    /**
+     * @return self Instance decremented by the specified number of months.
+     *              If the resulting month has fewer days than the current day, the day will be the last day of that month.
+     *
+     * @throws \InvalidArgumentException if $decrement is less than 1
+     */
+    public function subMonths(int $decrement): self
+    {
+        if ($decrement < 1) {
+            throw new \InvalidArgumentException('Months decrement must be greater than 0.');
+        }
+
+        $month = $this->month - $decrement;
+        $year = $this->year;
+        while ($month < 1) {
+            $month += 12;
+            $year--;
+        }
+
+        return new self($year, $month, \min($this->day, $this->numberOfDaysInMonth($year, $month)));
     }
 
     public function offsetByDays(int $days): self
@@ -216,5 +232,14 @@ final readonly class Date
     private function modify(string $modification): self
     {
         return self::fromDateTime($this->startOfDay()->modify($modification));
+    }
+
+    private function numberOfDaysInMonth(int $year, int $month): int
+    {
+        // @infection-ignore-all (IncrementInteger)
+        return (int) DateTimeFactory::immutableFromFormat(
+            'Y-m-d',
+            \sprintf('%d-%02d-%02d', $year, $month, 1),
+        )->format('t');
     }
 }
