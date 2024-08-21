@@ -102,6 +102,34 @@ final readonly class Date
         return !$this->isBefore($start) && !$this->isAfter($end);
     }
 
+    /**
+     * Returns an instance of {@see Date} incremented by the specified number of months.
+     * If the resulting month has fewer days than the current day, the day will be the last day of that month.
+     *
+     * @throws \InvalidArgumentException if $increment is less than 1
+     */
+    public function addMonths(int $increment): self
+    {
+        if ($increment < 1) {
+            throw new \InvalidArgumentException('Months increment must be greater than 0.');
+        }
+
+        $month = $this->month + $increment;
+        $year = $this->year;
+        while ($month > 12) {
+            $month -= 12;
+            $year++;
+        }
+
+        // @infection-ignore-all (IncrementInteger)
+        $daysInNewMonth = (int) DateTimeFactory::immutableFromFormat(
+            'Y-m-d',
+            \sprintf('%d-%02d-%02d', $year, $month, 1),
+        )->format('t');
+
+        return new self($year, $month, \min($this->day, $daysInNewMonth));
+    }
+
     public function offsetByDays(int $days): self
     {
         if ($days === 0) {
