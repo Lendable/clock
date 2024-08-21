@@ -104,7 +104,7 @@ final readonly class Date
 
     /**
      * Returns an instance of {@see Date} incremented by the specified number of months.
-     * If the resulting month has fewer days than the current day, the day will be the last day of the month.
+     * If the resulting month has fewer days than the current day, the day will be the last day of that month.
      *
      * @throws \InvalidArgumentException if $increment is less than 1
      */
