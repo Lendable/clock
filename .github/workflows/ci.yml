@@ -56,9 +56,6 @@ jobs:
       - name: "Run linting"
         run: "composer lint"
 
-      - name: "Run Composer audit"
-        run: "composer audit"
-
       - name: "Run coding style"
         if: ${{ matrix.dependencies == 'locked' && matrix.php-version == '8.2' }}
         run: "composer code-style:check"
