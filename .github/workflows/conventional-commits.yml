@@ -16,7 +16,7 @@ permissions:
 jobs:
   main:
     name: Validate PR title
-    runs-on: ubuntu-24.04
+    runs-on: [ 'lendable-small-arm64-linux' ]
     steps:
       - uses: benhodgson87/conventional-pull-request-action@v1
         if: ${{ github.event_name == 'pull_request' }}
