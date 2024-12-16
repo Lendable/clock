@@ -14,7 +14,7 @@ on:
 jobs:
   ci:
     name: "Execute (PHP ${{ matrix.php-version }} with ${{ matrix.dependencies }} deps)"
-    runs-on: "ubuntu-latest"
+    runs-on: [ 'lendable-medium-dind-x64-linux' ]
 
     strategy:
       fail-fast: false
