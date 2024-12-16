@@ -40,7 +40,9 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           ini-values: memory_limit=-1
-
+        env:
+          runner: self-hosted
+          
       - name: "Update Composer platform version"
         if: ${{ matrix.dependencies != 'locked' && matrix.php-version != '8.2' }}
         shell: bash
