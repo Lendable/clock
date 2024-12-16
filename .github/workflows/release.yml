@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   release-please:
-    runs-on: ubuntu-24.04
+    runs-on: [ 'lendable-small-arm64-linux' ]
     name: Release Automation
     steps:
       - uses: actions/create-github-app-token@v1
