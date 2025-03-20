@@ -33,10 +33,10 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: "actions/checkout@v4"
+        uses: "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" # v4
 
       - name: "Install PHP"
-        uses: "shivammathur/setup-php@v2"
+        uses: "shivammathur/setup-php@9e72090525849c5e82e596468b86eb55e9cc5401" # v2
         with:
           php-version: "${{ matrix.php-version }}"
           ini-values: memory_limit=-1
