@@ -187,7 +187,7 @@ final readonly class Date
     /**
      * @return \DateTimeImmutable Instance shifted to start of day in a given timezone (falls back to system default)
      */
-    public function startOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
+    public function startOfDay(?\DateTimeZone $timezone = null): \DateTimeImmutable
     {
         return DateTimeFactory::immutableFromFormat('Y-m-d', $this->toYearMonthDayString(), $timezone)->setTime(0, 0);
     }
@@ -195,7 +195,7 @@ final readonly class Date
     /**
      * @return \DateTimeImmutable Instance shifted to end of day in a given timezone (falls back to system default)
      */
-    public function endOfDay(\DateTimeZone $timezone = null): \DateTimeImmutable
+    public function endOfDay(?\DateTimeZone $timezone = null): \DateTimeImmutable
     {
         return DateTimeFactory::immutableFromFormat('Y-m-d', $this->toYearMonthDayString(), $timezone)
             ->setTime(23, 59, 59, 999999);
