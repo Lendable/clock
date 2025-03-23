@@ -655,4 +655,34 @@ final class DateTest extends TestCase
 
         $this->assertSame($date, $date->withDay($date->day()));
     }
+
+    #[Test]
+    #[DataProvider('provideEndOfMonthDates')]
+    public function it_returns_end_of_month(Date $date, int $expectedDay): void
+    {
+        $endOfMonth = $date->endOfMonth();
+
+        $this->assertSame($date->year(), $endOfMonth->year());
+        $this->assertSame($date->month(), $endOfMonth->month());
+        $this->assertSame($expectedDay, $endOfMonth->day());
+    }
+
+    #[Test]
+    public function it_returns_same_instance_when_current_day_is_the_end_of_month(): void
+    {
+        $date = Date::fromYearMonthDay(2018, 10, 31);
+
+        $this->assertSame($date, $date->endOfMonth());
+    }
+
+    /**
+     * @return iterable<array{Date, positive-int}>
+     */
+    public static function provideEndOfMonthDates(): iterable
+    {
+        yield [Date::fromYearMonthDay(2018, 1, 30), 31];
+        yield [Date::fromYearMonthDay(2018, 2, 3), 28];
+        yield [Date::fromYearMonthDay(2018, 10, 10), 31];
+        yield [Date::fromYearMonthDay(2020, 2, 1), 29];
+    }
 }
