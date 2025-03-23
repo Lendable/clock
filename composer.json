@@ -87,7 +87,7 @@
       "@rector:check"
     ],
     "phpunit:unit": [
-      "phpunit --colors --testsuite=unit --do-not-cache-result"
+      "phpunit --colors --testsuite=unit"
     ],
     "infection": [
       "./bin/infection --threads=8 --min-msi=99 --show-mutations"
