@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.2.0](https://github.com/Lendable/clock/compare/4.1.0...4.2.0) (2025-03-23)
+
+
+### Features
+
+* Add `Date.endOfMonth` method ([#909](https://github.com/Lendable/clock/issues/909)) ([371e8ea](https://github.com/Lendable/clock/commit/371e8ea8d378cea95dafe825493a7dc0cda98f5b))
+
+
+### Fixes / Maintenance
+
+* Explicit nullable types ([#910](https://github.com/Lendable/clock/issues/910)) ([ab7b9c9](https://github.com/Lendable/clock/commit/ab7b9c911a3abb00cf9d082be330e62063d51e71))
+
 ## [4.1.0](https://github.com/Lendable/clock/compare/4.0.0...4.1.0) (2024-08-21)
 
 
