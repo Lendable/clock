@@ -201,6 +201,19 @@ final readonly class Date
             ->setTime(23, 59, 59, 999999);
     }
 
+    /**
+     * @return self Instance with day part shifted to the last day of current month.
+     */
+    public function endOfMonth(): self
+    {
+        $daysInMonth = $this->numberOfDaysInMonth($this->year, $this->month);
+        if ($this->day === $daysInMonth) {
+            return $this;
+        }
+
+        return new self($this->year, $this->month, $daysInMonth);
+    }
+
     public function toYearMonthDayString(): string
     {
         return \sprintf('%d-%02d-%02d', $this->year, $this->month, $this->day);
