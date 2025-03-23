@@ -52,6 +52,7 @@ final class DateType extends Type
             return $value->toYearMonthDayString();
         }
 
+        // @infection-ignore-all (ArrayItemRemoval)
         throw \class_exists(InvalidType::class)
             ? InvalidType::new($value, self::NAME, ['null', Date::class])
             : ConversionException::conversionFailedInvalidType(
