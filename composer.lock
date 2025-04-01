@@ -1528,16 +1528,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.74.0",
+            "version": "v3.75.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "13ea689ccf22906ccea6615be2ed88535fe545a3"
+                "reference": "eea219a577085bd13ff0cb644a422c20798316c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/13ea689ccf22906ccea6615be2ed88535fe545a3",
-                "reference": "13ea689ccf22906ccea6615be2ed88535fe545a3",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/eea219a577085bd13ff0cb644a422c20798316c7",
+                "reference": "eea219a577085bd13ff0cb644a422c20798316c7",
                 "shasum": ""
             },
             "require": {
@@ -1574,9 +1574,9 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.74.0"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.75.0"
             },
-            "time": "2025-03-27T22:31:51+00:00"
+            "time": "2025-03-31T18:45:02+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
