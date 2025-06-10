@@ -266,4 +266,36 @@ final readonly class Date
             \sprintf('%d-%02d-%02d', $year, $month, 1),
         )->format('t');
     }
+
+    /**
+     * @return self The latest date from the provided dates.
+     */
+    public static function max(self $date, self ...$otherDates): self
+    {
+        $maxDate = $date;
+
+        foreach ($otherDates as $otherDate) {
+            if ($otherDate->isAfter($maxDate)) {
+                $maxDate = $otherDate;
+            }
+        }
+
+        return $maxDate;
+    }
+
+    /**
+     * @return self The earliest date from the provided dates.
+     */
+    public static function min(self $date, self ...$otherDates): self
+    {
+        $minDate = $date;
+
+        foreach ($otherDates as $otherDate) {
+            if ($otherDate->isBefore($minDate)) {
+                $minDate = $otherDate;
+            }
+        }
+
+        return $minDate;
+    }
 }

@@ -685,4 +685,54 @@ final class DateTest extends TestCase
         yield [Date::fromYearMonthDay(2018, 10, 10), 31];
         yield [Date::fromYearMonthDay(2020, 2, 1), 29];
     }
+
+    /**
+     * @param non-empty-list<string> $dates
+     */
+    #[Test]
+    #[DataProvider('provideMaxDates')]
+    public function it_returns_max_date(array $dates, string $expectedDate): void
+    {
+        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+
+        $this->assertSame(
+            $expectedDate,
+            Date::max(...$arguments)->toYearMonthDayString()
+        );
+    }
+
+    /**
+     * @return iterable<array{non-empty-list<string>, string}>
+     */
+    public static function provideMaxDates(): iterable
+    {
+        yield [['2018-01-01'], '2018-01-01'];
+        yield [['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-04'];
+        yield [['2018-01-01', '2018-01-05', '2018-01-03', '2018-01-04', '2018-01-02'], '2018-01-05'];
+    }
+
+    /**
+     * @param non-empty-list<string> $dates
+     */
+    #[Test]
+    #[DataProvider('provideMinDates')]
+    public function it_returns_min_date(array $dates, string $expectedDate): void
+    {
+        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+
+        $this->assertSame(
+            $expectedDate,
+            Date::min(...$arguments)->toYearMonthDayString()
+        );
+    }
+
+    /**
+     * @return iterable<array{non-empty-list<string>, string}>
+     */
+    public static function provideMinDates(): iterable
+    {
+        yield [['2018-01-01'], '2018-01-01'];
+        yield [['2018-01-05', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-02'];
+        yield [['2018-01-02', '2018-01-01', '2018-01-03', '2018-01-04', '2018-01-05'], '2018-01-01'];
+    }
 }
