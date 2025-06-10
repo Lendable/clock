@@ -268,34 +268,42 @@ final readonly class Date
     }
 
     /**
-     * @return self The latest date from the provided dates.
+     * @return self The earliest date from the provided dates.
      */
-    public static function max(self $date, self ...$otherDates): self
+    public static function earliestOf(self ...$datesToCompare): self
     {
-        $maxDate = $date;
+        $earliestDate = null;
 
-        foreach ($otherDates as $otherDate) {
-            if ($otherDate->isAfter($maxDate)) {
-                $maxDate = $otherDate;
+        foreach ($datesToCompare as $date) {
+            if (!$earliestDate instanceof self || $date->isBefore($earliestDate)) {
+                $earliestDate = $date;
             }
         }
 
-        return $maxDate;
+        if (!$earliestDate instanceof self) {
+            throw new \InvalidArgumentException('At least one date must be provided.');
+        }
+
+        return $earliestDate;
     }
 
     /**
-     * @return self The earliest date from the provided dates.
+     * @return self The latest date from the provided dates.
      */
-    public static function min(self $date, self ...$otherDates): self
+    public static function latestOf(self ...$datesToCompare): self
     {
-        $minDate = $date;
+        $latestDate = null;
 
-        foreach ($otherDates as $otherDate) {
-            if ($otherDate->isBefore($minDate)) {
-                $minDate = $otherDate;
+        foreach ($datesToCompare as $date) {
+            if (!$latestDate instanceof self || $date->isAfter($latestDate)) {
+                $latestDate = $date;
             }
         }
 
-        return $minDate;
+        if (!$latestDate instanceof self) {
+            throw new \InvalidArgumentException('At least one date must be provided.');
+        }
+
+        return $latestDate;
     }
 }

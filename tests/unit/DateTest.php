@@ -690,49 +690,65 @@ final class DateTest extends TestCase
      * @param non-empty-list<string> $dates
      */
     #[Test]
-    #[DataProvider('provideMaxDates')]
-    public function it_returns_max_date(array $dates, string $expectedDate): void
+    #[DataProvider('provideEarliestOfDates')]
+    public function it_returns_earliest_of_dates(array $dates, string $expectedDate): void
     {
         $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
 
         $this->assertSame(
             $expectedDate,
-            Date::max(...$arguments)->toYearMonthDayString()
+            Date::earliestOf(...$arguments)->toYearMonthDayString()
         );
     }
 
     /**
      * @return iterable<array{non-empty-list<string>, string}>
      */
-    public static function provideMaxDates(): iterable
+    public static function provideEarliestOfDates(): iterable
     {
         yield [['2018-01-01'], '2018-01-01'];
-        yield [['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-04'];
-        yield [['2018-01-01', '2018-01-05', '2018-01-03', '2018-01-04', '2018-01-02'], '2018-01-05'];
+        yield [['2018-01-05', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-02'];
+        yield [['2018-01-02', '2018-01-01', '2018-01-03', '2018-01-04', '2018-01-05'], '2018-01-01'];
+    }
+
+    #[Test]
+    public function it_throws_when_earliest_of_is_called_with_no_arguments(): void
+    {
+        $this->expectExceptionObject(new \InvalidArgumentException('At least one date must be provided.'));
+
+        Date::earliestOf();
     }
 
     /**
      * @param non-empty-list<string> $dates
      */
     #[Test]
-    #[DataProvider('provideMinDates')]
-    public function it_returns_min_date(array $dates, string $expectedDate): void
+    #[DataProvider('provideLatestOfDates')]
+    public function it_returns_latest_of_dates(array $dates, string $expectedDate): void
     {
         $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
 
         $this->assertSame(
             $expectedDate,
-            Date::min(...$arguments)->toYearMonthDayString()
+            Date::latestOf(...$arguments)->toYearMonthDayString()
         );
     }
 
     /**
      * @return iterable<array{non-empty-list<string>, string}>
      */
-    public static function provideMinDates(): iterable
+    public static function provideLatestOfDates(): iterable
     {
         yield [['2018-01-01'], '2018-01-01'];
-        yield [['2018-01-05', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-02'];
-        yield [['2018-01-02', '2018-01-01', '2018-01-03', '2018-01-04', '2018-01-05'], '2018-01-01'];
+        yield [['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-04'];
+        yield [['2018-01-01', '2018-01-05', '2018-01-03', '2018-01-04', '2018-01-02'], '2018-01-05'];
+    }
+
+    #[Test]
+    public function it_throws_when_latest_of_is_called_with_no_arguments(): void
+    {
+        $this->expectExceptionObject(new \InvalidArgumentException('At least one date must be provided.'));
+
+        Date::latestOf();
     }
 }
