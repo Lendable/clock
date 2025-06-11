@@ -711,14 +711,6 @@ final class DateTest extends TestCase
         yield [['2018-01-02', '2018-01-01', '2018-01-03', '2018-01-04', '2018-01-05'], '2018-01-01'];
     }
 
-    #[Test]
-    public function it_throws_when_earliest_of_is_called_with_no_arguments(): void
-    {
-        $this->expectExceptionObject(new \InvalidArgumentException('At least one date must be provided.'));
-
-        Date::earliestOf();
-    }
-
     /**
      * @param non-empty-list<string> $dates
      */
@@ -742,13 +734,5 @@ final class DateTest extends TestCase
         yield [['2018-01-01'], '2018-01-01'];
         yield [['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-04'];
         yield [['2018-01-01', '2018-01-05', '2018-01-03', '2018-01-04', '2018-01-02'], '2018-01-05'];
-    }
-
-    #[Test]
-    public function it_throws_when_latest_of_is_called_with_no_arguments(): void
-    {
-        $this->expectExceptionObject(new \InvalidArgumentException('At least one date must be provided.'));
-
-        Date::latestOf();
     }
 }

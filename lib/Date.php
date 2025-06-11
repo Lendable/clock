@@ -270,18 +270,14 @@ final readonly class Date
     /**
      * @return self The earliest date from the provided dates.
      */
-    public static function earliestOf(self ...$datesToCompare): self
+    public static function earliestOf(self $date, self ...$otherDatesToCompare): self
     {
-        $earliestDate = null;
+        $earliestDate = $date;
 
-        foreach ($datesToCompare as $date) {
-            if (!$earliestDate instanceof self || $date->isBefore($earliestDate)) {
-                $earliestDate = $date;
+        foreach ($otherDatesToCompare as $otherDate) {
+            if ($otherDate->isBefore($earliestDate)) {
+                $earliestDate = $otherDate;
             }
-        }
-
-        if (!$earliestDate instanceof self) {
-            throw new \InvalidArgumentException('At least one date must be provided.');
         }
 
         return $earliestDate;
@@ -290,18 +286,14 @@ final readonly class Date
     /**
      * @return self The latest date from the provided dates.
      */
-    public static function latestOf(self ...$datesToCompare): self
+    public static function latestOf(self $date, self ...$otherDatesToCompare): self
     {
-        $latestDate = null;
+        $latestDate = $date;
 
-        foreach ($datesToCompare as $date) {
-            if (!$latestDate instanceof self || $date->isAfter($latestDate)) {
-                $latestDate = $date;
+        foreach ($otherDatesToCompare as $otherDate) {
+            if ($otherDate->isAfter($latestDate)) {
+                $latestDate = $otherDate;
             }
-        }
-
-        if (!$latestDate instanceof self) {
-            throw new \InvalidArgumentException('At least one date must be provided.');
         }
 
         return $latestDate;
