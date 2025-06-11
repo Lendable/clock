@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.0](https://github.com/Lendable/clock/compare/4.2.0...4.3.0) (2025-06-11)
+
+
+### Features
+
+* Add `Date::earliestOf` and `Date::latestOf` helper functions ([#960](https://github.com/Lendable/clock/issues/960)) ([9d6b286](https://github.com/Lendable/clock/commit/9d6b2862f495ea21e6483158d96c5a6a13c7ed6f))
+
 ## [4.2.0](https://github.com/Lendable/clock/compare/4.1.0...4.2.0) (2025-03-23)
 
 
