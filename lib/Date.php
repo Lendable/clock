@@ -266,4 +266,36 @@ final readonly class Date
             \sprintf('%d-%02d-%02d', $year, $month, 1),
         )->format('t');
     }
+
+    /**
+     * @return self The earliest date from the provided dates.
+     */
+    public static function earliestOf(self $date, self ...$otherDatesToCompare): self
+    {
+        $earliestDate = $date;
+
+        foreach ($otherDatesToCompare as $otherDate) {
+            if ($otherDate->isBefore($earliestDate)) {
+                $earliestDate = $otherDate;
+            }
+        }
+
+        return $earliestDate;
+    }
+
+    /**
+     * @return self The latest date from the provided dates.
+     */
+    public static function latestOf(self $date, self ...$otherDatesToCompare): self
+    {
+        $latestDate = $date;
+
+        foreach ($otherDatesToCompare as $otherDate) {
+            if ($otherDate->isAfter($latestDate)) {
+                $latestDate = $otherDate;
+            }
+        }
+
+        return $latestDate;
+    }
 }

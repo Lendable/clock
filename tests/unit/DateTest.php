@@ -685,4 +685,54 @@ final class DateTest extends TestCase
         yield [Date::fromYearMonthDay(2018, 10, 10), 31];
         yield [Date::fromYearMonthDay(2020, 2, 1), 29];
     }
+
+    /**
+     * @param non-empty-list<string> $dates
+     */
+    #[Test]
+    #[DataProvider('provideEarliestOfDates')]
+    public function it_returns_earliest_of_dates(array $dates, string $expectedDate): void
+    {
+        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+
+        $this->assertSame(
+            $expectedDate,
+            Date::earliestOf(...$arguments)->toYearMonthDayString()
+        );
+    }
+
+    /**
+     * @return iterable<array{non-empty-list<string>, string}>
+     */
+    public static function provideEarliestOfDates(): iterable
+    {
+        yield [['2018-01-01'], '2018-01-01'];
+        yield [['2018-01-05', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-02'];
+        yield [['2018-01-02', '2018-01-01', '2018-01-03', '2018-01-04', '2018-01-05'], '2018-01-01'];
+    }
+
+    /**
+     * @param non-empty-list<string> $dates
+     */
+    #[Test]
+    #[DataProvider('provideLatestOfDates')]
+    public function it_returns_latest_of_dates(array $dates, string $expectedDate): void
+    {
+        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+
+        $this->assertSame(
+            $expectedDate,
+            Date::latestOf(...$arguments)->toYearMonthDayString()
+        );
+    }
+
+    /**
+     * @return iterable<array{non-empty-list<string>, string}>
+     */
+    public static function provideLatestOfDates(): iterable
+    {
+        yield [['2018-01-01'], '2018-01-01'];
+        yield [['2018-01-01', '2018-01-02', '2018-01-03', '2018-01-04'], '2018-01-04'];
+        yield [['2018-01-01', '2018-01-05', '2018-01-03', '2018-01-04', '2018-01-02'], '2018-01-05'];
+    }
 }
