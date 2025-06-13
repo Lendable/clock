@@ -16,5 +16,5 @@ parameters:
 
     ignoreErrors:
         - '#Dynamic call to static method PHPUnit\\Framework\\.*#'
-        - '#^Call to an undefined static method DateTime(?:Immutable)?::createFromInterface\(\)\.$#'
         - '#^Attribute class PHPUnit\\Framework\\Attributes\\CodeCoverageIgnore is deprecated: https://github.com/sebastianbergmann/phpunit/issues/5236$#'
+        - '#^Call to an undefined static method Doctrine\\DBAL\\Types\\ConversionException::.+$#'
