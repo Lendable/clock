@@ -224,9 +224,12 @@ final readonly class Date
         return $this->startOfDay()->diff($other->startOfDay());
     }
 
+    /**
+     * @return non-negative-int Absolute number of days between two dates.
+     */
     public function differenceInDays(self $other): int
     {
-        return (int) $this->diff($other)->format('%a');
+        return \abs((int) $this->diff($other)->format('%a'));
     }
 
     public function dayAfter(): self

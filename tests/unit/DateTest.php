@@ -371,7 +371,9 @@ final class DateTest extends TestCase
      */
     public static function provideDatesAndDayCountsForDiffComparisonData(): iterable
     {
+        yield ['2020-02-24', '2020-02-24', 0];
         yield ['2020-02-24', '2020-03-03', 8];
+        yield ['2020-03-03', '2020-02-24', 8];
         yield ['2019-02-24', '2019-03-03', 7];
         yield ['2018-01-31', '2018-02-28', 28];
     }
