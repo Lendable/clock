@@ -1,0 +1,19 @@
+name: Run security analysis with sonarqube
+on:
+    push:
+        branches:
+            - master
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    code-scan:
+        name: SonarQube Code Scan
+        uses: Lendable/github-actions-private/.github/workflows/security-sonarqube.yml@1d931eb7d6c9f5e1e06982364453b5c2e37e365e # v5
+        secrets: inherit
+        with:
+            quality_gate: false
+            quality_gate_timeout: 10
+            vault_role: gha-all
