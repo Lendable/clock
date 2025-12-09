@@ -3,8 +3,7 @@ on:
     push:
         branches:
             - master
-            - ticket/LOAN-20367
-            - ticket/LOAN-20368
+            - ticket/LOAN-20432
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
