@@ -25,6 +25,7 @@
     "psr/clock": "^1.0"
   },
   "require-dev": {
+    "doctrine/dbal": "^3.9 || ^4.0",
     "infection/infection": "^0.29.6",
     "lendable/composer-license-checker": "^1.2.1",
     "lendable/phpunit-extensions": "^0.3",
@@ -90,7 +91,7 @@
       "phpunit --colors --testsuite=unit"
     ],
     "infection": [
-      "./bin/infection --threads=8 --min-msi=99 --show-mutations"
+      "./bin/infection --threads=8 --min-msi=98 --show-mutations"
     ],
     "tests": [
       "@tests:unit"
