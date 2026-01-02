@@ -7,7 +7,7 @@ $finder = (new PhpCsFixer\Finder())
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PSR12' => true,
+        '@PER-CS' => true,
         '@PHP8x1Migration' => true,
         '@DoctrineAnnotation' => true,
         'align_multiline_comment' => true,

@@ -13,13 +13,11 @@ use Lendable\Clock\Serialization\FileNameGenerator;
  */
 final class PersistedFixedClock implements MutableClock
 {
-    private const SERIALIZATION_FORMAT = 'Y-m-d\TH:i:s.u';
+    private const string SERIALIZATION_FORMAT = 'Y-m-d\TH:i:s.u';
 
     private FixedClock $delegate;
 
-    private function __construct(private readonly string $serializedStorageDirectory, private readonly FileNameGenerator $fileNameGenerator)
-    {
-    }
+    private function __construct(private readonly string $serializedStorageDirectory, private readonly FileNameGenerator $fileNameGenerator) {}
 
     public static function fromPersisted(string $serializedStorageDirectory, FileNameGenerator $fileNameGenerator): self
     {
@@ -91,7 +89,7 @@ final class PersistedFixedClock implements MutableClock
             throw new \RuntimeException(
                 \sprintf(
                     'Expected to decode to an associative array containing keys timestamp and timezone. Got keys [%s].',
-                    \implode(', ', \array_map(static fn ($k): string => '"'.$k.'"', \array_keys($data)))
+                    \implode(', ', \array_map(static fn($k): string => '"'.$k.'"', \array_keys($data)))
                 )
             );
         }
