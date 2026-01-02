@@ -13,9 +13,7 @@ final class DateTimeFactory
     /**
      * @codeCoverageIgnore
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Creates a {@see \DateTimeImmutable} instance from a formatted string in a given timezone (or the default system
