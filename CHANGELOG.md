@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.4.0](https://github.com/Lendable/clock/compare/4.3.0...4.4.0) (2026-01-08)
+
+
+### Features
+
+* Add CI testing for PHP 8.5 ([#1066](https://github.com/Lendable/clock/issues/1066)) ([c21cf64](https://github.com/Lendable/clock/commit/c21cf64ec5cc116c970094767fb2ba55b8e3653b))
+
 ## [4.3.0](https://github.com/Lendable/clock/compare/4.2.0...4.3.0) (2025-06-11)
 
 
