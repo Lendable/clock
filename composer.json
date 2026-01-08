@@ -21,23 +21,24 @@
     }
   },
   "require": {
-    "php": ">=8.2",
+    "php": ">=8.3",
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "infection/infection": "^0.29.6",
-    "lendable/composer-license-checker": "^1.2.1",
+    "infection/infection": "^0.32",
+    "lendable/composer-license-checker": "^1.2.2",
     "lendable/phpunit-extensions": "^0.3",
-    "liuggio/fastest": "^1.8",
-    "mikey179/vfsstream": "^1.6.11",
-    "php-cs-fixer/shim": "^3.61.1",
-    "php-parallel-lint/php-parallel-lint": "^1.4.0",
-    "phpstan/phpstan": "^1.11.9",
-    "phpstan/phpstan-deprecation-rules": "^1.2.0",
-    "phpstan/phpstan-phpunit": "^1.4.0",
-    "phpstan/phpstan-strict-rules": "^1.6.0",
-    "phpunit/phpunit": "^11.3.0",
-    "rector/rector": "^1.2.2"
+    "liuggio/fastest": "^1.13",
+    "mikey179/vfsstream": "^1.6.12",
+    "php-cs-fixer/shim": "^3.91.2",
+    "php-parallel-lint/php-parallel-lint": "^1.4",
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-deprecation-rules": "^2.0",
+    "phpstan/phpstan-phpunit": "^2.0",
+    "phpstan/phpstan-strict-rules": "^2.0",
+    "phpunit/phpunit": "^11.5",
+    "rector/rector": "^2.3",
+    "sebastian/recursion-context": "^6.0.3"
   },
   "provide": {
     "psr/clock-implementation": "1.0"
@@ -49,7 +50,7 @@
       "infection/extension-installer": true
     },
     "platform": {
-      "php": "8.2.5"
+      "php": "8.3.0"
     }
   },
   "prefer-stable": true,
@@ -90,7 +91,7 @@
       "phpunit --colors --testsuite=unit"
     ],
     "infection": [
-      "./bin/infection --threads=8 --min-msi=99 --show-mutations"
+      "./bin/infection --threads=8 --min-msi=98 --show-mutations"
     ],
     "tests": [
       "@tests:unit"

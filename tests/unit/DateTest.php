@@ -695,7 +695,7 @@ final class DateTest extends TestCase
     #[DataProvider('provideEarliestOfDates')]
     public function it_returns_earliest_of_dates(array $dates, string $expectedDate): void
     {
-        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+        $arguments = \array_map(Date::fromYearMonthDayString(...), $dates);
 
         $this->assertSame(
             $expectedDate,
@@ -720,7 +720,7 @@ final class DateTest extends TestCase
     #[DataProvider('provideLatestOfDates')]
     public function it_returns_latest_of_dates(array $dates, string $expectedDate): void
     {
-        $arguments = \array_map(static fn (string $date): Date => Date::fromYearMonthDayString($date), $dates);
+        $arguments = \array_map(Date::fromYearMonthDayString(...), $dates);
 
         $this->assertSame(
             $expectedDate,

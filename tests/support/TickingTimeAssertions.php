@@ -8,9 +8,7 @@ use PHPUnit\Framework\Assert;
 
 final class TickingTimeAssertions
 {
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function assertDateTimeLessThanOneSecondAfter(
         \DateTimeInterface $expected,
