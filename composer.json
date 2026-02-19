@@ -36,7 +36,7 @@
     "phpstan/phpstan-deprecation-rules": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0",
     "phpstan/phpstan-strict-rules": "^2.0",
-    "phpunit/phpunit": "^11.5",
+    "phpunit/phpunit": "^13.0.2",
     "rector/rector": "^2.3",
     "sebastian/recursion-context": "^6.0.3"
   },
