@@ -416,7 +416,9 @@ final class DateTest extends TestCase
 
         $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d days', $days)));
 
-        if ($days !== 0) {
+        if ($days === 0) {
+            $this->assertSame($date, $offsetDate);
+        } else {
             $this->assertNotSame($date, $offsetDate);
         }
 
@@ -447,7 +449,9 @@ final class DateTest extends TestCase
 
         $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d months', $days)));
 
-        if ($days !== 0) {
+        if ($days === 0) {
+            $this->assertSame($date, $offsetDate);
+        } else {
             $this->assertNotSame($date, $offsetDate);
         }
 
@@ -478,7 +482,9 @@ final class DateTest extends TestCase
 
         $expectedDate = Date::fromDateTime($date->startOfDay()->modify(\sprintf('%d years', $days)));
 
-        if ($days !== 0) {
+        if ($days === 0) {
+            $this->assertSame($date, $offsetDate);
+        } else {
             $this->assertNotSame($date, $offsetDate);
         }
 

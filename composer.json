@@ -90,7 +90,7 @@
       "phpunit --colors --testsuite=unit"
     ],
     "infection": [
-      "./bin/infection --threads=8 --min-msi=98 --show-mutations"
+      "./bin/infection --threads=8 --min-msi=100 --show-mutations"
     ],
     "tests": [
       "@tests:unit"
