@@ -17,3 +17,4 @@ jobs:
         uses: lendable/sloth@dbff4bbe34557fd3bd3865387f900d92034b9259 # v1.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          case-sensitive: false
