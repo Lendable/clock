@@ -1,0 +1,19 @@
+name: "Sloth"
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+  checks: read
+
+jobs:
+  sloth:
+    name: "Sloth"
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Sloth
+        uses: lendable/sloth@c4a89bf8c6c41c5c0d69b05344e18481ea62993d # v1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,7 +1,6 @@
-name: Conventional Commits
+name: "Conventional Commits"
 
 on:
-  # https://github.com/marketplace/actions/semantic-pull-request#event-triggers
   pull_request:
     types:
       - opened
@@ -11,13 +10,20 @@ on:
   merge_group:
 
 permissions:
+  contents: read
   pull-requests: read
 
 jobs:
   main:
-    name: Validate PR title
+    name: "Validate PR title"
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          sparse-checkout: |
+            .github/commitlint.config.js
+          sparse-checkout-cone-mode: false
+
       - uses: benhodgson87/conventional-pull-request-action@14ff798e4d745c3e3e951f6ef472ff598b9c47a5 # v1
         if: ${{ github.event_name == 'pull_request' }}
         env:
