@@ -77,8 +77,11 @@ jobs:
           - "8.5"
 
     steps:
-      - name: "Install bash, git"
-        run: apk add --no-cache bash git
+      - name: "Install bash, git, and pcov"
+        run: |
+          apk add --no-cache bash git $PHPIZE_DEPS
+          pecl install pcov
+          docker-php-ext-enable pcov
 
       - name: "Install Composer"
         run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=2.9.8
