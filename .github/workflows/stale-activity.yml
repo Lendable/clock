@@ -1,0 +1,26 @@
+name: "Stale Activity"
+
+on:
+  schedule:
+    - cron: "30 7 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+  pull-requests: read
+
+jobs:
+  remove-stale-branches:
+    name: "Remove stale branches"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: fpicalausa/remove-stale-branches@9b829bc2975ade0c61e64e9613def53ec0732440 # v2.6.1
+        with:
+          exempt-branches-regex: "^(master)$"
+          days-before-branch-stale: 182
+          days-before-branch-delete: 7
+          stale-branch-message: >
+            This branch [{branchName}]({branchUrl}) hasn't been updated in the last 6 months and is marked as stale.
+
+            It will be removed in a week. If you want to keep this branch around, delete this comment or add new commits to this branch.

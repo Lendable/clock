@@ -11,10 +11,58 @@ on:
     branches:
       - "master"
 
+permissions:
+  contents: read
+
 jobs:
-  ci:
-    name: "Execute (PHP ${{ matrix.php-version }} with ${{ matrix.dependencies }} deps)"
-    runs-on: "ubuntu-latest"
+  static-analysis:
+    name: "Static analysis"
+    runs-on: ubuntu-24.04
+    container:
+      image: public.ecr.aws/docker/library/php:8.3-cli-alpine
+      env:
+        COMPOSER_ALLOW_SUPERUSER: true
+        COMPOSER_ROOT_VERSION: dev-master
+
+    steps:
+      - name: "Install bash, git"
+        run: apk add --no-cache bash git
+
+      - name: "Install Composer"
+        run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=2.9.8
+
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: "Install dependencies"
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
+
+      - name: "Validate Composer dependencies"
+        run: composer validate
+
+      - name: "Check Composer dependency licenses"
+        run: composer licenses:check
+
+      - name: "Run linting"
+        run: composer lint
+
+      - name: "Run coding style"
+        run: composer code-style:check
+
+      - name: "Run PHPStan"
+        run: composer phpstan
+
+      - name: "Run Rector"
+        run: composer rector:check
+
+  tests:
+    name: "Tests (PHP ${{ matrix.php-version }}, ${{ matrix.dependencies }} deps)"
+    runs-on: ubuntu-24.04
+    container:
+      image: public.ecr.aws/docker/library/php:${{ matrix.php-version }}-cli-alpine
+      env:
+        COMPOSER_ALLOW_SUPERUSER: true
+        COMPOSER_ROOT_VERSION: dev-master
 
     strategy:
       fail-fast: false
@@ -29,45 +77,26 @@ jobs:
           - "8.5"
 
     steps:
-      - name: "Checkout"
-        uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6
+      - name: "Install bash, git, and pcov"
+        run: |
+          apk add --no-cache bash git $PHPIZE_DEPS
+          pecl install pcov
+          docker-php-ext-enable pcov
 
-      - name: "Install PHP"
-        uses: "shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc" # v2
-        with:
-          php-version: "${{ matrix.php-version }}"
-          ini-values: memory_limit=-1
+      - name: "Install Composer"
+        run: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer --version=2.9.8
+
+      - name: "Checkout"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: "Update Composer platform version"
         if: ${{ matrix.dependencies != 'locked' && matrix.php-version != '8.3' }}
-        shell: bash
-        run: "composer config platform.php ${{ matrix.php-version }}"
+        run: composer config platform.php ${{ matrix.php-version }}
 
       - name: "Install dependencies"
-        uses: "ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda" # 4.0.0
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
-      - name: "Validate Composer dependencies"
-        run: "composer validate"
-
-      - name: "Check Composer dependency licenses"
-        run: "composer licenses:check"
-
-      - name: "Run linting"
-        run: "composer lint"
-
-      - name: "Run coding style"
-        if: ${{ matrix.dependencies == 'locked' && matrix.php-version == '8.3' }}
-        run: "composer code-style:check"
-
-      - name: "Run PHPStan"
-        if: ${{ matrix.dependencies == 'locked' }}
-        run: "composer phpstan"
-
-      - name: "Run Rector"
-        if: ${{ matrix.dependencies == 'locked' }}
-        run: "composer rector:check"
-
-      - name: "Tests"
-        run: "composer tests"
+      - name: "Run tests"
+        run: composer tests
