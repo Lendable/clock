@@ -1,0 +1,16 @@
+name: Sloth
+
+on:
+  pull_request:
+  merge_group:
+
+jobs:
+  sloth:
+    runs-on: [ubuntu-slim]
+    steps:
+      - name: Sloth
+        uses: lendable/sloth@dbff4bbe34557fd3bd3865387f900d92034b9259 # v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ignored: |
+            Validate PR title
