@@ -1,0 +1,28 @@
+Dockerfile.php-cli
+  h_173dc5fb53901a 1,3-4,6-14,16,18
+.github/workflows/release.yml
+  h_173dc5fb53901a 19
+.php-cs-fixer.php
+  h_173dc5fb53901a 11
+.github/workflows/conventional-commits.yml
+  h_173dc5fb53901a 19
+tests/unit/DateTest.php
+  h_173dc5fb53901a 61,148,156
+.github/workflows/ci.yml
+  h_173dc5fb53901a 17,41,60
+tests/unit/DateTimeFactoryTest.php
+  h_173dc5fb53901a 56-58,91-93
+rector.php
+  h_173dc5fb53901a 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "b9fd99d75ad91bd3d068bceda58c912f4444a2aa",
+  "prompts": {},
+  "humans": {
+    "h_173dc5fb53901a": {
+      "author": "Marcin Michalski <marcin.michalski@lendable.co.uk>"
+    }
+  }
+}
