@@ -20,7 +20,7 @@ final class FastestTestChannelFileNameGeneratorTest extends TestCase
     {
         $this->exerciseAndResetEnv(function (): void {
             \putenv(\sprintf('%s=3', EnvCommandCreator::ENV_TEST_CHANNEL_READABLE));
-            $this->assertSame('now_3.json', (new FastestTestChannelFileNameGenerator())->generate());
+            $this->assertSame('now_3.json', new FastestTestChannelFileNameGenerator()->generate());
         });
     }
 
@@ -29,7 +29,7 @@ final class FastestTestChannelFileNameGeneratorTest extends TestCase
     {
         $this->exerciseAndResetEnv(function (): void {
             \putenv(EnvCommandCreator::ENV_TEST_CHANNEL_READABLE);
-            $this->assertSame('now_1.json', (new FastestTestChannelFileNameGenerator())->generate());
+            $this->assertSame('now_1.json', new FastestTestChannelFileNameGenerator()->generate());
         });
     }
 

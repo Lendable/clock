@@ -53,8 +53,9 @@ final class DateTimeFactoryTest extends TestCase
     #[Test]
     public function it_throws_an_exception_if_an_immutable_instance_fails_to_construct(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Cannot create \DateTimeImmutable instance from format "ABC123" and value "1234567".');
+        $this->expectExceptionObject(new \InvalidArgumentException(
+            'Cannot create \DateTimeImmutable instance from format "ABC123" and value "1234567".',
+        ));
 
         DateTimeFactory::immutableFromFormat('ABC123', '1234567');
     }
@@ -87,8 +88,9 @@ final class DateTimeFactoryTest extends TestCase
     #[Test]
     public function it_throws_an_exception_if_a_mutable_instance_fails_to_construct(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Cannot create \DateTime instance from format "ABC123" and value "1234567".');
+        $this->expectExceptionObject(new \InvalidArgumentException(
+            'Cannot create \DateTime instance from format "ABC123" and value "1234567".',
+        ));
 
         DateTimeFactory::mutableFromFormat('ABC123', '1234567');
     }

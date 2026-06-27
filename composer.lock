@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "958d6994219b803a31c245d5817aa3b4",
+    "content-hash": "4e241a23dcaae1876e055496de439ef1",
     "packages": [
         {
             "name": "psr/clock",
@@ -1543,16 +1543,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.95.3",
+            "version": "v3.95.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "681eea341af451ca7cee6abcebc49fcce59507a3"
+                "reference": "87c59806c6ec3da0c554ca154a14c7e970fe5f26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/681eea341af451ca7cee6abcebc49fcce59507a3",
-                "reference": "681eea341af451ca7cee6abcebc49fcce59507a3",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/87c59806c6ec3da0c554ca154a14c7e970fe5f26",
+                "reference": "87c59806c6ec3da0c554ca154a14c7e970fe5f26",
                 "shasum": ""
             },
             "require": {
@@ -1589,9 +1589,9 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.3"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.11"
             },
-            "time": "2026-05-29T20:36:02+00:00"
+            "time": "2026-06-25T14:17:29+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
@@ -5085,11 +5085,11 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.3"
+        "php": "^8.4"
     },
     "platform-dev": {},
     "platform-overrides": {
-        "php": "8.3.0"
+        "php": "8.4.1"
     },
     "plugin-api-version": "2.9.0"
 }
