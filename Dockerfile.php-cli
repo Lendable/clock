@@ -1,12 +1,18 @@
-ARG PHP_BASE_IMAGE_VERSION="8.2.5-alpine3.17"
+FROM public.ecr.aws/docker/library/php:8.4-cli-alpine AS base
 
-FROM lendableuk/php-fpm-alpine:${PHP_BASE_IMAGE_VERSION}
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
-COPY --from=composer:2.10.1 /usr/bin/composer /usr/bin/composer
+RUN addgroup --gid "${GROUP_ID}" "app" && \
+    adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/app-home" \
+    --ingroup "app" \
+    --uid "${USER_ID}" \
+    -s "/bin/sh" \
+    "app"
 
-COPY . /app
+COPY --from=composer/composer:2.10.1-bin /composer /usr/bin/composer
+
 WORKDIR /app
-
-RUN chown -R 'app:app' /app && \
-    su app -c "composer install --prefer-dist --no-progress -n --ansi" && \
-    su app -c "composer clear-cache --ansi -n"

@@ -58,8 +58,7 @@ final class DateTest extends TestCase
     #[Test]
     public function it_throws_when_constructing_from_integer_components_if_invalid_date(): void
     {
-        $this->expectException(InvalidDate::class);
-        $this->expectExceptionMessage('Date 2018-13-10 (Y-m-d) is invalid.');
+        $this->expectExceptionObject(new InvalidDate('Date 2018-13-10 (Y-m-d) is invalid.'));
 
         Date::fromYearMonthDay(2018, 13, 10);
     }
@@ -146,8 +145,7 @@ final class DateTest extends TestCase
     #[DataProvider('provideInvalidYearMonthDayStrings')]
     public function it_throws_when_constructing_from_a_formatted_string_if_invalid_format(string $value): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Failed to parse string as a Y-m-d formatted date.');
+        $this->expectExceptionObject(new \InvalidArgumentException('Failed to parse string as a Y-m-d formatted date.'));
 
         Date::fromYearMonthDayString($value);
     }
@@ -155,8 +153,7 @@ final class DateTest extends TestCase
     #[Test]
     public function it_throws_when_constructing_from_a_formatted_string_if_invalid_date(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Date 2019-13-1 (Y-m-d) is invalid.');
+        $this->expectExceptionObject(new \InvalidArgumentException('Date 2019-13-1 (Y-m-d) is invalid.'));
 
         Date::fromYearMonthDayString('2019-13-01');
     }

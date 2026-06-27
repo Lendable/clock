@@ -9,7 +9,7 @@ return RectorConfig::configure()
     ->withPaths([__DIR__.'/lib', __DIR__.'/tests'])
     ->withRootFiles()
     ->withPHPStanConfigs([__DIR__.'/phpstan-rector.neon'])
-    ->withPhpSets(php83: true)
+    ->withPhpSets(php84: true)
     ->withComposerBased(phpunit: true)
     ->withPreparedSets(codeQuality: true)
     ->withAttributesSets(phpunit: true);
