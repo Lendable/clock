@@ -1,0 +1,14 @@
+lib/Date.php
+  h_173dc5fb53901a 52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.4",
+  "base_commit_sha": "e116ca1a3e613cb614d7ec9f1fdd2cbe7a7ae4d9",
+  "prompts": {},
+  "humans": {
+    "h_173dc5fb53901a": {
+      "author": "Marcin Michalski <marcin.michalski@lendable.co.uk>"
+    }
+  }
+}
