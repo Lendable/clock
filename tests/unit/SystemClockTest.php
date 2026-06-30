@@ -38,7 +38,7 @@ final class SystemClockTest extends TestCase
     #[Test]
     public function it_defaults_timezone_to_utc(): void
     {
-        $this->assertSame('UTC', (new SystemClock())->now()->getTimezone()->getName());
+        $this->assertSame('UTC', new SystemClock()->now()->getTimezone()->getName());
     }
 
     #[Test]

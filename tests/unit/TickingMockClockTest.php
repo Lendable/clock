@@ -110,7 +110,7 @@ final class TickingMockClockTest extends TestCase
         $timeFormat = 'Y-m-d\TH:i:s.u';
         $now = \DateTimeImmutable::createFromFormat($timeFormat, $timeString, new \DateTimeZone('UTC'));
         \assert($now instanceof \DateTimeImmutable);
-        $clock = TickingMockClock::tickingFromTime($now, (new \DateTimeImmutable('now'))->sub(new \DateInterval('PT24H')));
+        $clock = TickingMockClock::tickingFromTime($now, new \DateTimeImmutable('now')->sub(new \DateInterval('PT24H')));
 
         $date = $clock->today();
 
