@@ -25,9 +25,9 @@
     "psr/clock": "^1.0"
   },
   "require-dev": {
-    "infection/infection": "^0.32",
+    "infection/infection": "^0.34",
     "lendable/composer-license-checker": "^1.2.2",
-    "lendable/phpunit-extensions": "^0.4",
+    "lendable/phpunit-extensions": "^0.5",
     "liuggio/fastest": "^1.13",
     "mikey179/vfsstream": "^1.6.12",
     "php-cs-fixer/shim": "^3.95.11",
@@ -36,7 +36,7 @@
     "phpstan/phpstan-deprecation-rules": "^2.0",
     "phpstan/phpstan-phpunit": "^2.0.16",
     "phpstan/phpstan-strict-rules": "^2.0",
-    "phpunit/phpunit": "^12.5.23",
+    "phpunit/phpunit": "^13.2.1",
     "rector/rector": "^2.4.2"
   },
   "provide": {
