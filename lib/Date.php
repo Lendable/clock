@@ -49,7 +49,7 @@ final readonly class Date
             throw new InvalidDate('Failed to parse string as a Y-m-d formatted date.');
         }
 
-        /** @var list{non-falsy-string, numeric-string, numeric-string, numeric-string} $matches */
+        /** @var list{non-falsy-string, decimal-int-string, decimal-int-string, decimal-int-string} $matches */
         [, $year, $month, $day] = $matches;
 
         return self::fromYearMonthDay((int) $year, (int) $month, (int) $day);
