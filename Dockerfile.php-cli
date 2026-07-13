@@ -13,6 +13,6 @@ RUN addgroup --gid "${GROUP_ID}" "app" && \
     -s "/bin/sh" \
     "app"
 
-COPY --from=composer/composer:2.10.1-bin /composer /usr/bin/composer
+COPY --from=composer/composer:2.10.2-bin /composer /usr/bin/composer
 
 WORKDIR /app
