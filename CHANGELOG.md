@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.5.0](https://github.com/Lendable/clock/compare/4.4.0...4.5.0) (2026-07-23)
+
+
+### Features
+
+* Require PHP 8.4 ([#1108](https://github.com/Lendable/clock/issues/1108)) ([f86afee](https://github.com/Lendable/clock/commit/f86afee8ee67d42dbd0bf3779087966a57c6038f))
+
 ## [4.4.0](https://github.com/Lendable/clock/compare/4.3.0...4.4.0) (2026-01-08)
 
 
