@@ -1,0 +1,43 @@
+.gitignore
+  s_554032dd96755b::t_f32f50e801862c 4
+  s_554032dd96755b::t_a09bfec72aef5f 7
+local/Dockerfile
+  s_554032dd96755b::t_af1f5237ce126f 1-19,22-38
+  s_554032dd96755b::t_e4ec5f1b6742c1 20-21
+Makefile
+  s_554032dd96755b::t_ca3301d26df2f7 1-47
+local/.env.dist
+  s_554032dd96755b::t_f1f236db24737f 1-2
+local/docker-compose.yaml
+  s_554032dd96755b::t_e563954e4727c2 1-15
+README.md
+  s_554032dd96755b::t_985a85579782b9 103-105,107-120,122-127
+  s_554032dd96755b::t_8ccfc1a284f086 106,121
+.gitattributes
+  s_554032dd96755b::t_8cb9e8feb9a8b9 1-14
+local/php_conf.ini
+  s_554032dd96755b::t_c04737cd3f47a1 1-8
+local/xdebug-entrypoint.sh
+  s_554032dd96755b::t_c0a20f499bf557 1-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "a5e691a04dc0781ce286d883d8d4cd3ce3e2df0e",
+  "prompts": {},
+  "humans": {
+    "h_173dc5fb53901a": {
+      "author": "Marcin Michalski <marcin.michalski@lendable.co.uk>"
+    }
+  },
+  "sessions": {
+    "s_554032dd96755b": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f669d65c-b886-4041-a0ac-b7e15ddc1928",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Marcin Michalski <marcin.michalski@lendable.co.uk>"
+    }
+  }
+}
