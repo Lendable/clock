@@ -1,5 +1,7 @@
 /bin
 /vendor
 /phpunit.xml
+/infection.json
 /.php-cs-fixer.cache
 /.phpunit.result.cache
+/local/.env

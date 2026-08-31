@@ -104,9 +104,6 @@
       "@static-analysis",
       "@code-style:check",
       "@tests:unit"
-    ],
-    "run-ci": [
-      "ci/run.sh"
     ]
   }
 }

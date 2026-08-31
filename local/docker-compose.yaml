@@ -1,0 +1,15 @@
+services:
+  runner:
+    entrypoint: "/usr/local/bin/docker-php-xdebug-entrypoint"
+    tty: true
+    build:
+      context: .
+      target: dev
+    environment:
+      XDEBUG_ENABLED: "${XDEBUG_ENABLED:-}"
+      XDEBUG_HOST: "${XDEBUG_HOST:-}"
+      XDEBUG_PORT: "${XDEBUG_PORT:-}"
+      XDEBUG_IDE_KEY: "${XDEBUG_IDE_KEY:-}"
+      PHP_IDE_CONFIG: "${PHP_IDE_CONFIG:-}"
+    volumes:
+      - "..:/app:rw"
