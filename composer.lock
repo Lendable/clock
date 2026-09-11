@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa7741abaf05df4b40397ba6fc247a41",
+    "content-hash": "f0ae5504197041765bcffc8ab2eb4daa",
     "packages": [
         {
             "name": "psr/clock",
@@ -933,34 +933,34 @@
         },
         {
             "name": "lendable/composer-license-checker",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lendable/composer-license-checker.git",
-                "reference": "3b388a5947aa01b9711f1e8c2092ecbacfd3db67"
+                "reference": "7436e0724e8b29e04add4e78cea54b45a3ebfc86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lendable/composer-license-checker/zipball/3b388a5947aa01b9711f1e8c2092ecbacfd3db67",
-                "reference": "3b388a5947aa01b9711f1e8c2092ecbacfd3db67",
+                "url": "https://api.github.com/repos/Lendable/composer-license-checker/zipball/7436e0724e8b29e04add4e78cea54b45a3ebfc86",
+                "reference": "7436e0724e8b29e04add4e78cea54b45a3ebfc86",
                 "shasum": ""
             },
             "require": {
                 "composer-runtime-api": "^2.2",
-                "php": "~8.4.0 || ~8.5.0",
+                "php": "~8.4.0 || ~8.5.0 || ~8.6.0",
                 "symfony/console": "^5.4 || ^6.4 || ^7.3 || ^8.0",
                 "symfony/process": "^5.4.46 || ^6.4.14 || ^7.3 || ^8.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.43.0",
-                "lendable/phpunit-extensions": "^0.3",
-                "php-cs-fixer/shim": "^3.61.1",
-                "phpstan/phpstan": "^2.0",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpstan/phpstan-strict-rules": "^2.0",
-                "phpunit/phpunit": "^11.3.0",
-                "rector/rector": "^2.0",
+                "ergebnis/composer-normalize": "^2.52.0",
+                "lendable/phpunit-extensions": "^0.5",
+                "php-cs-fixer/shim": "^3.95.17",
+                "phpstan/phpstan": "^2.2.6",
+                "phpstan/phpstan-deprecation-rules": "^2.0.5",
+                "phpstan/phpstan-phpunit": "^2.0.18",
+                "phpstan/phpstan-strict-rules": "^2.0.12",
+                "phpunit/phpunit": "^13.2.5",
+                "rector/rector": "^2.5.8",
                 "symfony/filesystem": "^6.2"
             },
             "bin": [
@@ -985,9 +985,9 @@
             "description": "Composer license checker",
             "support": {
                 "issues": "https://github.com/Lendable/composer-license-checker/issues",
-                "source": "https://github.com/Lendable/composer-license-checker/tree/1.4.0"
+                "source": "https://github.com/Lendable/composer-license-checker/tree/1.4.1"
             },
-            "time": "2026-01-08T15:57:04+00:00"
+            "time": "2026-09-03T10:02:06+00:00"
         },
         {
             "name": "lendable/phpunit-extensions",
@@ -1544,16 +1544,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.95.23",
+            "version": "v3.95.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "08339736dd8101eb432d6116ffaeaf54a150a764"
+                "reference": "fb929e8551bae0239936297f6402b513e98552e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/08339736dd8101eb432d6116ffaeaf54a150a764",
-                "reference": "08339736dd8101eb432d6116ffaeaf54a150a764",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/fb929e8551bae0239936297f6402b513e98552e2",
+                "reference": "fb929e8551bae0239936297f6402b513e98552e2",
                 "shasum": ""
             },
             "require": {
@@ -1590,7 +1590,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.23"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.24"
             },
             "funding": [
                 {
@@ -1598,7 +1598,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-26T19:55:22+00:00"
+            "time": "2026-08-31T15:31:46+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
@@ -1663,11 +1663,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.9",
+            "version": "2.2.13",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/13d6b4f347bad222da436580c8304fa6f83e6bd0",
-                "reference": "13d6b4f347bad222da436580c8304fa6f83e6bd0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9ba9ac76ee9c5cf5b56d58eb5deec6315b7a0260",
+                "reference": "9ba9ac76ee9c5cf5b56d58eb5deec6315b7a0260",
                 "shasum": ""
             },
             "require": {
@@ -1723,7 +1723,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-22T07:38:16+00:00"
+            "time": "2026-09-03T20:38:19+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -2466,30 +2466,27 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.6.4",
+            "version": "2.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "6ff008471683591224951526247b7a2b86980ba9"
+                "reference": "ca069d6c79feaa6651b423c15d101a27a436093e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/6ff008471683591224951526247b7a2b86980ba9",
-                "reference": "6ff008471683591224951526247b7a2b86980ba9",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/ca069d6c79feaa6651b423c15d101a27a436093e",
+                "reference": "ca069d6c79feaa6651b423c15d101a27a436093e",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.2.6"
+                "phpstan/phpstan": "^2.2.10"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
                 "rector/rector-downgrade-php": "*",
                 "rector/rector-phpunit": "*",
                 "rector/rector-symfony": "*"
-            },
-            "suggest": {
-                "ext-dom": "To manipulate phpunit.xml via the custom-rule command"
             },
             "bin": [
                 "bin/rector"
@@ -2514,7 +2511,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.6.4"
+                "source": "https://github.com/rectorphp/rector/tree/2.6.6"
             },
             "funding": [
                 {
@@ -2522,7 +2519,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-27T09:20:34+00:00"
+            "time": "2026-09-02T09:38:46+00:00"
         },
         {
             "name": "sanmai/di-container",
