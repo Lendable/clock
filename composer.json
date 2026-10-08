@@ -34,7 +34,7 @@
     "php-parallel-lint/php-parallel-lint": "^1.4",
     "phpstan/phpstan": "^2.2.16",
     "phpstan/phpstan-deprecation-rules": "^2.0.5",
-    "phpstan/phpstan-phpunit": "^2.0.20",
+    "phpstan/phpstan-phpunit": "^2.0.21",
     "phpstan/phpstan-strict-rules": "^2.0.12",
     "phpunit/phpunit": "^13.3.6",
     "rector/rector": "^2.6.7"
