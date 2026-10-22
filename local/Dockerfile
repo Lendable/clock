@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/php:8.4-cli-alpine@sha256:37c8c64177612b72e7f9d2c00481739c166a3708bea27c1cfd27fea1291d82d1 AS base
+FROM public.ecr.aws/docker/library/php:8.4-cli-alpine@sha256:dfb0d7d718e32461eea2b27c79f9642727eab0bbca2b19b64cc2be52bd7ebf1e AS base
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
