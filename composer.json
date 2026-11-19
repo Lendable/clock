@@ -27,14 +27,14 @@
   "require-dev": {
     "infection/infection": "^0.35",
     "lendable/composer-license-checker": "^1.4.1",
-    "lendable/phpunit-extensions": "^0.5",
+    "lendable/phpunit-extensions": "^0.6",
     "liuggio/fastest": "^1.13",
     "mikey179/vfsstream": "^1.6.12",
-    "php-cs-fixer/shim": "^3.95.27",
+    "php-cs-fixer/shim": "^3.95.30",
     "php-parallel-lint/php-parallel-lint": "^1.4",
     "phpstan/phpstan": "^2.3.5",
     "phpstan/phpstan-deprecation-rules": "^2.0.5",
-    "phpstan/phpstan-phpunit": "^2.1.1",
+    "phpstan/phpstan-phpunit": "^2.1.2",
     "phpstan/phpstan-strict-rules": "^2.1.1",
     "phpunit/phpunit": "^13.4.6",
     "rector/rector": "^2.8.4"

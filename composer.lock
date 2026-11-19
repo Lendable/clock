@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3792d553d2de2c8701d9ddb15e259800",
+    "content-hash": "086a260e6f7be86486bb80212b949302",
     "packages": [
         {
             "name": "psr/clock",
@@ -993,16 +993,16 @@
         },
         {
             "name": "lendable/phpunit-extensions",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lendable/phpunit-extensions.git",
-                "reference": "bd78c99e9ae3460ddfc65fe0ee9fb8baf36dc8d4"
+                "reference": "6f9bc607c9b581a1ab99c220f117a12e996dd165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lendable/phpunit-extensions/zipball/bd78c99e9ae3460ddfc65fe0ee9fb8baf36dc8d4",
-                "reference": "bd78c99e9ae3460ddfc65fe0ee9fb8baf36dc8d4",
+                "url": "https://api.github.com/repos/Lendable/phpunit-extensions/zipball/6f9bc607c9b581a1ab99c220f117a12e996dd165",
+                "reference": "6f9bc607c9b581a1ab99c220f117a12e996dd165",
                 "shasum": ""
             },
             "require": {
@@ -1010,14 +1010,14 @@
                 "phpunit/phpunit": "^13.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.45",
-                "lendable/composer-license-checker": "^1.2.1",
-                "php-cs-fixer/shim": "^3.92",
-                "phpstan/phpstan": "^2.1.39",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0.16",
-                "phpstan/phpstan-strict-rules": "^2.0",
-                "rector/rector": "^2.3.2"
+                "ergebnis/composer-normalize": "^2.56.0",
+                "lendable/composer-license-checker": "^1.4.1",
+                "php-cs-fixer/shim": "^3.95.27",
+                "phpstan/phpstan": "^2.3.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0.5",
+                "phpstan/phpstan-phpunit": "^2.1.1",
+                "phpstan/phpstan-strict-rules": "^2.1.1",
+                "rector/rector": "^2.8.3"
             },
             "type": "library",
             "autoload": {
@@ -1038,10 +1038,10 @@
             "description": "Extensions to PHPUnit",
             "support": {
                 "issues": "https://github.com/Lendable/phpunit-extensions/issues",
-                "source": "https://github.com/Lendable/phpunit-extensions/tree/0.5.0"
+                "source": "https://github.com/Lendable/phpunit-extensions/tree/0.6.0"
             },
-            "time": "2026-02-19T11:41:01+00:00",
-            "published-time": "2026-02-19T11:42:21+00:00"
+            "time": "2026-11-09T14:23:16+00:00",
+            "published-time": "2026-11-09T14:24:24+00:00"
         },
         {
             "name": "liuggio/fastest",
@@ -1555,16 +1555,16 @@
         },
         {
             "name": "php-cs-fixer/shim",
-            "version": "v3.95.28",
+            "version": "v3.95.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/shim.git",
-                "reference": "77117f70ba29f9854f23aa44130505d043e71403"
+                "reference": "413c9705404163fa3e5f7854208c5e9ae1a4590d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/77117f70ba29f9854f23aa44130505d043e71403",
-                "reference": "77117f70ba29f9854f23aa44130505d043e71403",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/shim/zipball/413c9705404163fa3e5f7854208c5e9ae1a4590d",
+                "reference": "413c9705404163fa3e5f7854208c5e9ae1a4590d",
                 "shasum": ""
             },
             "require": {
@@ -1601,7 +1601,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/shim/issues",
-                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.28"
+                "source": "https://github.com/PHP-CS-Fixer/shim/tree/v3.95.30"
             },
             "funding": [
                 {
@@ -1609,8 +1609,8 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-04T13:09:09+00:00",
-            "published-time": "2026-11-04T13:10:04+00:00"
+            "time": "2026-11-09T14:32:47+00:00",
+            "published-time": "2026-11-09T14:32:56+00:00"
         },
         {
             "name": "php-parallel-lint/php-parallel-lint",
@@ -1793,16 +1793,16 @@
         },
         {
             "name": "phpstan/phpstan-phpunit",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-phpunit.git",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03"
+                "reference": "ffff35d4f96c4642d7f41a3515d90afa0f58be62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
-                "reference": "8d16b8478e523a47f8c02e83bce8981b5b5a3b03",
+                "url": "https://api.github.com/repos/phpstan/phpstan-phpunit/zipball/ffff35d4f96c4642d7f41a3515d90afa0f58be62",
+                "reference": "ffff35d4f96c4642d7f41a3515d90afa0f58be62",
                 "shasum": ""
             },
             "require": {
@@ -1845,10 +1845,10 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-phpunit/issues",
-                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.1"
+                "source": "https://github.com/phpstan/phpstan-phpunit/tree/2.1.2"
             },
-            "time": "2026-10-06T18:12:32+00:00",
-            "published-time": "2026-10-07T04:59:27+00:00"
+            "time": "2026-11-12T15:27:53+00:00",
+            "published-time": "2026-11-12T16:07:51+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
