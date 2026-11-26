@@ -32,11 +32,11 @@
     "mikey179/vfsstream": "^1.6.12",
     "php-cs-fixer/shim": "^3.95.32",
     "php-parallel-lint/php-parallel-lint": "^1.4",
-    "phpstan/phpstan": "^2.3.6",
+    "phpstan/phpstan": "^2.3.7",
     "phpstan/phpstan-deprecation-rules": "^2.0.5",
     "phpstan/phpstan-phpunit": "^2.1.2",
     "phpstan/phpstan-strict-rules": "^2.1.1",
-    "phpunit/phpunit": "^13.4.7",
+    "phpunit/phpunit": "^13.4.8",
     "rector/rector": "^2.8.5"
   },
   "provide": {
