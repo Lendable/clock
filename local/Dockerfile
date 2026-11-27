@@ -13,7 +13,7 @@ RUN addgroup --gid "${GROUP_ID}" "app" && \
     -s "/bin/sh" \
     "app"
 
-COPY --from=composer/composer:2.11.1-bin@sha256:56a1b0a72bacd78079e3fa49a49e7bf58326365753415c99385ea2b08bded0a5 /composer /usr/bin/composer
+COPY --from=composer/composer:2.11.2-bin@sha256:4eaf89f62eb9504807f2828f1829a71b7fcd202e89abe2f41c1fb2136068fbfb /composer /usr/bin/composer
 
 RUN apk add --no-cache git
 
